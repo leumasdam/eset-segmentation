@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESET – Kybernetická bezpečnosť</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="eset-redesign.css">
+</head>
+<body>
+
+  <!-- GLOBAL AMBIENT ORB LAYER -->
+  <div id="ambient">
+    <!-- Hero area: teal top-right, crimson bottom-left -->
+    <!-- Plans section: centered teal blob -->
+    <!-- Trust section: teal left, crimson right -->
+    <!-- Bottom / trial banner -->
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="eset-logo2.png" alt="ESET" style="height:32px; width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Produkty</a></li>
+      <li><a href="#">Podpora</a></li>
+      <li><a href="#">Partneri</a></li>
+      <li><a href="#">O nás</a></li>
+      <li><a href="#" class="nav-cta">Vyskúšať zadarmo</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-grid"></div>
+
+    <!-- Scan HUD -->
+    <div class="scan-hud" id="scan-hud">
+      <div class="hud-row">
+        <span class="hud-dot" id="hud-dot"></span>
+        <span class="hud-label" id="hud-label">INICIALIZÁCIA</span>
+      </div>
+      <div class="hud-bar"><div class="hud-bar-fill" id="hud-fill" style="width:0%"></div></div>
+      <div class="hud-row">
+        <span class="hud-val" id="hud-val">—</span>
+      </div>
+    </div>
+
+    <!-- Shield watermark -->
+    <svg class="hero-shield" viewBox="0 0 200 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 4L12 36V108C12 158 52 202 100 226C148 202 188 158 188 108V36L100 4Z"
+            stroke="#00BBC5" stroke-width="2" fill="none"/>
+      <path d="M100 20L28 48V108C28 150 60 190 100 210C140 190 172 150 172 108V48L100 20Z"
+            stroke="#00BBC5" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M100 50L56 68V108C56 136 74 162 100 178C126 162 144 136 144 108V68L100 50Z"
+            stroke="#EA6CB1" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="100" cy="115" r="22" stroke="#00BBC5" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <path d="M88 115L96 123L114 105" stroke="#00BBC5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      30 rokov na čele kybernetickej bezpečnosti
+    </div>
+
+    <h1>
+      Ochrana, ktorá myslí<br>
+      <span class="accent">skôr ako hrozba.</span>
+    </h1>
+
+    <p class="hero-sub">
+      AI-powered bezpečnosť pre domácnosti aj firmy. Vyvinutá v Európe, dôveryhodná po celom svete.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#plans" class="btn-hero-primary">Vybrať plán</a>
+      <a href="#" class="btn-hero-secondary">Vyskúšať zadarmo</a>
+    </div>
+
+    <div class="hero-badges">
+      <img src="eset-badges.png" alt="AV-TEST · SE Labs AAA · AV-Comparatives Advanced+ · Canalys Champion" class="hero-badges-img">
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">99.9%</div>
+        <div class="stat-label">Detekcia malvéru</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">11</div>
+        <div class="stat-label">R&amp;D centier vo svete</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">4.6★</div>
+        <div class="stat-label">Gartner Peer Insights</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-glow-divider"></div>
+
+  <!-- SWITCHER + PRODUCTS -->
+  <section id="plans" class="switcher-section" style="position:relative;overflow:hidden;">
+
+    <!-- Progress shape: C-arc — all of C off-screen left, only right rim visible -->
+    <svg class="ps ps-plans-carc" viewBox="0 0 680 900" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+      <path d="M660 -40 C-160 -40, -160 940, 660 940"
+            stroke="#00BBC5" stroke-width="1.4" fill="none"/>
+      <path d="M660 20 C-80 20, -80 880, 660 880"
+            stroke="#0095A1" stroke-width="0.8" fill="none" opacity="0.45"/>
+    </svg>
+
+    <span class="section-label">Vyberte si plán</span>
+    <h2 class="section-title">Pre koho hľadáte ochranu?</h2>
+    <p class="section-sub">Jedno kliknutie. Správna ochrana.</p>
+
+    <div class="pill-switcher">
+      <button class="pill-btn active" onclick="switchTab('domacnosti', this)">Pre domácnosti</button>
+      <button class="pill-btn" onclick="switchTab('firmy', this)">Pre firmy</button>
+    </div>
+  </section>
+
+  <section class="products-section">
+
+    <!-- DOMÁCNOSTI -->
+    <div id="tab-domacnosti" class="tab-content active">
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-name">ESET</div>
+          <div class="card-product">Essential</div>
+          <div class="card-tagline">Základná ochrana pre každodenné použitie</div>
+          <div class="card-price">
+            <div class="price-label">od</div>
+            <span class="price-amount">19<small style="font-size:20px;font-weight:600">.99€</small></span>
+            <span class="price-period">/rok</span>
+          </div>
+          <div class="card-divider"></div>
+          <ul class="feature-list">
+            <li class="highlight">
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Antivírusová a antispyware ochrana
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Bezpečné prehliadanie webu
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Ochrana pred phishingom
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Firewall
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Ochrana bankových transakcií
+            </li>
+          </ul>
+          <a href="#" class="btn-primary">Kúpiť teraz</a>
+          <a href="#" class="btn-secondary">Vyskúšať zadarmo</a>
+          <div class="devices-info">1 zariadenie · Windows, Mac, Android</div>
+        </div>
+
+        <div class="card featured">
+          <div class="card-badge">NAJOBĽÚBENEJŠÍ</div>
+          <div class="card-name">ESET</div>
+          <div class="card-product">Premium</div>
+          <div class="card-tagline">Kompletná ochrana s VPN a šifrovaním</div>
+          <div class="card-price">
+            <div class="price-label">od</div>
+            <span class="price-amount">39<small style="font-size:20px;font-weight:600">.99€</small></span>
+            <span class="price-period">/rok</span>
+          </div>
+          <div class="card-divider"></div>
+          <ul class="feature-list">
+            <li class="highlight">
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Všetko z Essential
+            </li>
+            <li class="highlight">
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              VPN neobmedzená (3 zariadenia)
+            </li>
+            <li class="highlight">
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Šifrovanie súborov a diskov
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Password Manager
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Rodičovská kontrola
+            </li>
+          </ul>
+          <a href="#" class="btn-primary">Kúpiť teraz</a>
+          <a href="#" class="btn-secondary">Vyskúšať zadarmo</a>
+          <div class="devices-info">3 zariadenia · Windows, Mac, Android, iOS</div>
+        </div>
+
+        <div class="card">
+          <div class="card-name">ESET</div>
+          <div class="card-product">Ultimate</div>
+          <div class="card-tagline">Maximálna ochrana identity a zariadení</div>
+          <div class="card-price">
+            <div class="price-label">od</div>
+            <span class="price-amount">59<small style="font-size:20px;font-weight:600">.99€</small></span>
+            <span class="price-period">/rok</span>
+          </div>
+          <div class="card-divider"></div>
+          <ul class="feature-list">
+            <li class="highlight">
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Všetko z Premium
+            </li>
+            <li class="highlight">
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              VPN neobmedzená (10 zariadení)
+            </li>
+            <li class="highlight">
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Ochrana identity &amp; dark web monitoring
+            </li>
+            <li class="highlight">
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Obnova po ransomware útoku
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              Prioritná technická podpora
+            </li>
+          </ul>
+          <a href="#" class="btn-primary">Kúpiť teraz</a>
+          <a href="#" class="btn-secondary">Vyskúšať zadarmo</a>
+          <div class="devices-info">10 zariadení · Windows, Mac, Android, iOS</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FIRMY -->
+    <div id="tab-firmy" class="tab-content">
+      <div class="business-guide">
+
+        <div class="guide-header">
+          <h3>Nájdeme riešenie pre vaše potreby</h3>
+          <p>Od malých firiem po enterprise organizácie — ESET PROTECT platformu škálujeme podľa vás.</p>
+        </div>
+
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">KROK 01</div>
+            <div class="step-title">Aká veľká je vaša firma?</div>
+            <div class="step-desc">Máme riešenia pre 5 zariadení aj pre tisíce endpointov. Cena rastie len s tým, čo skutočne potrebujete.</div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">KROK 02</div>
+            <div class="step-title">Čo chcete chrániť?</div>
+            <div class="step-desc">Endpointy, servery, emaily, cloudy? Alebo komplexná XDR/MDR ochrana s nepretržitým monitoringom?</div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">KROK 03</div>
+            <div class="step-title">Ako riadite IT?</div>
+            <div class="step-desc">Máte vlastný IT tím, alebo potrebujete, aby ESET spravoval vašu bezpečnosť za vás? Ponúkame oboje.</div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">KROK 04</div>
+            <div class="step-title">Dostanete konkrétny návrh</div>
+            <div class="step-desc">Váš ESET konzultant vám do 24 hodín pošle riešenie šité na mieru — bez záväzkov, bez predraženia.</div>
+          </div>
+        </div>
+
+        <div class="guide-ctas">
+          <a href="#" class="btn-primary">Vyskúšať 30 dní zadarmo</a>
+          <a href="#" class="btn-secondary">Kontaktovať konzultanta</a>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <div class="section-glow-divider"></div>
+
+  <!-- TRUST SECTION -->
+  <section class="trust-section">
+
+    <!-- Progress shape: inverted arc — arms bleed left+right, apex bleeds top -->
+    <svg class="ps ps-trust-ucurve" viewBox="0 0 1000 260" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+      <path d="M-60 280 C200 -60 800 -60 1060 280"
+            stroke="#0095A1" stroke-width="1.3" fill="none"/>
+    </svg>
+
+    <!-- Progress shape: quarter arc — top bleeds off top, right bleeds off right -->
+    <svg class="ps ps-trust-arc" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+      <path d="M500 -60 C500 320 60 500 -60 500"
+            stroke="#00BBC5" stroke-width="1.4" fill="none"/>
+      <path d="M500 -20 C500 300 100 500 -20 500"
+            stroke="#EA6CB1" stroke-width="0.8" fill="none" opacity="0.4"/>
+    </svg>
+
+    <div class="trust-inner">
+      <p class="trust-label">Prečo ESET</p>
+
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-num">99.9%</div>
+          <div class="trust-desc">Efektivita detekcie malvéru<br>podľa AV-TEST</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">30+</div>
+          <div class="trust-desc">Rokov skúseností<br>v kybernetickej bezpečnosti</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">100+</div>
+          <div class="trust-desc">VB100 ocenení<br>za detekciu hrozieb</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">4.6★</div>
+          <div class="trust-desc">Gartner Peer Insights<br>90% odporúčanie</div>
+        </div>
+      </div>
+
+      <div class="review-cards">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"ESET je ľahký, nenápadný a robí presne to, čo má. Za 3 roky ani jedna infekcia na 12 zariadeniach v rodine."</div>
+          <div class="review-author">Martin K.</div>
+          <div class="review-role">Domácnosť · Bratislava</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"Nasadili sme ESET Protect Complete na 200 zariadeniach. Správa cez cloud konzolu je výrazne jednoduchšia ako u konkurencie."</div>
+          <div class="review-author">Ing. Jana P.</div>
+          <div class="review-role">IT manažérka · Výrobná firma</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★☆</div>
+          <div class="review-text">"Oceňujeme, že je to slovenský produkt s lokálnou podporou. Reakcia technického tímu do hodiny — to je štandard, ktorý iní nedosahujú."</div>
+          <div class="review-author">Tomáš B.</div>
+          <div class="review-role">CEO · SMB spoločnosť</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-glow-divider"></div>
+
+  <!-- FREE TRIAL BANNER -->
+  <div class="trial-wrap" style="position:relative;overflow:hidden;">
+
+    <!-- Progress shape: capsule — bleeds right+bottom, EA6CB1 accent -->
+    <svg class="ps ps-trial-capsule" viewBox="0 0 580 480" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+      <rect x="80" y="80" width="520" height="210" rx="105"
+            transform="rotate(-28 290 240)"
+            stroke="#EA6CB1" stroke-width="1.4" fill="none"/>
+      <rect x="105" y="105" width="470" height="165" rx="82"
+            transform="rotate(-28 290 240)"
+            stroke="#00BBC5" stroke-width="0.7" fill="none" opacity="0.35"/>
+    </svg>
+
+    <div class="trial-banner">
+      <h3>Vyskúšajte ESET zadarmo</h3>
+      <p>30 dní plnej ochrany bez kreditnej karty. Bez záväzkov.</p>
+      <a href="#" class="btn-primary">Začať bezplatnú skúšobnú verziu</a>
+      <div class="trial-note">Žiadna kreditná karta · Zrušenie kedykoľvek · Plná funkcionalita</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <img src="eset-logo2.png" alt="ESET" style="height:32px; width:auto;">
+        </a>
+        <p>Európska bezpečnostná technológia, ktorej dôverujú milióny ľudí na celom svete od roku 1992.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Produkty</h4>
+        <ul>
+          <li><a href="#">ESET Essential</a></li>
+          <li><a href="#">ESET Premium</a></li>
+          <li><a href="#">ESET Ultimate</a></li>
+          <li><a href="#">ESET Protect</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Podpora</h4>
+        <ul>
+          <li><a href="#">Centrum podpory</a></li>
+          <li><a href="#">Stiahnutia</a></li>
+          <li><a href="#">Aktivácia licencie</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Spoločnosť</h4>
+        <ul>
+          <li><a href="#">O nás</a></li>
+          <li><a href="#">Kariéra</a></li>
+          <li><a href="#">Tlačové správy</a></li>
+          <li><a href="#">Partneri</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 ESET, spol. s r.o. Všetky práva vyhradené.</span>
+      <div style="display:flex; gap:24px;">
+        <a href="#">Ochrana súkromia</a>
+        <a href="#">Podmienky použitia</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.pill-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    /* ── HERO PARTICLE NETWORK + SCAN ── */
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx    = canvas.getContext('2d');
+
+      const hudLabel = document.getElementById('hud-label');
+      const hudVal   = document.getElementById('hud-val');
+      const hudFill  = document.getElementById('hud-fill');
+      const hudDot   = document.getElementById('hud-dot');
+
+      let W, H, particles;
+      const COLORS    = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#EA6CB1','#EA6CB1'];
+      const COUNT     = 68;
+      const LINK_DIST = 128;
+      const SPEED     = 0.26;
+      const SCAN_DUR  = 6500;  // ms per sweep
+      const HOLD_DUR  = 1800;  // ms to hold "BEZPEČNÉ" at bottom
+      let   scanStart = performance.now();
+
+      function resize() {
+        W = canvas.width  = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+
+      function makeParticle() {
+        const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        return { x: Math.random()*W, y: Math.random()*H,
+                 vx:(Math.random()-.5)*SPEED, vy:(Math.random()-.5)*SPEED,
+                 r: Math.random()*1.5+0.9, color, pulse:0 };
+      }
+
+      function init() { resize(); particles = Array.from({length:COUNT}, makeParticle); }
+
+      /* ── HUD update ── */
+      function updateHUD(progress) {
+        const pct = Math.min(100, Math.round(progress * 100));
+        hudFill.style.width = pct + '%';
+
+        if (progress < 0.04) {
+          hudLabel.textContent = 'INICIALIZÁCIA';
+          hudLabel.className   = 'hud-label';
+          hudVal.textContent   = '—';
+          hudDot.className     = 'hud-dot';
+        } else if (progress < 0.96) {
+          hudLabel.textContent = 'SKENUJE';
+          hudLabel.className   = 'hud-label';
+          hudVal.textContent   = pct + '%';
+          hudDot.className     = 'hud-dot';
+        } else {
+          hudLabel.textContent = 'BEZPEČNÉ';
+          hudLabel.className   = 'hud-label safe';
+          hudVal.textContent   = '0 HROZIEB';
+          hudDot.className     = 'hud-dot safe';
+        }
+      }
+
+      /* ── DRAW ── */
+      function draw(now) {
+        ctx.clearRect(0, 0, W, H);
+
+        /* scan position */
+        const elapsed  = (now - scanStart) % (SCAN_DUR + HOLD_DUR);
+        const scanProg = Math.min(1, elapsed / SCAN_DUR);
+        const scanY    = scanProg * (H + 20) - 10;
+
+        updateHUD(scanProg);
+
+        /* ── beam glow zone (above the line) ── */
+        if (scanProg < 1) {
+          const beamH = 100;
+          const beam  = ctx.createLinearGradient(0, scanY - beamH, 0, scanY + 6);
+          beam.addColorStop(0,   'transparent');
+          beam.addColorStop(0.5, 'rgba(0,187,197,0.025)');
+          beam.addColorStop(0.85,'rgba(0,187,197,0.07)');
+          beam.addColorStop(1,   'rgba(0,187,197,0.03)');
+          ctx.fillStyle = beam;
+          ctx.fillRect(0, scanY - beamH, W, beamH + 8);
+
+          /* ── leading edge line ── */
+          const line = ctx.createLinearGradient(0, 0, W, 0);
+          line.addColorStop(0,    'transparent');
+          line.addColorStop(0.08, 'rgba(0,187,197,0)');
+          line.addColorStop(0.30, 'rgba(0,187,197,0.85)');
+          line.addColorStop(0.52, 'rgba(234,108,177,0.7)');
+          line.addColorStop(0.72, 'rgba(0,187,197,0.85)');
+          line.addColorStop(0.92, 'rgba(0,187,197,0)');
+          line.addColorStop(1,    'transparent');
+          ctx.beginPath();
+          ctx.moveTo(0, scanY); ctx.lineTo(W, scanY);
+          ctx.strokeStyle = line;
+          ctx.lineWidth   = 1.2;
+          ctx.stroke();
+
+          /* ── secondary echo line (fading, 18px above) ── */
+          const echo = ctx.createLinearGradient(0, 0, W, 0);
+          echo.addColorStop(0,    'transparent');
+          echo.addColorStop(0.25, 'rgba(0,187,197,0.18)');
+          echo.addColorStop(0.5,  'rgba(234,108,177,0.12)');
+          echo.addColorStop(0.75, 'rgba(0,187,197,0.18)');
+          echo.addColorStop(1,    'transparent');
+          ctx.beginPath();
+          ctx.moveTo(0, scanY - 18); ctx.lineTo(W, scanY - 18);
+          ctx.strokeStyle = echo;
+          ctx.lineWidth   = 0.6;
+          ctx.stroke();
+
+          /* ── tiny scan tick marks on leading edge ── */
+          for (let tx = 40; tx < W - 40; tx += 48) {
+            const tickAlpha = 0.25 + 0.2 * Math.sin(tx * 0.08 + now * 0.003);
+            ctx.beginPath();
+            ctx.moveTo(tx, scanY - 5); ctx.lineTo(tx, scanY + 5);
+            ctx.strokeStyle = `rgba(0,187,197,${tickAlpha})`;
+            ctx.lineWidth   = 0.6;
+            ctx.stroke();
+          }
+        }
+
+        /* ── particle pulse when inside beam ── */
+        for (const p of particles) {
+          const dist = p.y - scanY;
+          if (dist > -8 && dist < 40) {
+            p.pulse = Math.max(p.pulse, 1 - Math.abs(dist) / 48);
+          } else {
+            p.pulse = Math.max(0, p.pulse - 0.04);
+          }
+        }
+
+        /* ── links ── */
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i+1; j < particles.length; j++) {
+            const a = particles[i], b = particles[j];
+            const dx = a.x-b.x, dy = a.y-b.y;
+            const d  = Math.sqrt(dx*dx + dy*dy);
+            if (d < LINK_DIST) {
+              const base  = (1 - d/LINK_DIST) * 0.2;
+              const boost = (a.pulse + b.pulse) * 0.25;
+              const alpha = base + boost;
+              const isRose = a.color==='#EA6CB1' || b.color==='#EA6CB1';
+              ctx.beginPath();
+              ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+              ctx.strokeStyle = isRose
+                ? `rgba(234,108,177,${alpha})`
+                : `rgba(0,187,197,${alpha})`;
+              ctx.lineWidth = 0.8 + boost * 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+
+        /* ── dots ── */
+        for (const p of particles) {
+          const isRose = p.color === '#EA6CB1';
+          const r      = p.r + p.pulse * 2.5;
+          const baseA  = isRose ? 0.65 : 0.60;
+          const alpha  = baseA + p.pulse * 0.35;
+
+          /* glow halo */
+          const glowR = r * (5 + p.pulse * 4);
+          const g = ctx.createRadialGradient(p.x,p.y,0, p.x,p.y,glowR);
+          g.addColorStop(0, isRose ? `rgba(234,108,177,${0.10+p.pulse*0.18})`
+                                   : `rgba(0,187,197,${0.10+p.pulse*0.18})`);
+          g.addColorStop(1, 'transparent');
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, glowR, 0, Math.PI*2);
+          ctx.fillStyle = g; ctx.fill();
+
+          /* core dot */
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r, 0, Math.PI*2);
+          ctx.fillStyle = isRose ? `rgba(234,108,177,${alpha})` : `rgba(0,187,197,${alpha})`;
+          ctx.fill();
+        }
+      }
+
+      function update() {
+        for (const p of particles) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+        }
+      }
+
+      function loop(now) {
+        update(); draw(now);
+        requestAnimationFrame(loop);
+      }
+
+      window.addEventListener('resize', resize);
+      init();
+      requestAnimationFrame(loop);
+    })();
+  </script>
+
+</body>
+</html>
