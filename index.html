@@ -467,8 +467,8 @@
         const rr = robotEl.getBoundingClientRect();
         const hr = heroEl.getBoundingClientRect();
         if (!rr.width || !hr.width) return;
-        // palm at 77% x, 43% y of the robot image
-        palmXFrac = (rr.left - hr.left + rr.width  * 0.77) / hr.width;
+        // palm at 80% x, 43% y of the robot image
+        palmXFrac = (rr.left - hr.left + rr.width  * 0.80) / hr.width;
         palmYFrac = (rr.top  - hr.top  + rr.height * 0.43) / hr.height;
         heroEl.style.setProperty('--palm-x', (palmXFrac * 100).toFixed(1) + '%');
         heroEl.style.setProperty('--palm-y', (palmYFrac * 100).toFixed(1) + '%');
