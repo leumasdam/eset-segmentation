@@ -242,7 +242,7 @@ nav {
   height: 92%;
   width: auto;
   display: block;
-  opacity: 0.55;
+  opacity: 0.28;
   filter:
     drop-shadow(0 0 48px rgba(0,187,197,0.55))
     drop-shadow(0 0 120px rgba(0,187,197,0.25))
