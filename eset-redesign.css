@@ -257,22 +257,30 @@ nav {
   100% { transform: translateY(0px)   translateX(0px); }
 }
 
-/* Light cone — conic gradient from palm toward headline, behind text (z-index 1) */
+/* Light beam — narrow cone from robot palm, sweeps (scan animation) */
 .hero-light-cone {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background: conic-gradient(
-    from 248deg at 59% 42%,
-    transparent        0deg,
-    rgba(0,187,197,0.03)  7deg,
-    rgba(0,187,197,0.13) 20deg,
-    rgba(0,187,197,0.03) 33deg,
-    transparent       40deg,
-    transparent      360deg
+    from 240deg at 59% 42%,
+    transparent            0deg,
+    rgba(0,187,197,0.02)   7deg,
+    rgba(0,187,197,0.24)  14deg,
+    rgba(0,187,197,0.02)  21deg,
+    transparent           29deg,
+    transparent          360deg
   );
-  filter: blur(22px);
+  filter: blur(7px);
+  transform-origin: 59% 42%;
+  animation: beamScan 5s ease-in-out infinite;
+}
+
+@keyframes beamScan {
+  0%   { transform: rotate(-10deg); opacity: 0.6; }
+  50%  { transform: rotate(10deg);  opacity: 1;   }
+  100% { transform: rotate(-10deg); opacity: 0.6; }
 }
 
 /* ── END ROBOT ──────────────────────────────────────────── */
