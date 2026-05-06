@@ -259,6 +259,13 @@ nav {
   filter: brightness(1.0) contrast(1.0);
 }
 
+/* Mobile — posun video mierne doprava */
+@media (max-width: 768px) {
+  .hero-robot {
+    transform: scale(1.32) translateX(3%);
+  }
+}
+
 @keyframes robotFloat {
   0%   { transform: translateY(0px)   translateX(0px); }
   25%  { transform: translateY(-10px) translateX(5px); }
