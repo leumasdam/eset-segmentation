@@ -56,7 +56,7 @@
       <path d="M100 20L28 48V108C28 150 60 190 100 210C140 190 172 150 172 108V48L100 20Z"
             stroke="#00BBC5" stroke-width="1.5" fill="none" opacity="0.6"/>
       <path d="M100 50L56 68V108C56 136 74 162 100 178C126 162 144 136 144 108V68L100 50Z"
-            stroke="#feaa3a" stroke-width="1" fill="none" opacity="0.55"/>
+            stroke="#FEAA3A" stroke-width="1" fill="none" opacity="0.55"/>
       <circle cx="100" cy="115" r="22" stroke="#00BBC5" stroke-width="1.5" fill="none" opacity="0.7"/>
       <path d="M88 115L96 123L114 105" stroke="#00BBC5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -446,7 +446,7 @@
       const hudDot   = document.getElementById('hud-dot');
 
       let W, H, particles;
-      const COLORS        = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#7DD3DA','#feaa3a'];
+      const COLORS        = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#87CFD3','#FEAA3A'];
       const COUNT         = 68;
       const LINK_DIST     = 128;
       const SPEED         = 0.26;
@@ -551,7 +551,7 @@
               const base  = (1 - d/LINK_DIST) * 0.2;
               const boost = (a.pulse + b.pulse) * 0.25;
               const alpha = base + boost;
-              const isAccent = a.color==='#feaa3a' || b.color==='#feaa3a';
+              const isAccent = a.color==='#FEAA3A' || b.color==='#FEAA3A';
               ctx.beginPath();
               ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
               ctx.strokeStyle = isAccent
@@ -565,7 +565,7 @@
 
         /* ── dots ── */
         for (const p of particles) {
-          const isAccent = p.color === '#feaa3a';
+          const isAccent = p.color === '#FEAA3A';
           const r      = p.r + p.pulse * 2.5;
           const baseA  = isAccent ? 0.70 : 0.60;
           const alpha  = baseA + p.pulse * 0.35;
