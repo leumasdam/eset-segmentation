@@ -379,11 +379,11 @@ nav {
     position: relative;
     top: 30px;
   }
-  /* Awards + stats — gentle downward nudge */
+  /* Awards + stats — downward nudge */
   .hero-badges,
   .hero-stats {
     position: relative;
-    top: 30px;
+    top: 60px;
   }
 }
 
