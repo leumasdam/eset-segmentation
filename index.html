@@ -66,9 +66,6 @@
       <video class="hero-robot" src="videos/robot-scan-1.mp4" autoplay muted loop playsinline preload="auto"></video>
     </div>
 
-    <!-- Light cone from robot palm toward headline -->
-    <div class="hero-light-cone" aria-hidden="true"></div>
-
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       30 rokov na čele kybernetickej bezpečnosti
@@ -453,26 +450,7 @@
       const COUNT         = 68;
       const LINK_DIST     = 128;
       const SPEED         = 0.26;
-      const BEAM_DUR      = 9000;
-      const BEAM_HALF_DEG = 35;
-
-      /* ── palm position — updated dynamically on resize ── */
-      let palmXFrac = 0.60;
-      let palmYFrac = 0.39;
-
-      function updatePalm() {
-        const robotEl = document.querySelector('.hero-robot');
-        const heroEl  = document.querySelector('.hero');
-        if (!robotEl || !heroEl) return;
-        const rr = robotEl.getBoundingClientRect();
-        const hr = heroEl.getBoundingClientRect();
-        if (!rr.width || !hr.width) return;
-        // palm at 80% x, 43% y of the robot image
-        palmXFrac = (rr.left - hr.left + rr.width  * 0.80) / hr.width;
-        palmYFrac = (rr.top  - hr.top  + rr.height * 0.43) / hr.height;
-        heroEl.style.setProperty('--palm-x', (palmXFrac * 100).toFixed(1) + '%');
-        heroEl.style.setProperty('--palm-y', (palmYFrac * 100).toFixed(1) + '%');
-      }
+      const SCAN_DUR      = 9000;
 
       function resize() {
         W = canvas.width  = canvas.offsetWidth;
@@ -489,11 +467,6 @@
       function init() {
         resize();
         particles = Array.from({length:COUNT}, makeParticle);
-        updatePalm();
-        const robotMedia = document.querySelector('.hero-robot');
-        robotMedia.addEventListener('load', updatePalm);
-        robotMedia.addEventListener('loadedmetadata', updatePalm);
-        robotMedia.addEventListener('loadeddata', updatePalm);
       }
 
       function updateHUD(t) {
@@ -514,29 +487,12 @@
       function draw(now) {
         ctx.clearRect(0, 0, W, H);
 
-        const t       = (now % BEAM_DUR) / BEAM_DUR;
-        // Cosine ease matches CSS ease-in-out: -10° → +10° → -10°
-        const beamDeg = -10 * Math.cos(t * 2 * Math.PI); // JS atan2 (0=right, +down)
-        const palmX   = W * palmXFrac;
-        const palmY   = H * palmYFrac;
-
+        const t = (now % SCAN_DUR) / SCAN_DUR;
         updateHUD(t);
 
-        /* ── pulse particles inside beam cone (right of palm only) ── */
+        /* ── decay pulse over time ── */
         for (const p of particles) {
-          const dx = p.x - palmX;
-          const dy = p.y - palmY;
-          if (dx > 20) {
-            const pDeg = Math.atan2(dy, dx) * 180 / Math.PI;
-            const diff = Math.abs(pDeg - beamDeg);
-            if (diff < BEAM_HALF_DEG) {
-              p.pulse = Math.max(p.pulse, 1 - diff / BEAM_HALF_DEG);
-            } else {
-              p.pulse = Math.max(0, p.pulse - 0.03);
-            }
-          } else {
-            p.pulse = Math.max(0, p.pulse - 0.03);
-          }
+          p.pulse = Math.max(0, p.pulse - 0.03);
         }
 
         /* ── links ── */
@@ -594,7 +550,7 @@
 
       function loop(now) { update(); draw(now); requestAnimationFrame(loop); }
 
-      window.addEventListener('resize', () => { resize(); updatePalm(); });
+      window.addEventListener('resize', resize);
       init();
       requestAnimationFrame(loop);
     })();
