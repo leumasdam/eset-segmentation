@@ -347,12 +347,8 @@ nav {
     animation: heroRenderZoomMobile 50s ease-in-out infinite;
   }
 
-  /* Scan HUD — sit close to navbar */
-  .scan-hud {
-    top: 70px;
-    right: 14px;
-  }
-  .hud-bar { width: 60px; }
+  /* Scan HUD hidden on mobile — pill ticker already conveys scan status */
+  .scan-hud { display: none; }
 }
 
 @keyframes heroRenderZoomMobile {
