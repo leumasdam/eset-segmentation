@@ -1737,9 +1737,16 @@ nav, .hero, #plans, .products-section,
    starého textu, fade-in nového. Štruktúra: status pill + threat name + city.
    ============================================================================= */
 .hero-badge {
-  min-width: 380px;
+  width: 460px;
   justify-content: center;
   perspective: 480px;
+}
+
+@media (max-width: 540px) {
+  .hero-badge {
+    width: 92%;
+    max-width: 460px;
+  }
 }
 .ticker-status {
   font-weight: 700;
