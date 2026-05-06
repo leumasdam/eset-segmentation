@@ -456,6 +456,10 @@ nav {
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .hero-shield { display: none; }
+}
+
 
 /* =============================================================================
    11. HERO — badge, animácia pulse
