@@ -56,7 +56,7 @@
       <path d="M100 20L28 48V108C28 150 60 190 100 210C140 190 172 150 172 108V48L100 20Z"
             stroke="#00BBC5" stroke-width="1.5" fill="none" opacity="0.6"/>
       <path d="M100 50L56 68V108C56 136 74 162 100 178C126 162 144 136 144 108V68L100 50Z"
-            stroke="#EA6CB1" stroke-width="1" fill="none" opacity="0.5"/>
+            stroke="#feaa3a" stroke-width="1" fill="none" opacity="0.55"/>
       <circle cx="100" cy="115" r="22" stroke="#00BBC5" stroke-width="1.5" fill="none" opacity="0.7"/>
       <path d="M88 115L96 123L114 105" stroke="#00BBC5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -446,7 +446,7 @@
       const hudDot   = document.getElementById('hud-dot');
 
       let W, H, particles;
-      const COLORS        = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#EA6CB1','#EA6CB1'];
+      const COLORS        = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#7DD3DA','#feaa3a'];
       const COUNT         = 68;
       const LINK_DIST     = 128;
       const SPEED         = 0.26;
@@ -551,11 +551,11 @@
               const base  = (1 - d/LINK_DIST) * 0.2;
               const boost = (a.pulse + b.pulse) * 0.25;
               const alpha = base + boost;
-              const isRose = a.color==='#EA6CB1' || b.color==='#EA6CB1';
+              const isAccent = a.color==='#feaa3a' || b.color==='#feaa3a';
               ctx.beginPath();
               ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
-              ctx.strokeStyle = isRose
-                ? `rgba(234,108,177,${alpha})`
+              ctx.strokeStyle = isAccent
+                ? `rgba(254,170,58,${alpha})`
                 : `rgba(0,187,197,${alpha})`;
               ctx.lineWidth = 0.8 + boost * 0.6;
               ctx.stroke();
@@ -565,15 +565,15 @@
 
         /* ── dots ── */
         for (const p of particles) {
-          const isRose = p.color === '#EA6CB1';
+          const isAccent = p.color === '#feaa3a';
           const r      = p.r + p.pulse * 2.5;
-          const baseA  = isRose ? 0.65 : 0.60;
+          const baseA  = isAccent ? 0.70 : 0.60;
           const alpha  = baseA + p.pulse * 0.35;
 
           const glowR = r * (5 + p.pulse * 4);
           const g = ctx.createRadialGradient(p.x,p.y,0, p.x,p.y,glowR);
-          g.addColorStop(0, isRose ? `rgba(234,108,177,${0.10+p.pulse*0.18})`
-                                   : `rgba(0,187,197,${0.10+p.pulse*0.18})`);
+          g.addColorStop(0, isAccent ? `rgba(254,170,58,${0.10+p.pulse*0.18})`
+                                     : `rgba(0,187,197,${0.10+p.pulse*0.18})`);
           g.addColorStop(1, 'transparent');
           ctx.beginPath();
           ctx.arc(p.x, p.y, glowR, 0, Math.PI*2);
@@ -581,7 +581,7 @@
 
           ctx.beginPath();
           ctx.arc(p.x, p.y, r, 0, Math.PI*2);
-          ctx.fillStyle = isRose ? `rgba(234,108,177,${alpha})` : `rgba(0,187,197,${alpha})`;
+          ctx.fillStyle = isAccent ? `rgba(254,170,58,${alpha})` : `rgba(0,187,197,${alpha})`;
           ctx.fill();
         }
 
