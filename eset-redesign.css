@@ -417,7 +417,9 @@ nav {
   text-align: center;
   padding: 120px 24px 80px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  /* clip top + sides hard, but allow bottom overflow ~30vh into next section */
+  clip-path: inset(0 0 -30vh 0);
 }
 
 
