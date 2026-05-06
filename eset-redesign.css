@@ -356,8 +356,8 @@ nav {
 }
 
 @keyframes heroRenderZoomMobile {
-  0%, 100% { transform: translate(180px, 0)      scale(1.20); }
-  50%      { transform: translate(230px, -120px) scale(1.40); }
+  0%, 100% { transform: translate(180px, 0)      scale(1.70); }
+  50%      { transform: translate(230px, -120px) scale(2.00); }
 }
 
 /* ── Small phones (≤430px) ── */
