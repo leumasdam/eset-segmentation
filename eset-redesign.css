@@ -259,10 +259,10 @@ nav {
   filter: brightness(1.0) contrast(1.0);
 }
 
-/* Mobile — posun video mierne doprava */
+/* Mobile — väčší scale + posun doľava */
 @media (max-width: 768px) {
   .hero-robot {
-    transform: scale(1.32) translateX(3%);
+    transform: scale(1.55) translateX(-10%);
   }
 }
 
