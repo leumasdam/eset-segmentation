@@ -69,6 +69,38 @@
       <div class="robot-scan-beam robot-scan-beam--2"></div>
     </div>
 
+    <!-- EVE bot flight overlay — orbits the headline with comet trail -->
+    <svg class="hero-eve" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <path id="evePath" d="M -80 500 Q 200 40, 500 80 T 1000 80 Q 1300 50, 1700 -120" />
+        <filter id="eveTrailGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="4"/>
+        </filter>
+      </defs>
+
+      <!-- Soft glow halo behind comet -->
+      <use href="#evePath"
+           stroke="#00BBC5" stroke-width="10" fill="none" stroke-linecap="round"
+           stroke-dasharray="80 5000" stroke-dashoffset="5080" opacity="0.30"
+           filter="url(#eveTrailGlow)">
+        <animate attributeName="stroke-dashoffset" from="5080" to="-80" dur="11s" repeatCount="indefinite"/>
+      </use>
+
+      <!-- Sharp comet trail -->
+      <use href="#evePath"
+           stroke="#00BBC5" stroke-width="2" fill="none" stroke-linecap="round"
+           stroke-dasharray="60 5000" stroke-dashoffset="5060" opacity="0.85">
+        <animate attributeName="stroke-dashoffset" from="5060" to="-60" dur="11s" repeatCount="indefinite"/>
+      </use>
+
+      <!-- EVE icon following the path -->
+      <image class="hero-eve-bot" href="eve-bot.png" width="80" height="80" x="-40" y="-40">
+        <animateMotion dur="11s" repeatCount="indefinite" rotate="0">
+          <mpath href="#evePath"/>
+        </animateMotion>
+      </image>
+    </svg>
+
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       30 rokov na čele kybernetickej bezpečnosti

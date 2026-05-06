@@ -314,6 +314,23 @@ nav {
 
 /* ── END ROBOT ──────────────────────────────────────────── */
 
+/* ── EVE BOT FLIGHT OVERLAY ──────────────────────────────── */
+.hero-eve {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.hero-eve-bot {
+  filter: drop-shadow(0 4px 14px rgba(0, 187, 197, 0.45))
+          drop-shadow(0 0 24px rgba(0, 187, 197, 0.25));
+}
+/* ── END EVE ────────────────────────────────────────────── */
+
 /* Gradientové pozadie hero — vrstvené radiálne gradienty */
 /* ČO ROBÍ: Vytvára farebné svietiace oblasti v hero — tyrkys hore, ružová dole-vľavo */
 /* ČO MÔŽEŠ MENIŤ: opacity (0.28, 0.12, 0.18) — intenzita svitu každej oblasti */
