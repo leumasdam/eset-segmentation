@@ -302,6 +302,22 @@ nav {
       transparent            120deg,
       transparent            360deg);
   filter: blur(6px);
+  mask-image: conic-gradient(
+    from 30deg at var(--palm-x) var(--palm-y),
+    transparent  0deg,
+    black       22deg,
+    black       98deg,
+    transparent 120deg,
+    transparent 360deg
+  );
+  -webkit-mask-image: conic-gradient(
+    from 30deg at var(--palm-x) var(--palm-y),
+    transparent  0deg,
+    black       22deg,
+    black       98deg,
+    transparent 120deg,
+    transparent 360deg
+  );
   transform-origin: var(--palm-x) var(--palm-y);
   animation: beamScan 5s ease-in-out infinite;
 }
