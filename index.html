@@ -469,30 +469,76 @@
         particles = Array.from({length:COUNT}, makeParticle);
       }
 
+      /* Phases of one SCAN_DUR cycle:
+         0 – 5%   INICIALIZÁCIA (no scan line)
+         5 – 75%  SKENUJE       (scan line top→bottom, 0%→100%)
+         75 – 100% BEZPEČNÉ      (hold "0 HROZIEB" for the remaining ~25% of cycle) */
+      const PHASE_INIT_END = 0.05;
+      const PHASE_SCAN_END = 0.75;
+
+      function scanProgress(t) {
+        if (t < PHASE_INIT_END) return -1;
+        if (t >= PHASE_SCAN_END) return -1;
+        return (t - PHASE_INIT_END) / (PHASE_SCAN_END - PHASE_INIT_END);
+      }
+
       function updateHUD(t) {
-        const pct = Math.min(100, Math.round(t * 100));
-        hudFill.style.width = pct + '%';
-        if (t < 0.04) {
+        if (t < PHASE_INIT_END) {
           hudLabel.textContent = 'INICIALIZÁCIA'; hudLabel.className = 'hud-label';
           hudVal.textContent   = '—';             hudDot.className   = 'hud-dot';
-        } else if (t < 0.96) {
-          hudLabel.textContent = 'SKENUJE';       hudLabel.className = 'hud-label';
-          hudVal.textContent   = pct + '%';       hudDot.className   = 'hud-dot';
+          hudFill.style.width  = '0%';
+        } else if (t < PHASE_SCAN_END) {
+          const p   = scanProgress(t);
+          const pct = Math.round(p * 100);
+          hudLabel.textContent = 'SKENUJE';        hudLabel.className = 'hud-label';
+          hudVal.textContent   = pct + '%';        hudDot.className   = 'hud-dot';
+          hudFill.style.width  = pct + '%';
         } else {
-          hudLabel.textContent = 'BEZPEČNÉ';      hudLabel.className = 'hud-label safe';
-          hudVal.textContent   = '0 HROZIEB';     hudDot.className   = 'hud-dot safe';
+          hudLabel.textContent = 'BEZPEČNÉ';       hudLabel.className = 'hud-label safe';
+          hudVal.textContent   = '0 HROZIEB';      hudDot.className   = 'hud-dot safe';
+          hudFill.style.width  = '100%';
         }
+      }
+
+      function drawScanLine(scanY) {
+        if (scanY < 0) return;
+        const halo = 60;
+        const grad = ctx.createLinearGradient(0, scanY - halo, 0, scanY + halo);
+        grad.addColorStop(0,   'rgba(0,187,197,0)');
+        grad.addColorStop(0.5, 'rgba(0,187,197,0.45)');
+        grad.addColorStop(1,   'rgba(0,187,197,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, scanY - halo, W, halo * 2);
+
+        ctx.beginPath();
+        ctx.moveTo(0, scanY);
+        ctx.lineTo(W, scanY);
+        ctx.strokeStyle = 'rgba(190,240,245,0.85)';
+        ctx.lineWidth   = 1.2;
+        ctx.stroke();
       }
 
       function draw(now) {
         ctx.clearRect(0, 0, W, H);
 
-        const t = (now % SCAN_DUR) / SCAN_DUR;
+        const t       = (now % SCAN_DUR) / SCAN_DUR;
+        const scanP   = scanProgress(t);
+        const scanY   = scanP >= 0 ? scanP * H : -1;
         updateHUD(t);
 
-        /* ── decay pulse over time ── */
+        /* ── pulse particles near scan line, decay otherwise ── */
+        const PULSE_BAND = 60;
         for (const p of particles) {
-          p.pulse = Math.max(0, p.pulse - 0.03);
+          if (scanY >= 0) {
+            const dy = Math.abs(p.y - scanY);
+            if (dy < PULSE_BAND) {
+              p.pulse = Math.max(p.pulse, 1 - dy / PULSE_BAND);
+            } else {
+              p.pulse = Math.max(0, p.pulse - 0.03);
+            }
+          } else {
+            p.pulse = Math.max(0, p.pulse - 0.03);
+          }
         }
 
         /* ── links ── */
@@ -538,6 +584,9 @@
           ctx.fillStyle = isRose ? `rgba(234,108,177,${alpha})` : `rgba(0,187,197,${alpha})`;
           ctx.fill();
         }
+
+        /* ── scan line on top ── */
+        drawScanLine(scanY);
       }
 
       function update() {
