@@ -355,16 +355,20 @@ nav {
       drop-shadow(0 0 60px rgba(0, 187, 197, 0.20));
   }
 
-  /* Scan HUD on mobile — placed HIGHER than desktop (88px → 70px), tight under navbar */
+  /* Scan HUD on mobile — fixed INSIDE navbar (between logo and burger), can't collide with hero pill */
   .scan-hud {
-    top: 70px;
-    right: 14px;
+    position: fixed;
+    top: 18px;
+    right: 60px;          /* leave space for burger (burger ~40px wide at right:20px) */
+    left: auto;
+    bottom: auto;
     gap: 2px;
-    z-index: 10;
+    z-index: 110;         /* above navbar's z-index 101 */
+    align-items: flex-end;
   }
   .hud-label { font-size: 8px; letter-spacing: 1.5px; }
   .hud-val   { font-size: 10px; }
-  .hud-bar   { width: 54px; height: 1.5px; }
+  .hud-bar   { width: 50px; height: 1.5px; }
   .hud-dot   { width: 4px; height: 4px; }
 
   /* Visual-only nudge of awards + stats lower (relative offset doesn't
