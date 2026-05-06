@@ -365,9 +365,11 @@ nav {
   .hud-dot   { width: 4px; height: 4px; }
 }
 
+/* Mobile — no horizontal translate; tight Y motion within safe bounds.
+   Pill curve stays fully inside viewport at all times. */
 @keyframes heroRenderZoomMobile {
-  0%, 100% { transform: translate(0, 0)     scale(1.40); }   /* always well above 1.0 — edges off-screen */
-  50%      { transform: translate(0, -40px) scale(1.55); }
+  0%, 100% { transform: scale(1.40); }
+  50%      { transform: translate(0, -30px) scale(1.55); }
 }
 
 /* ── Small phones (≤430px) ── */
@@ -449,9 +451,11 @@ nav {
     drop-shadow(0 0 140px rgba(0, 187, 197, 0.18));
 }
 
+/* Translate magnitudes kept well within W*(s-1)/2 and H*(s-1)/2 bounds
+   so the pill shape never extends past viewport edges */
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(-180px, 100px)  scale(1.45); }   /* bottom-left baseline */
-  50%      { transform: translate(220px, -550px) scale(1.85); }   /* drifts UP + RIGHT toward upper-right while zooming in */
+  0%, 100% { transform: translate(-90px, 60px)   scale(1.45); }    /* bottom-left baseline */
+  50%      { transform: translate(140px, -180px) scale(1.85); }    /* drifts UP + RIGHT */
 }
 
 
