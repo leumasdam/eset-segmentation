@@ -352,8 +352,16 @@ nav {
             mask-image: radial-gradient(ellipse 110% 100% at 50% 55%, black 25%, transparent 92%);
   }
 
-  /* Scan HUD hidden on mobile — pill ticker already conveys scan status */
-  .scan-hud { display: none; }
+  /* Scan HUD — sit just below navbar on the right (compact) */
+  .scan-hud {
+    top: 72px;
+    right: 14px;
+    gap: 2px;
+  }
+  .hud-label { font-size: 8px; letter-spacing: 1.5px; }
+  .hud-val   { font-size: 10px; }
+  .hud-bar   { width: 56px; height: 1.5px; }
+  .hud-dot   { width: 4px; height: 4px; }
 }
 
 @keyframes heroRenderZoomMobile {
