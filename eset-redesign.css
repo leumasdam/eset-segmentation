@@ -234,13 +234,14 @@ nav {
   overflow: hidden;
 }
 
-/* ESET turquoise tint over the video — gentle transparency */
+/* ESET deep turquoise overlay — video barely visible underneath */
 .hero-robot-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 187, 197, 0.22);
-  mix-blend-mode: multiply;
+  background:
+    linear-gradient(135deg, rgba(0, 50, 60, 0.82), rgba(0, 90, 100, 0.78)),
+    rgba(0, 187, 197, 0.30);
   pointer-events: none;
   z-index: 2;
 }
