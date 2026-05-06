@@ -61,9 +61,9 @@
       <path d="M88 115L96 123L114 105" stroke="#00BBC5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 
-    <!-- Robot — centred behind text -->
+    <!-- Robot video — centred behind text -->
     <div class="hero-robot-wrap" aria-hidden="true">
-      <img src="eset-robot.png" alt="" class="hero-robot">
+      <video class="hero-robot" src="videos/robot-scan-1.mp4" autoplay muted loop playsinline preload="auto"></video>
     </div>
 
     <!-- Light cone from robot palm toward headline -->
@@ -490,7 +490,10 @@
         resize();
         particles = Array.from({length:COUNT}, makeParticle);
         updatePalm();
-        document.querySelector('.hero-robot').addEventListener('load', updatePalm);
+        const robotMedia = document.querySelector('.hero-robot');
+        robotMedia.addEventListener('load', updatePalm);
+        robotMedia.addEventListener('loadedmetadata', updatePalm);
+        robotMedia.addEventListener('loadeddata', updatePalm);
       }
 
       function updateHUD(t) {
