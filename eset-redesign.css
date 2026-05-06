@@ -353,9 +353,9 @@ nav {
             mask-image: none;
   }
 
-  /* Scan HUD — sit just below navbar on the right (compact) */
+  /* Scan HUD — sit hard against navbar bottom on the right */
   .scan-hud {
-    top: 72px;
+    top: 68px;
     right: 14px;
     gap: 2px;
   }
@@ -363,6 +363,14 @@ nav {
   .hud-val   { font-size: 10px; }
   .hud-bar   { width: 56px; height: 1.5px; }
   .hud-dot   { width: 4px; height: 4px; }
+
+  /* Visual-only nudge of awards + stats lower (relative offset doesn't
+     affect flex layout, so headline + buttons stay put) */
+  .hero-badges,
+  .hero-stats {
+    position: relative;
+    top: 40px;
+  }
 }
 
 /* Mobile — no horizontal translate; tight Y motion within safe bounds.
