@@ -1739,6 +1739,7 @@ nav, .hero, #plans, .products-section,
 .hero-badge {
   min-width: 380px;
   justify-content: center;
+  perspective: 480px;
 }
 .ticker-status {
   font-weight: 700;
@@ -1752,10 +1753,7 @@ nav, .hero, #plans, .products-section,
 }
 .ticker-text {
   display: inline-block;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  will-change: opacity, transform;
-}
-.ticker-text.swap {
-  opacity: 0;
-  transform: translateY(-4px);
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform;
 }
