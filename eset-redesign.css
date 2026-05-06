@@ -301,23 +301,31 @@ nav {
       rgba(254,97,66,0.02)   112deg,
       transparent            120deg,
       transparent            360deg);
-  filter: blur(6px);
-  mask-image: conic-gradient(
-    from 30deg at var(--palm-x) var(--palm-y),
-    transparent  0deg,
-    black       22deg,
-    black       98deg,
-    transparent 120deg,
-    transparent 360deg
-  );
-  -webkit-mask-image: conic-gradient(
-    from 30deg at var(--palm-x) var(--palm-y),
-    transparent  0deg,
-    black       22deg,
-    black       98deg,
-    transparent 120deg,
-    transparent 360deg
-  );
+  filter: blur(22px);
+  mask-image:
+    radial-gradient(circle 55vw at var(--palm-x) var(--palm-y),
+      black 0%, black 40%, transparent 85%),
+    conic-gradient(
+      from 30deg at var(--palm-x) var(--palm-y),
+      transparent  0deg,
+      black       45deg,
+      black       75deg,
+      transparent 120deg,
+      transparent 360deg
+    );
+  -webkit-mask-image:
+    radial-gradient(circle 55vw at var(--palm-x) var(--palm-y),
+      black 0%, black 40%, transparent 85%),
+    conic-gradient(
+      from 30deg at var(--palm-x) var(--palm-y),
+      transparent  0deg,
+      black       45deg,
+      black       75deg,
+      transparent 120deg,
+      transparent 360deg
+    );
+  mask-composite: intersect;
+  -webkit-mask-composite: destination-in;
   transform-origin: var(--palm-x) var(--palm-y);
   animation: beamScan 5s ease-in-out infinite;
 }
