@@ -438,7 +438,7 @@
       btn.classList.add('active');
     }
 
-    /* ── HERO PARTICLE NETWORK + SCAN ── */
+    /* ── HERO PARTICLE NETWORK + BEAM SCAN ── */
     (function () {
       const canvas = document.getElementById('hero-canvas');
       const ctx    = canvas.getContext('2d');
@@ -449,13 +449,14 @@
       const hudDot   = document.getElementById('hud-dot');
 
       let W, H, particles;
-      const COLORS    = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#EA6CB1','#EA6CB1'];
-      const COUNT     = 68;
-      const LINK_DIST = 128;
-      const SPEED     = 0.26;
-      const SCAN_DUR  = 6500;  // ms per sweep
-      const HOLD_DUR  = 1800;  // ms to hold "BEZPEČNÉ" at bottom
-      let   scanStart = performance.now();
+      const COLORS        = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#EA6CB1','#EA6CB1'];
+      const COUNT         = 68;
+      const LINK_DIST     = 128;
+      const SPEED         = 0.26;
+      const BEAM_DUR      = 5000;  // ms — synced with CSS beamScan animation
+      const PALM_X_FRAC   = 0.60;
+      const PALM_Y_FRAC   = 0.42;
+      const BEAM_HALF_DEG = 10;    // half-width of illumination zone in degrees
 
       function resize() {
         W = canvas.width  = canvas.offsetWidth;
@@ -471,97 +472,46 @@
 
       function init() { resize(); particles = Array.from({length:COUNT}, makeParticle); }
 
-      /* ── HUD update ── */
-      function updateHUD(progress) {
-        const pct = Math.min(100, Math.round(progress * 100));
+      function updateHUD(t) {
+        const pct = Math.min(100, Math.round(t * 100));
         hudFill.style.width = pct + '%';
-
-        if (progress < 0.04) {
-          hudLabel.textContent = 'INICIALIZÁCIA';
-          hudLabel.className   = 'hud-label';
-          hudVal.textContent   = '—';
-          hudDot.className     = 'hud-dot';
-        } else if (progress < 0.96) {
-          hudLabel.textContent = 'SKENUJE';
-          hudLabel.className   = 'hud-label';
-          hudVal.textContent   = pct + '%';
-          hudDot.className     = 'hud-dot';
+        if (t < 0.04) {
+          hudLabel.textContent = 'INICIALIZÁCIA'; hudLabel.className = 'hud-label';
+          hudVal.textContent   = '—';             hudDot.className   = 'hud-dot';
+        } else if (t < 0.96) {
+          hudLabel.textContent = 'SKENUJE';       hudLabel.className = 'hud-label';
+          hudVal.textContent   = pct + '%';       hudDot.className   = 'hud-dot';
         } else {
-          hudLabel.textContent = 'BEZPEČNÉ';
-          hudLabel.className   = 'hud-label safe';
-          hudVal.textContent   = '0 HROZIEB';
-          hudDot.className     = 'hud-dot safe';
+          hudLabel.textContent = 'BEZPEČNÉ';      hudLabel.className = 'hud-label safe';
+          hudVal.textContent   = '0 HROZIEB';     hudDot.className   = 'hud-dot safe';
         }
       }
 
-      /* ── DRAW ── */
       function draw(now) {
         ctx.clearRect(0, 0, W, H);
 
-        /* scan position */
-        const elapsed  = (now - scanStart) % (SCAN_DUR + HOLD_DUR);
-        const scanProg = Math.min(1, elapsed / SCAN_DUR);
-        const scanY    = scanProg * (H + 20) - 10;
+        const t       = (now % BEAM_DUR) / BEAM_DUR;
+        // Cosine ease matches CSS ease-in-out: -10° → +10° → -10°
+        const beamDeg = -10 * Math.cos(t * 2 * Math.PI); // JS atan2 (0=right, +down)
+        const palmX   = W * PALM_X_FRAC;
+        const palmY   = H * PALM_Y_FRAC;
 
-        updateHUD(scanProg);
+        updateHUD(t);
 
-        /* ── beam glow zone (above the line) ── */
-        if (scanProg < 1) {
-          const beamH = 100;
-          const beam  = ctx.createLinearGradient(0, scanY - beamH, 0, scanY + 6);
-          beam.addColorStop(0,   'transparent');
-          beam.addColorStop(0.5, 'rgba(0,187,197,0.025)');
-          beam.addColorStop(0.85,'rgba(0,187,197,0.07)');
-          beam.addColorStop(1,   'rgba(0,187,197,0.03)');
-          ctx.fillStyle = beam;
-          ctx.fillRect(0, scanY - beamH, W, beamH + 8);
-
-          /* ── leading edge line ── */
-          const line = ctx.createLinearGradient(0, 0, W, 0);
-          line.addColorStop(0,    'transparent');
-          line.addColorStop(0.08, 'rgba(0,187,197,0)');
-          line.addColorStop(0.30, 'rgba(0,187,197,0.85)');
-          line.addColorStop(0.52, 'rgba(234,108,177,0.7)');
-          line.addColorStop(0.72, 'rgba(0,187,197,0.85)');
-          line.addColorStop(0.92, 'rgba(0,187,197,0)');
-          line.addColorStop(1,    'transparent');
-          ctx.beginPath();
-          ctx.moveTo(0, scanY); ctx.lineTo(W, scanY);
-          ctx.strokeStyle = line;
-          ctx.lineWidth   = 1.2;
-          ctx.stroke();
-
-          /* ── secondary echo line (fading, 18px above) ── */
-          const echo = ctx.createLinearGradient(0, 0, W, 0);
-          echo.addColorStop(0,    'transparent');
-          echo.addColorStop(0.25, 'rgba(0,187,197,0.18)');
-          echo.addColorStop(0.5,  'rgba(234,108,177,0.12)');
-          echo.addColorStop(0.75, 'rgba(0,187,197,0.18)');
-          echo.addColorStop(1,    'transparent');
-          ctx.beginPath();
-          ctx.moveTo(0, scanY - 18); ctx.lineTo(W, scanY - 18);
-          ctx.strokeStyle = echo;
-          ctx.lineWidth   = 0.6;
-          ctx.stroke();
-
-          /* ── tiny scan tick marks on leading edge ── */
-          for (let tx = 40; tx < W - 40; tx += 48) {
-            const tickAlpha = 0.25 + 0.2 * Math.sin(tx * 0.08 + now * 0.003);
-            ctx.beginPath();
-            ctx.moveTo(tx, scanY - 5); ctx.lineTo(tx, scanY + 5);
-            ctx.strokeStyle = `rgba(0,187,197,${tickAlpha})`;
-            ctx.lineWidth   = 0.6;
-            ctx.stroke();
-          }
-        }
-
-        /* ── particle pulse when inside beam ── */
+        /* ── pulse particles inside beam cone (right of palm only) ── */
         for (const p of particles) {
-          const dist = p.y - scanY;
-          if (dist > -8 && dist < 40) {
-            p.pulse = Math.max(p.pulse, 1 - Math.abs(dist) / 48);
+          const dx = p.x - palmX;
+          const dy = p.y - palmY;
+          if (dx > 20) {
+            const pDeg = Math.atan2(dy, dx) * 180 / Math.PI;
+            const diff = Math.abs(pDeg - beamDeg);
+            if (diff < BEAM_HALF_DEG) {
+              p.pulse = Math.max(p.pulse, 1 - diff / BEAM_HALF_DEG);
+            } else {
+              p.pulse = Math.max(0, p.pulse - 0.03);
+            }
           } else {
-            p.pulse = Math.max(0, p.pulse - 0.04);
+            p.pulse = Math.max(0, p.pulse - 0.03);
           }
         }
 
@@ -594,7 +544,6 @@
           const baseA  = isRose ? 0.65 : 0.60;
           const alpha  = baseA + p.pulse * 0.35;
 
-          /* glow halo */
           const glowR = r * (5 + p.pulse * 4);
           const g = ctx.createRadialGradient(p.x,p.y,0, p.x,p.y,glowR);
           g.addColorStop(0, isRose ? `rgba(234,108,177,${0.10+p.pulse*0.18})`
@@ -604,7 +553,6 @@
           ctx.arc(p.x, p.y, glowR, 0, Math.PI*2);
           ctx.fillStyle = g; ctx.fill();
 
-          /* core dot */
           ctx.beginPath();
           ctx.arc(p.x, p.y, r, 0, Math.PI*2);
           ctx.fillStyle = isRose ? `rgba(234,108,177,${alpha})` : `rgba(0,187,197,${alpha})`;
@@ -620,10 +568,7 @@
         }
       }
 
-      function loop(now) {
-        update(); draw(now);
-        requestAnimationFrame(loop);
-      }
+      function loop(now) { update(); draw(now); requestAnimationFrame(loop); }
 
       window.addEventListener('resize', resize);
       init();
