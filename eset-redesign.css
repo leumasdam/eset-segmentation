@@ -524,8 +524,23 @@ nav {
 
    PREPOJENÉ PRVKY: <div class="hero-badges"> a <img class="hero-badges-img">
    ============================================================================= */
+/* Awards + stats container — pinned to bottom of hero */
+.hero-bottom-bar {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 0 24px;
+  z-index: 5;
+  pointer-events: none;
+}
+.hero-bottom-bar > * { pointer-events: auto; }
+
 .hero-badges {
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .hero-badges-img {
@@ -616,7 +631,7 @@ nav {
 .hero-ctas {
   display: flex;
   gap: 12px;
-  margin-bottom: 300px;
+  margin-bottom: 48px;
   position: relative;
 }
 
@@ -661,7 +676,7 @@ nav {
 .hero-stats {
   display: flex;
   gap: 48px;
-  margin-bottom: 64px;
+  margin-bottom: 0;
   position: relative;
 }
 
