@@ -326,8 +326,8 @@ nav {
 }
 
 @keyframes heroRenderZoom {
-  0%, 100% { transform: scale(0.95); }   /* further away — vignette mask hides slight edge gap */
-  50%      { transform: scale(1.55); }   /* close-up */
+  0%, 100% { transform: scale(0.98); }   /* mildly distant */
+  50%      { transform: scale(1.50); }   /* close-up */
 }
 
 
