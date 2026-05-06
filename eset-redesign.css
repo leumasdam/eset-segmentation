@@ -371,13 +371,13 @@ nav {
   .hud-bar   { width: 50px; height: 1.5px; }
   .hud-dot   { width: 4px; height: 4px; }
 
-  /* Main content (ticker, headline, sub, CTAs) — nudged slightly UP */
+  /* Main content (ticker, headline, sub, CTAs) — nudged UP */
   .hero-badge,
   .hero h1,
   .hero-sub,
   .hero-ctas {
     position: relative;
-    top: -15px;
+    top: -30px;
   }
   /* Awards + stats — small downward nudge */
   .hero-badges,
