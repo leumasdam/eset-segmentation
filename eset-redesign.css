@@ -341,15 +341,16 @@ nav {
   }
   .stat-divider { display: none; }
 
-  /* Hero render on mobile — different JPG (corner curve), screen-blend + vignette */
+  /* Hero render on mobile — different JPG, screen-blend, no vignette mask
+     (mask was creating visible fade-out boundary near viewport corners) */
   .hero-render {
-    opacity: 0.40;
+    opacity: 0.45;
     mix-blend-mode: screen;
     object-position: 35% 50%;
     filter: none;
     animation: heroRenderZoomMobile 50s ease-in-out infinite;
-    -webkit-mask-image: radial-gradient(ellipse 110% 100% at 50% 55%, black 25%, transparent 92%);
-            mask-image: radial-gradient(ellipse 110% 100% at 50% 55%, black 25%, transparent 92%);
+    -webkit-mask-image: none;
+            mask-image: none;
   }
 
   /* Scan HUD — sit just below navbar on the right (compact) */
@@ -365,8 +366,8 @@ nav {
 }
 
 @keyframes heroRenderZoomMobile {
-  0%, 100% { transform: translate(0, 0)     scale(1.15); }
-  50%      { transform: translate(0, -50px) scale(1.30); }
+  0%, 100% { transform: translate(0, 0)     scale(1.40); }   /* always well above 1.0 — edges off-screen */
+  50%      { transform: translate(0, -40px) scale(1.55); }
 }
 
 /* ── Small phones (≤430px) ── */
