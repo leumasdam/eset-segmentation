@@ -524,12 +524,20 @@ nav {
 
    PREPOJENÉ PRVKY: <div class="hero-badges"> a <img class="hero-badges-img">
    ============================================================================= */
-/* Awards + stats container — absolutely positioned in hero
-   (doesn't grow hero, doesn't move centered main content) */
+/* Ghost spacer — preserves the height that badges+stats used to take
+   in flex flow, so main-content centering doesn't shift down */
+.hero-flex-spacer {
+  height: 230px;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* Awards + stats — absolute, lower in hero
+   (doesn't grow hero, doesn't move centered main) */
 .hero-bottom-bar {
   position: absolute;
   left: 0; right: 0;
-  bottom: 80px;
+  bottom: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
