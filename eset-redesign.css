@@ -274,53 +274,53 @@ nav {
     /* Bright core ray */
     conic-gradient(from 82deg at var(--palm-x) var(--palm-y),
       transparent                0deg,
-      rgba(255,220,200,0.95)     8deg,
-      rgba(255,220,200,0.00)    16deg,
+      rgba(255,220,200,1.00)    10deg,
+      rgba(255,220,200,0.00)    20deg,
       transparent              360deg),
     /* Inner bright cone */
     conic-gradient(from 65deg at var(--palm-x) var(--palm-y),
       transparent              0deg,
-      rgba(254,97,66,0.10)     5deg,
-      rgba(254,97,66,0.65)    25deg,
-      rgba(254,97,66,0.10)    45deg,
+      rgba(254,97,66,0.15)     5deg,
+      rgba(254,97,66,0.90)    25deg,
+      rgba(254,97,66,0.15)    45deg,
       transparent             50deg,
       transparent            360deg),
     /* Mid cone */
     conic-gradient(from 50deg at var(--palm-x) var(--palm-y),
       transparent              0deg,
-      rgba(254,97,66,0.05)     5deg,
-      rgba(254,97,66,0.28)    40deg,
-      rgba(254,97,66,0.05)    75deg,
+      rgba(254,97,66,0.08)     5deg,
+      rgba(254,97,66,0.50)    40deg,
+      rgba(254,97,66,0.08)    75deg,
       transparent             80deg,
       transparent            360deg),
     /* Outer wide haze */
     conic-gradient(from 30deg at var(--palm-x) var(--palm-y),
       transparent              0deg,
-      rgba(254,97,66,0.02)     8deg,
-      rgba(254,97,66,0.10)    60deg,
-      rgba(254,97,66,0.02)   112deg,
+      rgba(254,97,66,0.04)     8deg,
+      rgba(254,97,66,0.22)    60deg,
+      rgba(254,97,66,0.04)   112deg,
       transparent            120deg,
       transparent            360deg);
-  filter: blur(22px);
+  filter: blur(16px);
   mask-image:
     radial-gradient(circle 55vw at var(--palm-x) var(--palm-y),
-      black 0%, black 40%, transparent 85%),
+      black 0%, black 50%, transparent 88%),
     conic-gradient(
       from 30deg at var(--palm-x) var(--palm-y),
       transparent  0deg,
-      black       45deg,
-      black       75deg,
+      black       32deg,
+      black       88deg,
       transparent 120deg,
       transparent 360deg
     );
   -webkit-mask-image:
     radial-gradient(circle 55vw at var(--palm-x) var(--palm-y),
-      black 0%, black 40%, transparent 85%),
+      black 0%, black 50%, transparent 88%),
     conic-gradient(
       from 30deg at var(--palm-x) var(--palm-y),
       transparent  0deg,
-      black       45deg,
-      black       75deg,
+      black       32deg,
+      black       88deg,
       transparent 120deg,
       transparent 360deg
     );
