@@ -314,19 +314,19 @@
 
       <div class="trust-grid">
         <div class="trust-item reveal">
-          <div class="trust-num">99.9%</div>
+          <div class="trust-num" data-target="99.9" data-suffix="%" data-decimals="1">0%</div>
           <div class="trust-desc">Efektivita detekcie malvéru<br>podľa AV-TEST</div>
         </div>
         <div class="trust-item reveal">
-          <div class="trust-num">30+</div>
+          <div class="trust-num" data-target="30" data-suffix="+">0+</div>
           <div class="trust-desc">Rokov skúseností<br>v kybernetickej bezpečnosti</div>
         </div>
         <div class="trust-item reveal">
-          <div class="trust-num">100+</div>
+          <div class="trust-num" data-target="100" data-suffix="+">0+</div>
           <div class="trust-desc">VB100 ocenení<br>za detekciu hrozieb</div>
         </div>
         <div class="trust-item reveal">
-          <div class="trust-num">4.6★</div>
+          <div class="trust-num" data-target="4.6" data-suffix="★" data-decimals="1">0★</div>
           <div class="trust-desc">Gartner Peer Insights<br>90% odporúčanie</div>
         </div>
       </div>
@@ -662,7 +662,7 @@
         const target   = parseFloat(el.dataset.target);
         const decimals = parseInt(el.dataset.decimals || '0', 10);
         const suffix   = el.dataset.suffix || '';
-        const dur      = 1400;
+        const dur      = 2600;
         const start    = performance.now();
         function step(now) {
           const t = Math.min(1, (now - start) / dur);
@@ -681,14 +681,12 @@
           if (!e.isIntersecting) return;
           const el = e.target;
           el.classList.add('in');
-          if (el.classList.contains('stat-num')) animateCount(el);
+          if (el.dataset.target) animateCount(el);
           io.unobserve(el);
         });
       }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
 
-      document.querySelectorAll('.reveal, .stat-num[data-target]').forEach(el => {
-        // stat-num that's not already .reveal — make it count when visible
-        if (!el.classList.contains('reveal')) el.classList.add('stat-counter');
+      document.querySelectorAll('.reveal, [data-target]').forEach(el => {
         io.observe(el);
       });
     })();
