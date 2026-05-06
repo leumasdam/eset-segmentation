@@ -355,16 +355,8 @@ nav {
       drop-shadow(0 0 60px rgba(0, 187, 197, 0.20));
   }
 
-  /* Scan HUD — sit hard against navbar bottom on the right */
-  .scan-hud {
-    top: 68px;
-    right: 14px;
-    gap: 2px;
-  }
-  .hud-label { font-size: 8px; letter-spacing: 1.5px; }
-  .hud-val   { font-size: 10px; }
-  .hud-bar   { width: 56px; height: 1.5px; }
-  .hud-dot   { width: 4px; height: 4px; }
+  /* Scan HUD removed on mobile — BLOKOVANÉ ticker pill already conveys scan status */
+  .scan-hud { display: none !important; }
 
   /* Visual-only nudge of awards + stats lower (relative offset doesn't
      affect flex layout, so headline + buttons stay put) */
