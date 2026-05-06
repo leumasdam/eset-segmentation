@@ -327,10 +327,11 @@ nav {
     justify-content: space-around;
     margin-bottom: 0;
   }
-  .stat { flex: 1; max-width: 110px; }
+  .stat { flex: 1; max-width: 110px; min-width: 0; }
   .stat-num {
     font-size: 22px;
     letter-spacing: -0.5px;
+    font-variant-numeric: tabular-nums;
   }
   .stat-label {
     font-size: 11px;
@@ -339,9 +340,10 @@ nav {
   }
   .stat-divider { display: none; }
 
-  /* Hero render — tone way down on mobile so it doesn't fight content */
+  /* Hero render — drop pan/translate on mobile (was -180px X / drifts off the small screen) */
   .hero-render {
     opacity: 0.10;
+    animation: heroRenderZoomMobile 50s ease-in-out infinite;
   }
 
   /* Scan HUD smaller, lower opacity */
@@ -350,6 +352,11 @@ nav {
     right: 16px;
   }
   .hud-bar { width: 60px; }
+}
+
+@keyframes heroRenderZoomMobile {
+  0%, 100% { transform: translate(0, 0)       scale(1.20); }
+  50%      { transform: translate(0, -120px)  scale(1.40); }
 }
 
 /* ── Small phones (≤430px) ── */
