@@ -242,7 +242,7 @@ nav {
   display: block;
   object-fit: cover;
   object-position: 50% 50%;
-  transform: scale(1.15) translateX(-9%);
+  transform: scale(1.32) translateX(-10%);
   transform-origin: center center;
   opacity: 1;
   mix-blend-mode: screen;
