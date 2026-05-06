@@ -198,6 +198,75 @@ nav {
   box-shadow: 0 4px 16px rgba(234, 108, 177, 0.3) !important;
 }
 
+/* Burger — visible only on mobile */
+.nav-burger {
+  display: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  position: relative;
+}
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 4px auto;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.nav-burger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-burger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-burger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px;
+  }
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    left: 0; right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(10, 24, 35, 0.96);
+    backdrop-filter: blur(16px);
+    padding: 16px 20px 24px;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block;
+    padding: 12px 4px;
+    border-bottom: 1px solid rgba(0, 187, 197, 0.08);
+    font-size: 15px;
+  }
+  .nav-links li:last-child a { border-bottom: 0; }
+  .nav-cta {
+    margin-top: 12px;
+    text-align: center;
+  }
+  .nav-burger { display: block; }
+}
+
 
 /* =============================================================================
    5. HERO SEKCIA — kontajner
