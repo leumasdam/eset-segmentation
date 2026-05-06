@@ -241,6 +241,7 @@ nav {
   height: 100%;
   display: block;
   object-fit: cover;
+  transform: translateX(15%);
   opacity: 0.55;
   mix-blend-mode: screen;
   filter: brightness(1.0) contrast(1.05);
