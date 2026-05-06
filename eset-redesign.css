@@ -326,8 +326,8 @@ nav {
 }
 
 @keyframes heroRenderZoom {
-  0%, 100% { transform: scale(1.50); }   /* deeply zoomed in */
-  50%      { transform: scale(1.00); }   /* fully extended — exact hero coverage */
+  0%, 100% { transform: scale(1.70); }   /* deeply zoomed in */
+  50%      { transform: scale(0.92); }   /* pushed past full coverage — testing edge limit */
 }
 
 
