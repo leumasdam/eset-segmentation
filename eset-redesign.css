@@ -380,7 +380,7 @@ nav {
   .hero-badges,
   .hero-stats {
     position: relative;
-    top: 2px;
+    top: -20px;
   }
 }
 
