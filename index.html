@@ -61,11 +61,15 @@
       <path d="M88 115L96 123L114 105" stroke="#00BBC5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 
-    <!-- EVE bot flight overlay — circular orbit around the headline -->
+    <!-- EVE bot flight overlay — irregular lazy-8 around the headline -->
     <svg class="hero-eve" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
-        <!-- Circle centred at (800, 290), radius 320 -->
-        <path id="evePath" d="M 480 290 a 320 320 0 1 0 640 0 a 320 320 0 1 0 -640 0" />
+        <!-- Asymmetric figure-8: right lobe taller, left lobe lower & wider -->
+        <path id="evePath" d="M 800 290
+          C 1060 130, 1340 170, 1340 290
+          C 1340 420, 1060 450, 800 290
+          C 590 380, 280 410, 260 270
+          C 260 200, 580 110, 800 290 Z" />
         <filter id="eveTrailGlow" x="-30%" y="-30%" width="160%" height="160%">
           <feGaussianBlur stdDeviation="4"/>
         </filter>
@@ -74,21 +78,21 @@
       <!-- Soft glow halo behind comet -->
       <use href="#evePath"
            stroke="#00BBC5" stroke-width="10" fill="none" stroke-linecap="round"
-           stroke-dasharray="80 5000" stroke-dashoffset="5080" opacity="0.30"
+           stroke-dasharray="120 5000" stroke-dashoffset="5120" opacity="0.32"
            filter="url(#eveTrailGlow)">
-        <animate attributeName="stroke-dashoffset" from="5080" to="-80" dur="11s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-dashoffset" from="5120" to="-120" dur="14s" repeatCount="indefinite"/>
       </use>
 
       <!-- Sharp comet trail -->
       <use href="#evePath"
            stroke="#00BBC5" stroke-width="2" fill="none" stroke-linecap="round"
-           stroke-dasharray="60 5000" stroke-dashoffset="5060" opacity="0.85">
-        <animate attributeName="stroke-dashoffset" from="5060" to="-60" dur="11s" repeatCount="indefinite"/>
+           stroke-dasharray="90 5000" stroke-dashoffset="5090" opacity="0.85">
+        <animate attributeName="stroke-dashoffset" from="5090" to="-90" dur="14s" repeatCount="indefinite"/>
       </use>
 
       <!-- EVE icon following the path -->
-      <image class="hero-eve-bot" href="eve-bot.png" width="80" height="80" x="-40" y="-40">
-        <animateMotion dur="11s" repeatCount="indefinite" rotate="0">
+      <image class="hero-eve-bot" href="eve-bot.png" width="76" height="76" x="-38" y="-38">
+        <animateMotion dur="14s" repeatCount="indefinite" rotate="0">
           <mpath href="#evePath"/>
         </animateMotion>
       </image>
