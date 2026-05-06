@@ -1760,6 +1760,10 @@ nav, .hero, #plans, .products-section,
 }
 .ticker-text {
   display: inline-block;
+  width: 280px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform;
