@@ -530,19 +530,7 @@ nav {
    PREPOJENÉ PRVKY: <svg class="hero-shield"> v HTML
    ============================================================================= */
 .hero-shield {
-  position: absolute;
-  right: -60px;
-  top: 50%;
-  transform: translateY(-48%);
-  width: 520px;
-  height: 580px;
-  opacity: 0.055;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@media (max-width: 768px) {
-  .hero-shield { display: none; }
+  display: none;
 }
 
 
