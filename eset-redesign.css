@@ -307,6 +307,22 @@ nav {
     radial-gradient(ellipse 50% 50% at 90% 70%, rgba(0, 75, 85, 0.18) 0%, transparent 60%);
 }
 
+/* Full-bleed teal cyber render — faded vignette behind particles */
+.hero-render {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 55%;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 55%, black 20%, transparent 90%);
+          mask-image: radial-gradient(ellipse 95% 95% at 50% 55%, black 20%, transparent 90%);
+}
+
 
 /* =============================================================================
    6. HERO CANVAS — particle network
