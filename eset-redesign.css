@@ -307,7 +307,7 @@ nav {
     radial-gradient(ellipse 50% 50% at 90% 70%, rgba(0, 75, 85, 0.18) 0%, transparent 60%);
 }
 
-/* Full-bleed teal cyber render — faded vignette behind particles */
+/* Full-bleed teal cyber render — slow ken-burns zoom (never reveals edges) */
 .hero-render {
   position: absolute;
   inset: 0;
@@ -319,8 +319,15 @@ nav {
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: 0;
+  transform-origin: 50% 55%;
+  animation: heroRenderZoom 32s ease-in-out infinite;
   -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 55%, black 20%, transparent 90%);
           mask-image: radial-gradient(ellipse 95% 95% at 50% 55%, black 20%, transparent 90%);
+}
+
+@keyframes heroRenderZoom {
+  0%, 100% { transform: scale(1.22); }   /* zoomed in */
+  50%      { transform: scale(1.0);  }   /* fully extended — exact hero coverage */
 }
 
 
