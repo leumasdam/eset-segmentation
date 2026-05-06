@@ -371,7 +371,7 @@ nav {
   .hud-bar   { width: 50px; height: 1.5px; }
   .hud-dot   { width: 4px; height: 4px; }
 
-  /* Visual-only nudge of WHOLE hero content 10px lower (relative offset
+  /* Visual-only nudge of WHOLE hero content 5px lower (relative offset
      doesn't affect flex layout — hero stays 100vh, centering math intact) */
   .hero-badge,
   .hero h1,
@@ -380,7 +380,7 @@ nav {
   .hero-badges,
   .hero-stats {
     position: relative;
-    top: 10px;
+    top: 5px;
   }
 }
 
