@@ -232,16 +232,15 @@ nav {
   z-index: 1;
   pointer-events: none;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-left: 4%;
   animation: robotFloat 7s ease-in-out infinite;
 }
 
 .hero-robot {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  height: 92%;
+  width: auto;
   display: block;
   opacity: 0.28;
   filter:
@@ -250,64 +249,12 @@ nav {
     brightness(1.05) contrast(1.1);
 }
 
-/* Subtle float + arm scan sweep */
 @keyframes robotFloat {
-  0%   { transform: translateY(0px)    translateX(0px); }
-  25%  { transform: translateY(-10px)  translateX(6px); }
-  50%  { transform: translateY(-14px)  translateX(10px); }
-  75%  { transform: translateY(-6px)   translateX(4px); }
-  100% { transform: translateY(0px)    translateX(0px); }
-}
-
-/* Palm glow — positioned over the hand (~74% x, 30% y of hero, contain mode) */
-.robot-palm-glow {
-  position: absolute;
-  top: 30%;
-  left: 74%;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(0,187,197,0.9) 0%, rgba(0,187,197,0.35) 40%, transparent 72%);
-  animation: palmPulse 3.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes palmPulse {
-  0%,100% { transform: translate(-50%,-50%) scale(1);   opacity: 0.75; }
-  50%      { transform: translate(-50%,-50%) scale(1.8); opacity: 0.2; }
-}
-
-/* Scan beam — sweeps LEFT from palm toward text */
-.robot-scan-beam {
-  position: absolute;
-  top: calc(30% - 1px);
-  right: 26%;
-  height: 2px;
-  width: 0;
-  background: linear-gradient(to left,
-    rgba(0,187,197,0.9) 0%,
-    rgba(0,187,197,0.5) 50%,
-    transparent 100%
-  );
-  transform-origin: right center;
-  border-radius: 2px;
-  animation: beamSweep 3.5s ease-in-out infinite;
-}
-
-.robot-scan-beam--2 {
-  top: calc(30% + 2px);
-  right: 26%;
-  opacity: 0.4;
-  animation-delay: 0.08s;
-  height: 1px;
-}
-
-@keyframes beamSweep {
-  0%        { width: 0;    opacity: 0; }
-  8%        { opacity: 1; }
-  55%       { width: 24%;  opacity: 0.85; }
-  85%, 100% { width: 28%;  opacity: 0; }
+  0%   { transform: translateY(0px)   translateX(0px); }
+  25%  { transform: translateY(-10px) translateX(5px); }
+  50%  { transform: translateY(-14px) translateX(8px); }
+  75%  { transform: translateY(-6px)  translateX(3px); }
+  100% { transform: translateY(0px)   translateX(0px); }
 }
 
 /* ── END ROBOT ──────────────────────────────────────────── */
