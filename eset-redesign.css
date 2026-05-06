@@ -326,8 +326,8 @@ nav {
 }
 
 @keyframes heroRenderZoom {
-  0%, 100% { transform: scale(1.50); }   /* baseline zoomed in */
-  50%      { transform: scale(1.85); }   /* close-up */
+  0%, 100% { transform: translateY(-300px) scale(1.50); }   /* baseline zoomed in, lifted up */
+  50%      { transform: translateY(-300px) scale(1.85); }   /* close-up, lifted up */
 }
 
 
