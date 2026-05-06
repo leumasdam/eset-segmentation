@@ -242,7 +242,7 @@ nav {
   height: 85%;
   width: auto;
   display: block;
-  opacity: 0.7;
+  opacity: 0.5;
   filter:
     drop-shadow(0 0 32px rgba(0,187,197,0.45))
     drop-shadow(0 0 80px rgba(0,187,197,0.18))
@@ -641,6 +641,16 @@ nav {
   letter-spacing: -2.5px;
   margin-bottom: 24px;
   position: relative;
+  text-shadow:
+    0 2px 30px rgba(10, 24, 35, 0.85),
+    0 0 70px rgba(10, 24, 35, 0.65),
+    0 0 100px rgba(0, 187, 197, 0.22);
+}
+
+.hero-sub {
+  text-shadow:
+    0 1px 14px rgba(10, 24, 35, 0.8),
+    0 0 40px rgba(10, 24, 35, 0.55);
 }
 
 .hero h1 .accent {
