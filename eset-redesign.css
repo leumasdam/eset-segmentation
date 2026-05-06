@@ -308,8 +308,8 @@ nav {
     conic-gradient(
       from 30deg at var(--palm-x) var(--palm-y),
       transparent  0deg,
-      black       32deg,
-      black       88deg,
+      black       55deg,
+      black       90deg,
       transparent 120deg,
       transparent 360deg
     );
@@ -319,8 +319,8 @@ nav {
     conic-gradient(
       from 30deg at var(--palm-x) var(--palm-y),
       transparent  0deg,
-      black       32deg,
-      black       88deg,
+      black       55deg,
+      black       90deg,
       transparent 120deg,
       transparent 360deg
     );
