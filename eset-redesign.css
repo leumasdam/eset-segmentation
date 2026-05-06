@@ -377,7 +377,7 @@ nav {
   .hero-sub,
   .hero-ctas {
     position: relative;
-    top: -60px;
+    top: 30px;
   }
   /* Awards + stats — small downward nudge */
   .hero-badges,
