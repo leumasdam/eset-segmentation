@@ -326,8 +326,8 @@ nav {
 }
 
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(0px, -600px)    scale(1.50); }   /* baseline */
-  50%      { transform: translate(-180px, -300px) scale(1.85); }   /* drifts down + left while zooming in */
+  0%, 100% { transform: translate(-180px, 100px)  scale(1.45); }   /* bottom-left baseline */
+  50%      { transform: translate(220px, -550px) scale(1.85); }   /* drifts UP + RIGHT toward upper-right while zooming in */
 }
 
 
