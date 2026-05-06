@@ -234,19 +234,19 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 2%;
+  padding-left: 3%;
   animation: robotFloat 7s ease-in-out infinite;
 }
 
 .hero-robot {
-  height: 92%;
+  height: 65%;
   width: auto;
   display: block;
-  opacity: 0.42;
+  opacity: 0.7;
   filter:
-    drop-shadow(0 0 48px rgba(0,187,197,0.55))
-    drop-shadow(0 0 120px rgba(0,187,197,0.25))
-    brightness(1.05) contrast(1.1);
+    drop-shadow(0 0 32px rgba(0,187,197,0.45))
+    drop-shadow(0 0 80px rgba(0,187,197,0.18))
+    brightness(1.0) contrast(1.05);
 }
 
 /* palm glow + scan beam ladené pre starší obrázok — schované pre nový */
