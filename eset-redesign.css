@@ -185,7 +185,7 @@ nav {
 
 /* CTA tlačidlo v navbare ("Vyskúšať zadarmo") */
 .nav-cta {
-  background: var(--orange);
+  background: var(--teal-bright);
   color: var(--dark) !important;
   padding: 8px 20px;
   border-radius: 8px;
@@ -194,8 +194,8 @@ nav {
 }
 
 .nav-cta:hover {
-  background: #FCD080 !important;
-  box-shadow: 0 4px 16px rgba(254, 170, 58, 0.35) !important;
+  background: var(--teal-light) !important;
+  box-shadow: 0 4px 16px rgba(0, 187, 197, 0.35) !important;
 }
 
 
@@ -652,7 +652,7 @@ nav {
 /* Primárne CTA tlačidlo — tyrkysové, celé zafarbené */
 .btn-hero-primary {
   padding: 14px 32px;
-  background: var(--orange);
+  background: var(--teal-bright);
   color: var(--dark);
   border-radius: 12px;
   font-size: 15px;
@@ -662,8 +662,8 @@ nav {
 }
 
 .btn-hero-primary:hover {
-  background: #FCD080;
-  box-shadow: 0 8px 28px rgba(254, 170, 58, 0.4);
+  background: var(--teal-light);
+  box-shadow: 0 8px 28px rgba(0, 187, 197, 0.4);
 }
 
 /* Sekundárne CTA tlačidlo — biely outline (kontrast voči primary amber) */
