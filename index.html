@@ -37,7 +37,10 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <img class="hero-render" src="hero-render.png" alt="" aria-hidden="true">
+    <picture aria-hidden="true">
+      <source media="(max-width: 768px)" srcset="hero-render-mobile.jpg">
+      <img class="hero-render" src="hero-render.png" alt="">
+    </picture>
     <canvas id="hero-canvas"></canvas>
     <div class="hero-grid"></div>
 

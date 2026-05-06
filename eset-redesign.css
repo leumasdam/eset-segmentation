@@ -341,10 +341,15 @@ nav {
   }
   .stat-divider { display: none; }
 
-  /* Hero render — drop pan/translate on mobile (was -180px X / drifts off the small screen) */
+  /* Hero render on mobile — different JPG (corner curve), screen-blend + vignette */
   .hero-render {
-    opacity: 0.10;
+    opacity: 0.40;
+    mix-blend-mode: screen;
+    object-position: 35% 50%;
+    filter: none;
     animation: heroRenderZoomMobile 50s ease-in-out infinite;
+    -webkit-mask-image: radial-gradient(ellipse 110% 100% at 50% 55%, black 25%, transparent 92%);
+            mask-image: radial-gradient(ellipse 110% 100% at 50% 55%, black 25%, transparent 92%);
   }
 
   /* Scan HUD hidden on mobile — pill ticker already conveys scan status */
