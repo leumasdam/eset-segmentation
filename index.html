@@ -61,18 +61,11 @@
       <path d="M88 115L96 123L114 105" stroke="#00BBC5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 
-    <!-- Robot — centred behind text -->
-    <div class="hero-robot-wrap" aria-hidden="true">
-      <img src="eset-robot.png" alt="" class="hero-robot">
-      <div class="robot-palm-glow"></div>
-      <div class="robot-scan-beam"></div>
-      <div class="robot-scan-beam robot-scan-beam--2"></div>
-    </div>
-
-    <!-- EVE bot flight overlay — orbits the headline with comet trail -->
+    <!-- EVE bot flight overlay — circular orbit around the headline -->
     <svg class="hero-eve" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
-        <path id="evePath" d="M -80 500 Q 200 40, 500 80 T 1000 80 Q 1300 50, 1700 -120" />
+        <!-- Circle centred at (800, 290), radius 320 -->
+        <path id="evePath" d="M 480 290 a 320 320 0 1 0 640 0 a 320 320 0 1 0 -640 0" />
         <filter id="eveTrailGlow" x="-30%" y="-30%" width="160%" height="160%">
           <feGaussianBlur stdDeviation="4"/>
         </filter>
