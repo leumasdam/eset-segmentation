@@ -341,16 +341,18 @@ nav {
   }
   .stat-divider { display: none; }
 
-  /* Hero render on mobile — different JPG, screen-blend, no vignette mask
-     (mask was creating visible fade-out boundary near viewport corners) */
+  /* Hero render on mobile — transparent PNG (rembg cut), no blend mode,
+     subtle teal drop-shadow for atmosphere */
   .hero-render {
-    opacity: 0.45;
-    mix-blend-mode: screen;
+    opacity: 0.40;
+    mix-blend-mode: normal;
     object-position: 35% 50%;
-    filter: none;
     animation: heroRenderZoomMobile 50s ease-in-out infinite;
     -webkit-mask-image: none;
             mask-image: none;
+    filter:
+      drop-shadow(0 0 24px rgba(0, 187, 197, 0.40))
+      drop-shadow(0 0 60px rgba(0, 187, 197, 0.20));
   }
 
   /* Scan HUD — sit hard against navbar bottom on the right */
