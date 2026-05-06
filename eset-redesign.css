@@ -371,12 +371,15 @@ nav {
   .hud-bar   { width: 50px; height: 1.5px; }
   .hud-dot   { width: 4px; height: 4px; }
 
-  /* Visual-only nudge of WHOLE hero content 5px lower (relative offset
-     doesn't affect flex layout — hero stays 100vh, centering math intact) */
+  /* Main content (ticker, headline, sub, CTAs) — nudged slightly UP */
   .hero-badge,
   .hero h1,
   .hero-sub,
-  .hero-ctas,
+  .hero-ctas {
+    position: relative;
+    top: -15px;
+  }
+  /* Awards + stats — small downward nudge */
   .hero-badges,
   .hero-stats {
     position: relative;
