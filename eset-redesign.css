@@ -232,7 +232,7 @@ nav {
   z-index: 1;
   pointer-events: none;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
   padding-left: 3%;
   animation: robotFloat 7s ease-in-out infinite;
