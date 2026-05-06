@@ -214,6 +214,8 @@ nav {
    PREPOJENÉ PRVKY: <section class="hero"> v HTML
    ============================================================================= */
 .hero {
+  --palm-x: 60%;
+  --palm-y: 39%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -257,7 +259,7 @@ nav {
   100% { transform: translateY(0px)   translateX(0px); }
 }
 
-/* Light beam — wide cone from robot palm center, sweeps rightward */
+/* Light beam — massive layered cone from robot palm, sweeps rightward */
 .hero-light-cone {
   position: absolute;
   inset: 0;
@@ -265,49 +267,49 @@ nav {
   pointer-events: none;
   background:
     /* Palm origin glow */
-    radial-gradient(circle 110px at 60% 39%,
-      rgba(255,130,90,0.80)   0%,
-      rgba(254,97,66,0.30)   40%,
+    radial-gradient(circle 160px at var(--palm-x) var(--palm-y),
+      rgba(255,140,100,0.90)  0%,
+      rgba(254,97,66,0.40)   38%,
       transparent            72%),
     /* Bright core ray */
-    conic-gradient(from 84deg at 60% 39%,
+    conic-gradient(from 82deg at var(--palm-x) var(--palm-y),
       transparent                0deg,
-      rgba(255,210,190,0.90)     6deg,
-      rgba(255,210,190,0.00)    12deg,
+      rgba(255,220,200,0.95)     8deg,
+      rgba(255,220,200,0.00)    16deg,
       transparent              360deg),
     /* Inner bright cone */
-    conic-gradient(from 72deg at 60% 39%,
+    conic-gradient(from 65deg at var(--palm-x) var(--palm-y),
       transparent              0deg,
-      rgba(254,97,66,0.08)     6deg,
-      rgba(254,97,66,0.50)    18deg,
-      rgba(254,97,66,0.08)    30deg,
-      transparent             36deg,
+      rgba(254,97,66,0.10)     5deg,
+      rgba(254,97,66,0.65)    25deg,
+      rgba(254,97,66,0.10)    45deg,
+      transparent             50deg,
       transparent            360deg),
     /* Mid cone */
-    conic-gradient(from 60deg at 60% 39%,
+    conic-gradient(from 50deg at var(--palm-x) var(--palm-y),
       transparent              0deg,
-      rgba(254,97,66,0.04)     6deg,
-      rgba(254,97,66,0.20)    30deg,
-      rgba(254,97,66,0.04)    54deg,
-      transparent             60deg,
+      rgba(254,97,66,0.05)     5deg,
+      rgba(254,97,66,0.28)    40deg,
+      rgba(254,97,66,0.05)    75deg,
+      transparent             80deg,
       transparent            360deg),
     /* Outer wide haze */
-    conic-gradient(from 45deg at 60% 39%,
+    conic-gradient(from 30deg at var(--palm-x) var(--palm-y),
       transparent              0deg,
-      rgba(254,97,66,0.01)     8deg,
-      rgba(254,97,66,0.08)    45deg,
-      rgba(254,97,66,0.01)    82deg,
-      transparent             90deg,
+      rgba(254,97,66,0.02)     8deg,
+      rgba(254,97,66,0.10)    60deg,
+      rgba(254,97,66,0.02)   112deg,
+      transparent            120deg,
       transparent            360deg);
-  filter: blur(5px);
-  transform-origin: 60% 39%;
+  filter: blur(6px);
+  transform-origin: var(--palm-x) var(--palm-y);
   animation: beamScan 5s ease-in-out infinite;
 }
 
 @keyframes beamScan {
-  0%   { transform: rotate(-12deg); opacity: 0.65; }
-  50%  { transform: rotate(12deg);  opacity: 1;    }
-  100% { transform: rotate(-12deg); opacity: 0.65; }
+  0%   { transform: rotate(-25deg); opacity: 0.65; }
+  50%  { transform: rotate(25deg);  opacity: 1;    }
+  100% { transform: rotate(-25deg); opacity: 0.65; }
 }
 
 /* ── END ROBOT ──────────────────────────────────────────── */

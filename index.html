@@ -453,10 +453,26 @@
       const COUNT         = 68;
       const LINK_DIST     = 128;
       const SPEED         = 0.26;
-      const BEAM_DUR      = 5000;  // ms — synced with CSS beamScan animation
-      const PALM_X_FRAC   = 0.60;
-      const PALM_Y_FRAC   = 0.39;
-      const BEAM_HALF_DEG = 20;    // half-width of illumination zone in degrees
+      const BEAM_DUR      = 5000;
+      const BEAM_HALF_DEG = 35;
+
+      /* ── palm position — updated dynamically on resize ── */
+      let palmXFrac = 0.60;
+      let palmYFrac = 0.39;
+
+      function updatePalm() {
+        const robotEl = document.querySelector('.hero-robot');
+        const heroEl  = document.querySelector('.hero');
+        if (!robotEl || !heroEl) return;
+        const rr = robotEl.getBoundingClientRect();
+        const hr = heroEl.getBoundingClientRect();
+        if (!rr.width || !hr.width) return;
+        // palm at 80% x, 35% y of the robot image
+        palmXFrac = (rr.left - hr.left + rr.width  * 0.80) / hr.width;
+        palmYFrac = (rr.top  - hr.top  + rr.height * 0.35) / hr.height;
+        heroEl.style.setProperty('--palm-x', (palmXFrac * 100).toFixed(1) + '%');
+        heroEl.style.setProperty('--palm-y', (palmYFrac * 100).toFixed(1) + '%');
+      }
 
       function resize() {
         W = canvas.width  = canvas.offsetWidth;
@@ -470,7 +486,12 @@
                  r: Math.random()*1.5+0.9, color, pulse:0 };
       }
 
-      function init() { resize(); particles = Array.from({length:COUNT}, makeParticle); }
+      function init() {
+        resize();
+        particles = Array.from({length:COUNT}, makeParticle);
+        updatePalm();
+        document.querySelector('.hero-robot').addEventListener('load', updatePalm);
+      }
 
       function updateHUD(t) {
         const pct = Math.min(100, Math.round(t * 100));
@@ -493,8 +514,8 @@
         const t       = (now % BEAM_DUR) / BEAM_DUR;
         // Cosine ease matches CSS ease-in-out: -10° → +10° → -10°
         const beamDeg = -10 * Math.cos(t * 2 * Math.PI); // JS atan2 (0=right, +down)
-        const palmX   = W * PALM_X_FRAC;
-        const palmY   = H * PALM_Y_FRAC;
+        const palmX   = W * palmXFrac;
+        const palmY   = H * palmYFrac;
 
         updateHUD(t);
 
@@ -570,7 +591,7 @@
 
       function loop(now) { update(); draw(now); requestAnimationFrame(loop); }
 
-      window.addEventListener('resize', resize);
+      window.addEventListener('resize', () => { resize(); updatePalm(); });
       init();
       requestAnimationFrame(loop);
     })();
