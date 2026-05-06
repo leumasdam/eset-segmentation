@@ -61,9 +61,11 @@
       <path d="M88 115L96 123L114 105" stroke="#00BBC5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 
-<div class="hero-badge">
+<div class="hero-badge" id="hero-badge">
       <span class="hero-badge-dot"></span>
-      30 rokov na čele kybernetickej bezpečnosti
+      <span class="ticker-status">BLOKOVANÉ</span>
+      <span class="ticker-sep">·</span>
+      <span class="ticker-text" id="ticker-text">Trojan.Win32.Generic · Berlín</span>
     </div>
 
     <h1>
@@ -86,17 +88,17 @@
 
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-num">99.9%</div>
+        <div class="stat-num" data-target="99.9" data-suffix="%" data-decimals="1">0%</div>
         <div class="stat-label">Detekcia malvéru</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
-        <div class="stat-num">11</div>
+        <div class="stat-num" data-target="11">0</div>
         <div class="stat-label">R&amp;D centier vo svete</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
-        <div class="stat-num">4.6★</div>
+        <div class="stat-num" data-target="4.6" data-suffix="★" data-decimals="1">0★</div>
         <div class="stat-label">Gartner Peer Insights</div>
       </div>
     </div>
@@ -116,7 +118,7 @@
     </svg>
 
     <span class="section-label">Vyberte si plán</span>
-    <h2 class="section-title">Pre koho hľadáte ochranu?</h2>
+    <h2 class="section-title reveal">Pre koho hľadáte ochranu?</h2>
     <p class="section-sub">Jedno kliknutie. Správna ochrana.</p>
 
     <div class="pill-switcher">
@@ -131,7 +133,7 @@
     <div id="tab-domacnosti" class="tab-content active">
       <div class="cards-grid">
 
-        <div class="card">
+        <div class="card reveal">
           <div class="card-name">ESET</div>
           <div class="card-product">Essential</div>
           <div class="card-tagline">Základná ochrana pre každodenné použitie</div>
@@ -168,7 +170,7 @@
           <div class="devices-info">1 zariadenie · Windows, Mac, Android</div>
         </div>
 
-        <div class="card featured">
+        <div class="card featured reveal">
           <div class="card-badge">NAJOBĽÚBENEJŠÍ</div>
           <div class="card-name">ESET</div>
           <div class="card-product">Premium</div>
@@ -206,7 +208,7 @@
           <div class="devices-info">3 zariadenia · Windows, Mac, Android, iOS</div>
         </div>
 
-        <div class="card">
+        <div class="card reveal">
           <div class="card-name">ESET</div>
           <div class="card-product">Ultimate</div>
           <div class="card-tagline">Maximálna ochrana identity a zariadení</div>
@@ -256,22 +258,22 @@
         </div>
 
         <div class="guide-steps">
-          <div class="guide-step">
+          <div class="guide-step reveal">
             <div class="step-num">KROK 01</div>
             <div class="step-title">Aká veľká je vaša firma?</div>
             <div class="step-desc">Máme riešenia pre 5 zariadení aj pre tisíce endpointov. Cena rastie len s tým, čo skutočne potrebujete.</div>
           </div>
-          <div class="guide-step">
+          <div class="guide-step reveal">
             <div class="step-num">KROK 02</div>
             <div class="step-title">Čo chcete chrániť?</div>
             <div class="step-desc">Endpointy, servery, emaily, cloudy? Alebo komplexná XDR/MDR ochrana s nepretržitým monitoringom?</div>
           </div>
-          <div class="guide-step">
+          <div class="guide-step reveal">
             <div class="step-num">KROK 03</div>
             <div class="step-title">Ako riadite IT?</div>
             <div class="step-desc">Máte vlastný IT tím, alebo potrebujete, aby ESET spravoval vašu bezpečnosť za vás? Ponúkame oboje.</div>
           </div>
-          <div class="guide-step">
+          <div class="guide-step reveal">
             <div class="step-num">KROK 04</div>
             <div class="step-title">Dostanete konkrétny návrh</div>
             <div class="step-desc">Váš ESET konzultant vám do 24 hodín pošle riešenie šité na mieru — bez záväzkov, bez predraženia.</div>
@@ -311,38 +313,38 @@
       <p class="trust-label">Prečo ESET</p>
 
       <div class="trust-grid">
-        <div class="trust-item">
+        <div class="trust-item reveal">
           <div class="trust-num">99.9%</div>
           <div class="trust-desc">Efektivita detekcie malvéru<br>podľa AV-TEST</div>
         </div>
-        <div class="trust-item">
+        <div class="trust-item reveal">
           <div class="trust-num">30+</div>
           <div class="trust-desc">Rokov skúseností<br>v kybernetickej bezpečnosti</div>
         </div>
-        <div class="trust-item">
+        <div class="trust-item reveal">
           <div class="trust-num">100+</div>
           <div class="trust-desc">VB100 ocenení<br>za detekciu hrozieb</div>
         </div>
-        <div class="trust-item">
+        <div class="trust-item reveal">
           <div class="trust-num">4.6★</div>
           <div class="trust-desc">Gartner Peer Insights<br>90% odporúčanie</div>
         </div>
       </div>
 
       <div class="review-cards">
-        <div class="review-card">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★★</div>
           <div class="review-text">"ESET je ľahký, nenápadný a robí presne to, čo má. Za 3 roky ani jedna infekcia na 12 zariadeniach v rodine."</div>
           <div class="review-author">Martin K.</div>
           <div class="review-role">Domácnosť · Bratislava</div>
         </div>
-        <div class="review-card">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★★</div>
           <div class="review-text">"Nasadili sme ESET Protect Complete na 200 zariadeniach. Správa cez cloud konzolu je výrazne jednoduchšia ako u konkurencie."</div>
           <div class="review-author">Ing. Jana P.</div>
           <div class="review-role">IT manažérka · Výrobná firma</div>
         </div>
-        <div class="review-card">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★☆</div>
           <div class="review-text">"Oceňujeme, že je to slovenský produkt s lokálnou podporou. Reakcia technického tímu do hodiny — to je štandard, ktorý iní nedosahujú."</div>
           <div class="review-author">Tomáš B.</div>
@@ -441,13 +443,15 @@
       const hudDot   = document.getElementById('hud-dot');
 
       let W, H, particles;
-      const COLORS    = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#EA6CB1','#EA6CB1'];
-      const COUNT     = 68;
-      const LINK_DIST = 128;
-      const SPEED     = 0.26;
-      const SCAN_DUR  = 6500;  // ms per sweep
-      const HOLD_DUR  = 1800;  // ms to hold "BEZPEČNÉ" at bottom
+      const COLORS         = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#EA6CB1','#EA6CB1'];
+      const COUNT          = 68;
+      const LINK_DIST      = 128;
+      const SPEED          = 0.26;
+      const SCAN_DUR       = 6500;  // ms per sweep
+      const HOLD_DUR       = 1800;  // ms to hold "BEZPEČNÉ" at bottom
+      const POINTER_RADIUS = 150;   // px around cursor that lights particles
       let   scanStart = performance.now();
+      let   mx = -9999, my = -9999;
 
       function resize() {
         W = canvas.width  = canvas.offsetWidth;
@@ -547,14 +551,26 @@
           }
         }
 
-        /* ── particle pulse when inside beam ── */
+        /* ── particle pulse: scan-beam + cursor proximity ── */
         for (const p of particles) {
+          let target = 0;
+
+          // beam zone
           const dist = p.y - scanY;
           if (dist > -8 && dist < 40) {
-            p.pulse = Math.max(p.pulse, 1 - Math.abs(dist) / 48);
-          } else {
-            p.pulse = Math.max(0, p.pulse - 0.04);
+            target = Math.max(target, 1 - Math.abs(dist) / 48);
           }
+
+          // cursor zone
+          const dxm = p.x - mx, dym = p.y - my;
+          const dm  = Math.sqrt(dxm*dxm + dym*dym);
+          if (dm < POINTER_RADIUS) {
+            target = Math.max(target, 1 - dm / POINTER_RADIUS);
+          }
+
+          p.pulse = (target > p.pulse)
+            ? target
+            : Math.max(0, p.pulse - 0.04);
         }
 
         /* ── links ── */
@@ -618,8 +634,94 @@
       }
 
       window.addEventListener('resize', resize);
+
+      /* ── pointer tracking on hero (lights particles around cursor) ── */
+      const heroEl = document.querySelector('.hero');
+      heroEl.addEventListener('pointermove', (e) => {
+        const r = canvas.getBoundingClientRect();
+        mx = e.clientX - r.left;
+        my = e.clientY - r.top;
+      });
+      heroEl.addEventListener('pointerleave', () => { mx = -9999; my = -9999; });
+
       init();
       requestAnimationFrame(loop);
+    })();
+
+    /* ── SCROLL REVEAL + STAT COUNT-UP ────────────────────── */
+    (function () {
+      // Stagger: in each grid-like parent, give consecutive .reveal kids a delay
+      document.querySelectorAll('.cards-grid, .guide-steps, .trust-grid, .review-cards').forEach(group => {
+        const kids = group.querySelectorAll('.reveal');
+        kids.forEach((k, i) => {
+          k.style.setProperty('--reveal-delay', (i * 0.08) + 's');
+        });
+      });
+
+      function animateCount(el) {
+        const target   = parseFloat(el.dataset.target);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const suffix   = el.dataset.suffix || '';
+        const dur      = 1400;
+        const start    = performance.now();
+        function step(now) {
+          const t = Math.min(1, (now - start) / dur);
+          // ease-out cubic
+          const eased = 1 - Math.pow(1 - t, 3);
+          const val = (target * eased).toFixed(decimals);
+          el.textContent = val + suffix;
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = target.toFixed(decimals) + suffix;
+        }
+        requestAnimationFrame(step);
+      }
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          el.classList.add('in');
+          if (el.classList.contains('stat-num')) animateCount(el);
+          io.unobserve(el);
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal, .stat-num[data-target]').forEach(el => {
+        // stat-num that's not already .reveal — make it count when visible
+        if (!el.classList.contains('reveal')) el.classList.add('stat-counter');
+        io.observe(el);
+      });
+    })();
+
+    /* ── LIVE THREAT TICKER (hero badge) ──────────────────── */
+    (function () {
+      const el = document.getElementById('ticker-text');
+      if (!el) return;
+
+      const THREATS = [
+        ['Trojan.Win32.Generic',     'Berlín'],
+        ['JS/Adware.Sculptor',       'Praha'],
+        ['Win32/Filecoder.Lockbit',  'Madrid'],
+        ['HTML/Phishing.Agent',      'Viedeň'],
+        ['Android/Spy.Agent.BNG',    'Varšava'],
+        ['Trojan.Banker.Cerberus',   'Bratislava'],
+        ['PowerShell/TrojanDownloader', 'Amsterdam'],
+        ['Win64/Coinminer.AC',       'Štokholm'],
+        ['VBA/TrojanDropper',        'Helsinky'],
+        ['MSIL/Spy.Keylogger',       'Lisabon'],
+      ];
+      let i = 0;
+
+      function next() {
+        i = (i + 1) % THREATS.length;
+        const [name, city] = THREATS[i];
+        el.classList.add('swap');
+        setTimeout(() => {
+          el.textContent = name + ' · ' + city;
+          el.classList.remove('swap');
+        }, 350);
+      }
+      setInterval(next, 3500);
     })();
   </script>
 
