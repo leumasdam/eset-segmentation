@@ -396,15 +396,6 @@ nav {
   50%      { transform: translate(0, -30px) scale(1.55); }
 }
 
-/* Defensive override — applies mobile-style render to anything up to 1024px
-   (covers big phones in landscape, foldables, small tablets). Desktop keyframe
-   only kicks in from ≥1025px. */
-@media (max-width: 1024px) {
-  .hero-render {
-    animation: heroRenderZoomMobile 50s ease-in-out infinite;
-  }
-}
-
 /* ── Small phones (≤430px) ── */
 @media (max-width: 430px) {
   .hero h1  { font-size: clamp(30px, 8.5vw, 40px); }
@@ -488,8 +479,8 @@ nav {
 
 /* No horizontal translate — prevents any chance of horizontal overflow / shift */
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(0, -240px) scale(1.55); }
-  50%      { transform: translate(0, -280px) scale(1.75); }
+  0%, 100% { transform: scale(1.30); }
+  50%      { transform: translate(0, -40px) scale(1.50); }
 }
 
 
