@@ -1856,17 +1856,7 @@ nav, .hero, #plans, .products-section,
    PREPOJENÉ PRVKY: <div class="section-glow-divider"> (3x v HTML)
    ============================================================================= */
 .section-glow-divider {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 187, 197, 0.4),
-    rgba(216, 11, 85, 0.25),
-    transparent
-  );
-  margin: 0;
-  position: relative;
-  z-index: 3;
+  display: none;
 }
 
 
