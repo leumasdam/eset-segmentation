@@ -456,9 +456,9 @@ nav {
     radial-gradient(ellipse 50% 50% at 90% 70%, rgba(0, 75, 85, 0.18) 0%, transparent 60%);
 }
 
-/* Render wrapper — sized to hero (100vh) so pill positioning matches the
-   original layout. Overflow visible lets the transform-scaled image bleed
-   below into the next section without re-cropping/repositioning the pill. */
+/* Render wrapper — clip-path constrains overflow to bottom-only (vertical
+   bleed allowed up to 200vh below, horizontal clipped to viewport).
+   Wrap height stays 100vh so cover-fit math = original pill positioning. */
 .page-render-wrap {
   position: absolute;
   top: 0;
@@ -469,6 +469,7 @@ nav {
   pointer-events: none;
   overflow: visible;
   display: block;
+  clip-path: inset(0 0 -200vh 0);
 }
 
 /* Transparent-bg cyber render — slow ken-burns zoom */
@@ -489,12 +490,12 @@ nav {
     drop-shadow(0 0 140px rgba(0, 187, 197, 0.15));
 }
 
-/* Massive scale around transform-origin (50% 55% = the pill itself) means
-   the pill stays in EXACT same viewport position while the image extends
-   far beyond viewport in every direction (60-75vh below hero, through cards). */
+/* Scale around origin (50% 55% = the pill) keeps pill viewport position
+   exactly the same. clip-path on wrap clips horizontal overflow so big
+   scales don't cause horizontal scroll. Image extends ~50-65vh below hero. */
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(-25px, 15px) scale(2.20); }
-  50%      { transform: translate(40px, -30px) scale(2.55); }
+  0%, 100% { transform: translate(-20px, 10px) scale(2.00); }
+  50%      { transform: translate(30px, -20px) scale(2.30); }
 }
 
 
