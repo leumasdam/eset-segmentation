@@ -2006,6 +2006,7 @@ nav, .hero, #plans, .products-section,
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;
     -webkit-overflow-scrolling: touch;
     gap: 14px;
     padding: 4px 20px 18px;
@@ -2014,9 +2015,12 @@ nav, .hero, #plans, .products-section,
   }
   .review-cards::-webkit-scrollbar { display: none; }
   .review-cards .review-card {
-    flex: 0 0 86%;
-    scroll-snap-align: center;
+    flex: 0 0 82%;
+    scroll-snap-align: start;
     min-width: 0;
+  }
+  .review-cards .review-card:last-child {
+    scroll-snap-align: end;
   }
 
   .trust-grid {
