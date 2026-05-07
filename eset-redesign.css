@@ -456,9 +456,8 @@ nav {
     radial-gradient(ellipse 50% 50% at 90% 70%, rgba(0, 75, 85, 0.18) 0%, transparent 60%);
 }
 
-/* Render wrapper — clip-path constrains overflow to bottom-only (vertical
-   bleed allowed up to 200vh below, horizontal clipped to viewport).
-   Wrap height stays 100vh so cover-fit math = original pill positioning. */
+/* Render wrapper — sized to hero (100vh), overflow visible so transform-scaled
+   image bleeds below into next section naturally. */
 .page-render-wrap {
   position: absolute;
   top: 0;
@@ -469,7 +468,6 @@ nav {
   pointer-events: none;
   overflow: visible;
   display: block;
-  clip-path: inset(0 0 -200vh 0);
 }
 
 /* Transparent-bg cyber render — slow ken-burns zoom */
@@ -490,12 +488,11 @@ nav {
     drop-shadow(0 0 140px rgba(0, 187, 197, 0.15));
 }
 
-/* Scale around origin (50% 55% = the pill) keeps pill viewport position
-   exactly the same. clip-path on wrap clips horizontal overflow so big
-   scales don't cause horizontal scroll. Image extends ~50-65vh below hero. */
+/* Larger scale so image always overflows ~30-40vh below hero
+   (covers "Pre koho hľadáte" headline + pill switcher buttons) */
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(-20px, 10px) scale(2.00); }
-  50%      { transform: translate(30px, -20px) scale(2.30); }
+  0%, 100% { transform: translate(-40px, 25px) scale(1.55); }
+  50%      { transform: translate(60px, -50px) scale(1.80); }
 }
 
 
