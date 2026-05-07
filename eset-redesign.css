@@ -456,17 +456,18 @@ nav {
     radial-gradient(ellipse 50% 50% at 90% 70%, rgba(0, 75, 85, 0.18) 0%, transparent 60%);
 }
 
-/* Global page render wrapper — extends past hero so the cyber pill bleeds
-   through into next section ("Pre koho hľadáte" + Pre domácnosti/firmy) */
+/* Render wrapper — sized to hero (100vh) so pill positioning matches the
+   original layout. Overflow visible lets the transform-scaled image bleed
+   below into the next section without re-cropping/repositioning the pill. */
 .page-render-wrap {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 145vh;        /* hero (100vh) + 45vh into next section */
+  height: 100vh;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
   display: block;
 }
 
