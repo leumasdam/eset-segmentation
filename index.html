@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESET – Kybernetická bezpečnosť</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="eset-redesign.css?v=20260507-cards-3col">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260507-perf">
 </head>
 <body>
 
@@ -760,18 +760,34 @@
 
       const MAX = 6;  // max degrees of tilt
       document.querySelectorAll('.cards-grid .card').forEach((card) => {
-        card.addEventListener('pointermove', (e) => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width;
-          const y = (e.clientY - r.top)  / r.height;
+        let queued = false;
+        let lastX = 0, lastY = 0, rect = null;
+
+        function flush() {
+          queued = false;
+          if (!rect) return;
+          const x = (lastX - rect.left) / rect.width;
+          const y = (lastY - rect.top)  / rect.height;
           const rx = (0.5 - y) * MAX;
           const ry = (x - 0.5) * MAX;
-          card.classList.add('tilt-active');
           card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px) scale(1.01)`;
+        }
+
+        card.addEventListener('pointerenter', () => {
+          rect = card.getBoundingClientRect();
+          card.classList.add('tilt-active');
+        });
+        card.addEventListener('pointermove', (e) => {
+          lastX = e.clientX; lastY = e.clientY;
+          if (!queued) {
+            queued = true;
+            requestAnimationFrame(flush);
+          }
         });
         card.addEventListener('pointerleave', () => {
           card.classList.remove('tilt-active');
           card.style.transform = '';
+          rect = null;
         });
       });
     })();

@@ -1068,7 +1068,10 @@ nav {
   white-space: nowrap;
 }
 
-/* Box image (produktová krabica) na vrchu karty */
+/* Box image (produktová krabica) na vrchu karty
+   NOTE: drop-shadow filter úmyselne neprítomný — bol perf-heavy pri hover/tilt
+   animáciách (re-rasterizácia každý frame). Tieň simulujeme cez ::after
+   pod boxom, aby sa nezapojil do compositing layer-u boxu. */
 .card-box {
   display: block;
   height: 170px;
@@ -1076,15 +1079,7 @@ nav {
   max-width: 100%;
   margin: 0 auto 18px;
   object-fit: contain;
-  filter: drop-shadow(0 14px 28px rgba(0, 187, 197, 0.22));
-  transition: transform 0.4s ease;
   pointer-events: none;
-}
-.card:hover .card-box {
-  transform: translateY(-4px) scale(1.04);
-}
-.card.featured .card-box {
-  filter: drop-shadow(0 16px 32px rgba(0, 187, 197, 0.28));
 }
 
 /* Texty v karte */
@@ -1981,21 +1976,22 @@ nav, .hero, #plans, .products-section,
 
 
 /* =============================================================================
-   31. PRICING CARDS — 3D tilt micro-interaction + better hover
+   31. PRICING CARDS — micro-interaction + better hover
+   NOTE: perspective + transform-style: preserve-3d odstránené — drahé
+   compositing-wise. Tilt JS si dáva svoj perspective inline v transform.
    ============================================================================= */
-.cards-grid { perspective: 1200px; }
 .card {
   transition:
     border-color 0.3s,
-    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
     box-shadow 0.3s;
-  transform-style: preserve-3d;
 }
 .card:hover {
   transform: translateY(-6px) scale(1.01);
   box-shadow: 0 22px 60px -12px rgba(0, 187, 197, 0.25);
 }
 .card.tilt-active {
+  will-change: transform;
   transition: transform 0.08s linear, border-color 0.3s, box-shadow 0.3s;
 }
 
