@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESET – Kybernetická bezpečnosť</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="eset-redesign.css?v=20260507-1">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260507-2">
 </head>
 <body>
 
@@ -34,16 +34,15 @@
     </button>
   </nav>
 
+  <!-- Global render bg — outside hero so it can bleed past hero into next sections -->
+  <picture class="page-render-wrap" aria-hidden="true">
+    <source media="(max-width: 768px)" srcset="hero-render-mobile.png">
+    <img class="hero-render" src="hero-render.png" alt="">
+  </picture>
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <picture aria-hidden="true">
-      <source media="(max-width: 768px)" srcset="hero-render-mobile.png">
-      <img class="hero-render" src="hero-render.png" alt="">
-    </picture>
-
-    <!-- Frosted glass over entire hero -->
-    <div class="hero-glass" aria-hidden="true"></div>
     <canvas id="hero-canvas"></canvas>
     <div class="hero-grid"></div>
 
