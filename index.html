@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESET – Kybernetická bezpečnosť</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="eset-redesign.css?v=20260506-8">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260506-9">
 </head>
 <body>
 
@@ -41,6 +41,9 @@
       <source media="(max-width: 768px)" srcset="hero-render-mobile.png">
       <img class="hero-render" src="hero-render.png" alt="">
     </picture>
+
+    <!-- Soft, symmetric blur halo behind hero text (improves readability) -->
+    <div class="hero-text-haze" aria-hidden="true"></div>
     <canvas id="hero-canvas"></canvas>
     <div class="hero-grid"></div>
 
