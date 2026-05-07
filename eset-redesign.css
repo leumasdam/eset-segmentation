@@ -489,11 +489,12 @@ nav {
     drop-shadow(0 0 140px rgba(0, 187, 197, 0.15));
 }
 
-/* Larger scale so image always overflows ~30-40vh below hero
-   (covers "Pre koho hľadáte" headline + pill switcher buttons) */
+/* Massive scale around transform-origin (50% 55% = the pill itself) means
+   the pill stays in EXACT same viewport position while the image extends
+   far beyond viewport in every direction (60-75vh below hero, through cards). */
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(-40px, 25px) scale(1.55); }
-  50%      { transform: translate(60px, -50px) scale(1.80); }
+  0%, 100% { transform: translate(-25px, 15px) scale(2.20); }
+  50%      { transform: translate(40px, -30px) scale(2.55); }
 }
 
 
