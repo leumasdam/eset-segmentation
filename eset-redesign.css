@@ -457,27 +457,15 @@ nav {
     radial-gradient(ellipse 50% 50% at 90% 70%, rgba(0, 75, 85, 0.18) 0%, transparent 60%);
 }
 
-/* Soft symmetric blur halo behind hero text — improves readability without
-   disturbing the render at hero edges */
-.hero-text-haze {
+/* Frosted-glass overlay across entire hero (sits between render and content) */
+.hero-glass {
   position: absolute;
-  inset: 12% 8%;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%,
-    black 0%, black 45%, transparent 100%);
-          mask-image: radial-gradient(ellipse 70% 65% at 50% 50%,
-    black 0%, black 45%, transparent 100%);
-}
-
-@media (max-width: 768px) {
-  .hero-text-haze {
-    inset: 18% 6%;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
+  background: rgba(10, 24, 35, 0.18);
+  backdrop-filter: blur(8px) saturate(125%);
+  -webkit-backdrop-filter: blur(8px) saturate(125%);
 }
 
 /* Transparent-bg cyber render — slow ken-burns zoom */
