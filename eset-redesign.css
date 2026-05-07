@@ -93,6 +93,7 @@
    ============================================================================= */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -101,6 +102,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
 }
 
 
@@ -475,11 +477,10 @@ nav {
     drop-shadow(0 0 140px rgba(0, 187, 197, 0.18));
 }
 
-/* Translate magnitudes kept well within W*(s-1)/2 and H*(s-1)/2 bounds
-   so the pill shape never extends past viewport edges */
+/* No horizontal translate — prevents any chance of horizontal overflow / shift */
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(-90px, 60px)   scale(1.45); }    /* bottom-left baseline */
-  50%      { transform: translate(140px, -180px) scale(1.85); }    /* drifts UP + RIGHT */
+  0%, 100% { transform: scale(1.30); }
+  50%      { transform: translate(0, -40px) scale(1.50); }
 }
 
 
