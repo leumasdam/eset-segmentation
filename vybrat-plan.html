@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESET — Vybrať plán</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260507-features">
+
+  <style>
+    /* ─── WIZARD-SPECIFIC STYLES (uses tokens from eset-redesign.css) ─── */
+    .wizard-page {
+      min-height: 100vh;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .wizard-page-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% -5%, rgba(0, 187, 197, 0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 12% 90%, rgba(0, 117, 127, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .wizard-container {
+      max-width: 880px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .wizard-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .wizard-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--teal-bright);
+    }
+
+    /* Glass panel that holds the steps */
+    .wpanel {
+      background: rgba(10, 24, 35, 0.55);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 56px;
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      position: relative;
+      overflow: hidden;
+    }
+    .wpanel::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(0, 187, 197, 0.25), transparent 65%);
+      pointer-events: none;
+    }
+    .wpanel > * { position: relative; z-index: 1; }
+
+    /* Progress */
+    .wprogress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .wprogress-bars { display: flex; gap: 8px; }
+    .wbar {
+      width: 36px;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      transition: width 0.4s, background 0.4s, box-shadow 0.4s;
+    }
+    .wbar.done { background: var(--teal-mid); }
+    .wbar.active {
+      background: var(--teal-bright);
+      width: 60px;
+      box-shadow: 0 0 14px rgba(0, 187, 197, 0.55);
+    }
+    .wprogress-meta {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .wprogress-meta b { color: var(--teal-bright); font-weight: 700; }
+
+    /* Steps */
+    .wstep { display: none; animation: wFade 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .wstep.active { display: block; }
+    @keyframes wFade {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .wstep-num {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .wstep-title {
+      font-size: clamp(28px, 4.2vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .wstep-title em {
+      color: var(--teal-bright);
+      font-style: normal;
+      position: relative;
+    }
+    .wstep-title em::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -3px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal-bright), var(--teal-light), transparent);
+      border-radius: 2px;
+    }
+    .wstep-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 36px;
+      max-width: 580px;
+      line-height: 1.55;
+    }
+
+    /* Options */
+    .wopts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .wopts.two { grid-template-columns: repeat(2, 1fr); }
+
+    .wopt {
+      display: grid;
+      grid-template-columns: 48px 1fr 24px;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+      padding: 18px 22px;
+      background: rgba(10, 24, 35, 0.55);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+      font-family: inherit;
+      transition: border-color 0.25s, transform 0.25s, background 0.25s, box-shadow 0.25s;
+    }
+    .wopt:hover {
+      border-color: rgba(0, 187, 197, 0.45);
+      background: rgba(10, 40, 50, 0.55);
+      transform: translateY(-2px);
+    }
+    .wopt.selected {
+      border-color: var(--teal-bright);
+      background: rgba(0, 187, 197, 0.10);
+      box-shadow: 0 8px 28px rgba(0, 187, 197, 0.18);
+    }
+    .wopt-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(0, 187, 197, 0.10);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal-bright);
+      transition: background 0.25s, color 0.25s;
+    }
+    .wopt-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .wopt.selected .wopt-icon { background: rgba(0, 187, 197, 0.22); }
+    .wopt-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; letter-spacing: -0.2px; }
+    .wopt-desc  { font-size: 13px; color: var(--text-muted); }
+    .wopt-check {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: transparent;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.25s;
+    }
+    .wopt.selected .wopt-check {
+      background: var(--teal-bright);
+      border-color: var(--teal-bright);
+      color: var(--dark);
+    }
+
+    /* Slider */
+    .wslider-block { padding: 24px 0 36px; text-align: center; }
+    .wslider-num {
+      font-size: 80px;
+      font-weight: 800;
+      letter-spacing: -3px;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .wslider-num span {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 12px;
+      text-transform: lowercase;
+    }
+    .wslider {
+      -webkit-appearance: none;
+      width: 100%;
+      max-width: 520px;
+      margin: 28px auto 8px;
+      height: 4px;
+      background: linear-gradient(to right, var(--teal-bright) 0%, var(--teal-bright) var(--fill, 12%), rgba(255,255,255,0.08) var(--fill, 12%), rgba(255,255,255,0.08) 100%);
+      border-radius: 4px;
+      outline: none;
+      display: block;
+    }
+    .wslider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px; height: 22px;
+      background: var(--teal-bright);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 0 6px rgba(0, 187, 197, 0.18), 0 0 20px rgba(0, 187, 197, 0.5);
+      border: none;
+    }
+    .wslider::-moz-range-thumb {
+      width: 22px; height: 22px;
+      background: var(--teal-bright);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 0 6px rgba(0, 187, 197, 0.18), 0 0 20px rgba(0, 187, 197, 0.5);
+      border: none;
+    }
+    .wslider-marks {
+      display: flex;
+      justify-content: space-between;
+      max-width: 520px;
+      margin: 12px auto 0;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Actions */
+    .wactions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .wbtn {
+      padding: 13px 28px;
+      border: 0;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, color 0.2s, opacity 0.2s, transform 0.2s;
+    }
+    .wbtn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .wbtn-ghost:hover:not(:disabled) {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.25);
+    }
+    .wbtn-primary {
+      background: var(--teal-bright);
+      color: var(--dark);
+    }
+    .wbtn-primary:hover:not(:disabled) {
+      background: var(--teal-light);
+      box-shadow: 0 8px 28px rgba(0, 187, 197, 0.30);
+    }
+    .wbtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Result screen */
+    .wresult { display: none; }
+    .wresult.active { display: block; animation: wFade 0.55s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .wresult-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 187, 197, 0.10);
+      border: 1px solid rgba(0, 187, 197, 0.30);
+      color: var(--teal-bright);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+    .wresult-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal-bright);
+      box-shadow: 0 0 8px var(--teal-bright);
+    }
+    .wresult-headline {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 10px;
+    }
+    .wresult-headline em {
+      color: var(--teal-bright);
+      font-style: normal;
+    }
+    .wresult-why {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 36px;
+      line-height: 1.55;
+    }
+    .wproduct {
+      background: rgba(10, 24, 35, 0.55);
+      border: 1px solid var(--teal-bright);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 16px 40px -10px rgba(0, 187, 197, 0.20);
+    }
+    .wproduct-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+    .wproduct-name { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .wproduct-tag  { font-size: 14px; color: var(--text-muted); }
+    .wprice-amount {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .wprice-amount span { font-size: 22px; opacity: 0.7; margin-right: 2px; vertical-align: top; }
+    .wprice-period { font-size: 12px; color: var(--text-muted); margin-top: 4px; text-align: right; }
+
+    .wfeatures {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 22px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 28px;
+    }
+    .wfeat { display: flex; align-items: center; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.85); }
+    .wfeat-icon {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(0, 187, 197, 0.18);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .wfeat-icon svg { width: 12px; height: 12px; stroke: var(--teal-bright); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+    .wcta-row { display: flex; gap: 12px; }
+    .wcta-main {
+      flex: 1;
+      padding: 14px 24px;
+      background: var(--teal-bright);
+      color: var(--dark);
+      border: 0;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .wcta-main:hover { background: var(--teal-light); box-shadow: 0 10px 30px rgba(0, 187, 197, 0.4); }
+    .wcta-ghost {
+      flex: 1;
+      padding: 14px 24px;
+      background: transparent;
+      color: var(--teal-bright);
+      border: 1px solid rgba(0, 187, 197, 0.40);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .wcta-ghost:hover {
+      background: rgba(0, 187, 197, 0.10);
+      border-color: var(--teal-bright);
+    }
+
+    .walts-head {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .walts { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .walt {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 22px;
+      background: rgba(10, 24, 35, 0.40);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    }
+    .walt:hover {
+      border-color: rgba(0, 187, 197, 0.40);
+      background: rgba(10, 40, 50, 0.45);
+      transform: translateX(4px);
+    }
+    .walt-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .walt-reason { font-size: 12px; color: var(--text-muted); }
+    .walt-arrow { font-size: 18px; color: var(--teal-bright); }
+
+    .wrestart {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .wrestart a {
+      color: var(--text-muted);
+      font-size: 13px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .wrestart a:hover { color: var(--teal-bright); }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .wizard-page { padding: 96px 16px 60px; }
+      .wpanel { padding: 32px 22px; border-radius: 18px; }
+      .wopts.two { grid-template-columns: 1fr; }
+      .wopt { padding: 14px 16px; gap: 14px; grid-template-columns: 40px 1fr 22px; }
+      .wopt-icon { width: 40px; height: 40px; }
+      .wslider-num { font-size: 64px; }
+      .wstep-title { font-size: 26px; letter-spacing: -1px; }
+      .wstep-sub { font-size: 14px; margin-bottom: 28px; }
+      .wbar { width: 28px; }
+      .wbar.active { width: 44px; }
+      .wprogress-meta { font-size: 10px; }
+      .wproduct { padding: 24px 18px; }
+      .wproduct-head { grid-template-columns: 1fr; gap: 14px; }
+      .wprice-period { text-align: left; }
+      .wfeatures { grid-template-columns: 1fr; gap: 10px; }
+      .wcta-row { flex-direction: column; }
+      .wactions { flex-direction: column-reverse; }
+      .wbtn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GLOBAL AMBIENT ORB LAYER -->
+  <div id="ambient"></div>
+
+  <!-- NAVBAR (same as main page) -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="eset-logo2.png" alt="ESET" style="height:32px; width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#plans">Produkty</a></li>
+      <li><a href="#">Podpora</a></li>
+      <li><a href="#">Partneri</a></li>
+      <li><a href="#">O nás</a></li>
+      <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Otvoriť menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="wizard-page">
+    <div class="wizard-page-bg" aria-hidden="true"></div>
+
+    <div class="wizard-container">
+      <span class="wizard-eyebrow">Pomôžeme vám vybrať</span>
+
+      <div class="wpanel">
+        <!-- Progress -->
+        <div class="wprogress" id="wprogress">
+          <div class="wprogress-bars">
+            <div class="wbar active"></div>
+            <div class="wbar"></div>
+            <div class="wbar"></div>
+            <div class="wbar"></div>
+          </div>
+          <div class="wprogress-meta"><b id="wstepCounter">Krok 01</b> · zo 4</div>
+        </div>
+
+        <!-- STEP 1 -->
+        <section class="wstep active" data-step="1">
+          <div class="wstep-num">01 / Kontext</div>
+          <h1 class="wstep-title">Kto potrebuje <em>ochranu?</em></h1>
+          <p class="wstep-sub">Pomôže nám zúžiť rodinu produktov. Ceny a funkcie sa líšia podľa segmentu.</p>
+
+          <div class="wopts">
+            <button class="wopt" data-value="home">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 11L12 3L21 11M5 9V21H19V9"/><path d="M9 21V14H15V21"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Ja a moja rodina</div>
+                <div class="wopt-desc">Osobné zariadenia, domáci používatelia</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+
+            <button class="wopt" data-value="small-office">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="1"/><path d="M9 6V3H15V6M3 12H21"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Malá firma alebo kancelária</div>
+                <div class="wopt-desc">Do 25 zariadení, bez vlastného IT</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+
+            <button class="wopt" data-value="business">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 21V11L12 3L21 11V21M3 21H21M9 21V14H15V21M9 9H10M14 9H15"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Stredná alebo veľká firma</div>
+                <div class="wopt-desc">25+ zariadení, IT administrátor alebo tím</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+          </div>
+
+          <div class="wactions">
+            <button class="wbtn wbtn-ghost" disabled>← Späť</button>
+            <button class="wbtn wbtn-primary" id="wnext1" disabled>Pokračovať →</button>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="wstep" data-step="2">
+          <div class="wstep-num">02 / Zariadenia</div>
+          <h1 class="wstep-title">Koľko <em>zariadení?</em></h1>
+          <p class="wstep-sub">Počítajte všetko — počítače, notebooky, telefóny, tablety.</p>
+
+          <div class="wslider-block">
+            <div class="wslider-num" id="wdeviceCount">3<span>zariadenia</span></div>
+            <input type="range" min="1" max="25" value="3" class="wslider" id="wdeviceSlider" style="--fill: 8%;">
+            <div class="wslider-marks">
+              <span>1</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25+</span>
+            </div>
+          </div>
+
+          <div class="wactions">
+            <button class="wbtn wbtn-ghost" data-back>← Späť</button>
+            <button class="wbtn wbtn-primary" data-next>Pokračovať →</button>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="wstep" data-step="3">
+          <div class="wstep-num">03 / Platformy</div>
+          <h1 class="wstep-title">Aké <em>systémy?</em></h1>
+          <p class="wstep-sub">Vyberte všetko, čo používate — pomôže nám overiť kompatibilitu.</p>
+
+          <div class="wopts two">
+            <button class="wopt" data-value="windows">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 5L11 4V11H3V5ZM13 4L21 3V11H13V4ZM3 13H11V20L3 19V13ZM13 13H21V21L13 20V13Z"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Windows</div>
+                <div class="wopt-desc">Windows 10, 11</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+            <button class="wopt" data-value="mac">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 6C12 6 13 3 16 3C16 3 16 5 14 6M8 8C5 8 3 11 3 14C3 19 7 21 8 21C9 21 10 20 12 20C14 20 15 21 16 21C17 21 21 19 21 14C21 11 19 8 16 8C14 8 13 9 12 9C11 9 10 8 8 8Z"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">macOS</div>
+                <div class="wopt-desc">macOS 13+</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+            <button class="wopt" data-value="android">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><path d="M6 10V17H18V10M6 10H18M6 10C6 7 9 5 12 5C15 5 18 7 18 10M8 7L7 5M16 7L17 5M9 13V15M15 13V15"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Android</div>
+                <div class="wopt-desc">Android 9.0+</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+            <button class="wopt" data-value="linux">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 3C9 3 8 6 8 9C8 11 7 13 6 15C5 17 4 19 6 20C8 21 10 20 12 20C14 20 16 21 18 20C20 19 19 17 18 15C17 13 16 11 16 9C16 6 15 3 12 3ZM10 8V9M14 8V9"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Linux</div>
+                <div class="wopt-desc">Desktop distribúcie</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+          </div>
+
+          <div class="wactions">
+            <button class="wbtn wbtn-ghost" data-back>← Späť</button>
+            <button class="wbtn wbtn-primary" id="wnext3" data-next disabled>Pokračovať →</button>
+          </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="wstep" data-step="4">
+          <div class="wstep-num">04 / Priority</div>
+          <h1 class="wstep-title">Čo je <em>najdôležitejšie?</em></h1>
+          <p class="wstep-sub">Vyberte jednu alebo viac oblastí. Podľa toho odporučíme balík.</p>
+
+          <div class="wopts">
+            <button class="wopt" data-value="basic">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 3L4 6V12C4 17 8 20 12 21C16 20 20 17 20 12V6L12 3Z"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Základná ochrana pred vírusmi</div>
+                <div class="wopt-desc">Antivírus, anti-phishing, ransomware shield</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+            <button class="wopt" data-value="privacy">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L3 7V12C3 17 7 21 12 22C17 21 21 17 21 12V7L12 2ZM9 12L11 14L15 10"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Súkromie a VPN</div>
+                <div class="wopt-desc">Anonymné prehliadanie, neobmedzená VPN</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+            <button class="wopt" data-value="identity">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21C4 17 7 15 12 15C17 15 20 17 20 21"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Ochrana identity</div>
+                <div class="wopt-desc">Monitoring úniku údajov, správca hesiel</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+            <button class="wopt" data-value="kids">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M3 21C3 17 5 15 8 15C11 15 13 17 13 21M11 21C11 17 13 15 16 15C19 15 21 17 21 21"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Deti a rodičovská kontrola</div>
+                <div class="wopt-desc">Filter obsahu, čas pred obrazovkou</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+            <button class="wopt" data-value="encryption">
+              <div class="wopt-icon">
+                <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7C8 4 10 3 12 3C14 3 16 4 16 7V11M12 15V17"/></svg>
+              </div>
+              <div>
+                <div class="wopt-title">Šifrovanie súborov</div>
+                <div class="wopt-desc">Military-grade šifrovanie dát a USB</div>
+              </div>
+              <div class="wopt-check">✓</div>
+            </button>
+          </div>
+
+          <div class="wactions">
+            <button class="wbtn wbtn-ghost" data-back>← Späť</button>
+            <button class="wbtn wbtn-primary" id="wnext4" disabled>Zobraziť odporúčanie →</button>
+          </div>
+        </section>
+
+        <!-- RESULT -->
+        <section class="wresult" id="wresultScreen">
+          <div class="wresult-tag">Najlepšia voľba pre vás</div>
+          <h1 class="wresult-headline" id="wresultTitle">ESET HOME Security <em>Premium</em></h1>
+          <p class="wresult-why" id="wresultReason">Na základe vašich odpovedí pokrýva tento balík všetko potrebné.</p>
+
+          <div class="wproduct">
+            <div class="wproduct-head">
+              <div>
+                <div class="wproduct-name" id="wproductName">ESET HOME Security Premium</div>
+                <div class="wproduct-tag" id="wproductTagline">Pokročilá ochrana + súkromie + správca hesiel</div>
+              </div>
+              <div>
+                <div class="wprice-amount" id="wpriceAmount"><span>€</span>59.99</div>
+                <div class="wprice-period" id="wpricePeriod">za rok, pre 3 zariadenia</div>
+              </div>
+            </div>
+
+            <div class="wfeatures" id="wfeaturesGrid"></div>
+
+            <div class="wcta-row">
+              <button class="wcta-main">Začať 30-dňovú skúšku zdarma</button>
+              <button class="wcta-ghost">Pridať do košíka</button>
+            </div>
+          </div>
+
+          <div class="walts-head">— Iné možnosti</div>
+          <div class="walts" id="waltList"></div>
+
+          <div class="wrestart">
+            <a id="wrestartBtn">↺ Začať odznova</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    /* Burger toggle (same as main page) */
+    (function () {
+      const burger = document.querySelector('.nav-burger');
+      const links  = document.querySelector('.nav-links');
+      if (!burger || !links) return;
+      burger.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        links.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }));
+    })();
+
+    /* WIZARD logic */
+    (function () {
+      const state = {
+        step: 1, audience: null, devices: 3,
+        platforms: new Set(), concerns: new Set(),
+      };
+
+      function updateProgress() {
+        const bars = document.querySelectorAll('.wbar');
+        bars.forEach((b, i) => {
+          b.classList.remove('active', 'done');
+          if (i + 1 < state.step) b.classList.add('done');
+          else if (i + 1 === state.step) b.classList.add('active');
+        });
+        document.getElementById('wstepCounter').textContent = `Krok 0${state.step}`;
+      }
+
+      function goToStep(n) {
+        document.querySelectorAll('.wstep').forEach(s => s.classList.remove('active'));
+        const target = document.querySelector(`.wstep[data-step="${n}"]`);
+        if (target) target.classList.add('active');
+        document.getElementById('wresultScreen').classList.remove('active');
+        document.getElementById('wprogress').style.display = 'flex';
+        state.step = n;
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Step 1 (single-select)
+      document.querySelectorAll('[data-step="1"] .wopt').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-step="1"] .wopt').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          state.audience = btn.dataset.value;
+          document.getElementById('wnext1').disabled = false;
+        });
+      });
+      document.getElementById('wnext1').addEventListener('click', () => goToStep(2));
+
+      // Step 2 (slider)
+      const slider = document.getElementById('wdeviceSlider');
+      const deviceCount = document.getElementById('wdeviceCount');
+      function updateSlider() {
+        const val = parseInt(slider.value);
+        state.devices = val;
+        const display = val >= 25 ? '25+' : val;
+        const label = val === 1 ? 'zariadenie' : (val < 5 ? 'zariadenia' : 'zariadení');
+        deviceCount.innerHTML = `${display}<span>${label}</span>`;
+        const pct = ((val - 1) / 24) * 100;
+        slider.style.setProperty('--fill', pct + '%');
+      }
+      slider.addEventListener('input', updateSlider);
+      updateSlider();
+
+      // Steps 3 & 4 (multi-select)
+      function setupMulti(stepNum, storeKey, nextBtnId) {
+        document.querySelectorAll(`[data-step="${stepNum}"] .wopt`).forEach(btn => {
+          btn.addEventListener('click', () => {
+            btn.classList.toggle('selected');
+            const v = btn.dataset.value;
+            if (state[storeKey].has(v)) state[storeKey].delete(v);
+            else state[storeKey].add(v);
+            document.getElementById(nextBtnId).disabled = state[storeKey].size === 0;
+          });
+        });
+      }
+      setupMulti(3, 'platforms', 'wnext3');
+      setupMulti(4, 'concerns', 'wnext4');
+
+      // Back / Next
+      document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => goToStep(state.step - 1)));
+      document.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click', () => goToStep(state.step + 1)));
+      document.getElementById('wnext4').addEventListener('click', showResult);
+
+      function compute() {
+        const c = state.concerns;
+        const needsAdvanced = c.has('identity') || c.has('encryption') || (c.has('privacy') && c.has('kids'));
+        const needsPrivacy  = c.has('privacy') || c.has('identity');
+
+        if (state.audience === 'business') return {
+          name: 'ESET PROTECT', em: 'Entry',
+          tagline: 'AI-native ochrana endpointov s centrálnou správou',
+          priceDisplay: 'na vyžiadanie', priceSymbol: '',
+          period: `riešenie pre ${state.devices}+ zariadení`,
+          reason: 'Pre firmy s IT administrátorom odporúčame centrálne spravovateľný balík.',
+          features: ['Endpoint Protection', 'Centrálna konzola', 'Ransomware Shield', 'Anti-Phishing', 'Device Control', 'Prioritná podpora'],
+          alts: [
+            { name: 'ESET PROTECT Advanced', reason: 'pridáva cloud sandboxing' },
+            { name: 'ESET PROTECT Complete', reason: 'pridáva mail & cloud security' },
+          ]
+        };
+        if (state.audience === 'small-office') return {
+          name: 'ESET Small Business', em: 'Security',
+          tagline: 'Ochrana šitá na mieru malým firmám bez IT oddelenia',
+          priceDisplay: (state.devices * 29.99).toFixed(2), priceSymbol: '€',
+          period: `za rok, pre ${state.devices} zariadení`,
+          reason: 'Ľahká správa cez ESET HOME portál, žiadne zložité nastavenia.',
+          features: ['Antivírus & Anti-Malware', 'Ransomware Remediation', 'Server Security', 'VPN zahrnuté', 'Centrálna správa', 'Zdieľanie s kolegami'],
+          alts: [
+            { name: 'ESET PROTECT Entry', reason: 'ak plánujete rásť nad 25 zariadení' },
+            { name: 'HOME Security Ultimate', reason: 'ak ste freelancer / 1 človek' },
+          ]
+        };
+        if (needsAdvanced) return {
+          name: 'ESET HOME Security', em: 'Ultimate',
+          tagline: 'Maximálna ochrana: antivírus + VPN + identita + šifrovanie',
+          priceDisplay: (84.99 + Math.max(0, state.devices - 5) * 10).toFixed(2), priceSymbol: '€',
+          period: `za rok, pre ${state.devices} zariadení`,
+          reason: 'Vybrali ste viac pokročilých funkcií — tento balík ich pokrýva všetky naraz.',
+          features: ['Antivírus & Firewall', 'Neobmedzená VPN', 'Ochrana identity', 'Správca hesiel', 'Šifrovanie dát', 'Ransomware Remediation'],
+          alts: [
+            { name: 'HOME Security Premium', reason: 'lacnejšia alternatíva bez šifrovania' },
+            { name: 'HOME Security Essential', reason: 'iba základný antivírus' },
+          ]
+        };
+        if (needsPrivacy || c.has('kids')) return {
+          name: 'ESET HOME Security', em: 'Premium',
+          tagline: 'Pokročilá ochrana + VPN + rodičovská kontrola',
+          priceDisplay: (59.99 + Math.max(0, state.devices - 3) * 10).toFixed(2), priceSymbol: '€',
+          period: `za rok, pre ${state.devices} zariadení`,
+          reason: 'Najlepšia rovnováha medzi cenou a funkciami pre rodinu.',
+          features: ['Antivírus & Firewall', 'VPN (obmedzená)', 'Parental Control', 'Anti-Phishing', 'Správca hesiel', 'Banking Protection'],
+          alts: [
+            { name: 'HOME Security Ultimate', reason: 'ak potrebujete aj šifrovanie a identitu' },
+            { name: 'HOME Security Essential', reason: 'ak stačí základ' },
+          ]
+        };
+        return {
+          name: 'ESET HOME Security', em: 'Essential',
+          tagline: 'Rýchly a spoľahlivý antivírus — bez zbytočností',
+          priceDisplay: (39.99 + Math.max(0, state.devices - 1) * 10).toFixed(2), priceSymbol: '€',
+          period: `za rok, pre ${state.devices} zariadení`,
+          reason: 'Pre základnú ochranu pred vírusmi a phishingom je toto optimálna voľba.',
+          features: ['Antivírus & Anti-Malware', 'Anti-Phishing', 'Ransomware Shield', 'Banking Protection', 'Nízka záťaž systému', 'Windows, Mac, Android'],
+          alts: [
+            { name: 'HOME Security Premium', reason: 'ak chcete aj VPN a parental control' },
+            { name: 'NOD32 Antivirus', reason: 'len pre Windows, najlacnejšia možnosť' },
+          ]
+        };
+      }
+
+      function showResult() {
+        const rec = compute();
+        document.getElementById('wresultTitle').innerHTML = `${rec.name} <em>${rec.em}</em>`;
+        document.getElementById('wproductName').textContent = `${rec.name} ${rec.em}`;
+        document.getElementById('wproductTagline').textContent = rec.tagline;
+        document.getElementById('wresultReason').textContent = rec.reason;
+        if (rec.priceSymbol) {
+          document.getElementById('wpriceAmount').innerHTML = `<span>${rec.priceSymbol}</span>${rec.priceDisplay}`;
+        } else {
+          document.getElementById('wpriceAmount').innerHTML = rec.priceDisplay;
+        }
+        document.getElementById('wpricePeriod').textContent = rec.period;
+
+        const checkSvg = '<svg viewBox="0 0 24 24"><path d="M4 12L10 18L20 6"/></svg>';
+        document.getElementById('wfeaturesGrid').innerHTML = rec.features.map(f =>
+          `<div class="wfeat"><div class="wfeat-icon">${checkSvg}</div><div>${f}</div></div>`
+        ).join('');
+
+        document.getElementById('waltList').innerHTML = rec.alts.map(a =>
+          `<div class="walt"><div><div class="walt-name">${a.name}</div><div class="walt-reason">${a.reason}</div></div><div class="walt-arrow">→</div></div>`
+        ).join('');
+
+        document.querySelectorAll('.wstep').forEach(s => s.classList.remove('active'));
+        document.getElementById('wprogress').style.display = 'none';
+        document.getElementById('wresultScreen').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.getElementById('wrestartBtn').addEventListener('click', () => {
+        state.audience = null;
+        state.devices = 3;
+        state.platforms.clear();
+        state.concerns.clear();
+        slider.value = 3;
+        updateSlider();
+        document.querySelectorAll('.wopt.selected').forEach(o => o.classList.remove('selected'));
+        document.getElementById('wnext1').disabled = true;
+        document.getElementById('wnext3').disabled = true;
+        document.getElementById('wnext4').disabled = true;
+        goToStep(1);
+      });
+    })();
+  </script>
+
+</body>
+</html>
