@@ -491,21 +491,22 @@ nav {
   height: 100%;
   object-fit: cover;
   object-position: 50% 55%;
-  opacity: 0.25;
+  opacity: 0.16;
   pointer-events: none;
   z-index: 0;
   transform-origin: 50% 55%;
   animation: heroRenderZoom 50s ease-in-out infinite;
   filter:
-    drop-shadow(0 0 60px rgba(0, 187, 197, 0.35))
-    drop-shadow(0 0 140px rgba(0, 187, 197, 0.18));
+    drop-shadow(0 0 60px rgba(0, 187, 197, 0.30))
+    drop-shadow(0 0 140px rgba(0, 187, 197, 0.15));
 }
 
-/* Translate magnitudes kept well within W*(s-1)/2 and H*(s-1)/2 bounds
-   so the pill shape never extends past viewport edges */
+/* Smaller translates so pill never gets cut even on ultrawide screens.
+   At super-wide viewports, the cover-fit makes pill closer to viewport edge,
+   so amplifying with translate pushes it outside. Conservative values: */
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(-90px, 60px)   scale(1.45); }    /* bottom-left baseline */
-  50%      { transform: translate(140px, -180px) scale(1.85); }    /* drifts UP + RIGHT */
+  0%, 100% { transform: translate(-50px, 30px) scale(1.30); }
+  50%      { transform: translate(70px, -60px) scale(1.50); }
 }
 
 
