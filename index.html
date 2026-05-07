@@ -585,7 +585,9 @@
 
         updateHUD(scanProg);
 
-        /* ── beam glow zone (above the line) ── */
+        /* ── beam glow zone (above the line) — visible scan line + ticks
+              removed; only the soft glow band is kept so particles still
+              get a subtle hint of the scan moving through ── */
         if (scanProg < 1) {
           const beamH = 100;
           const beam  = ctx.createLinearGradient(0, scanY - beamH, 0, scanY + 6);
@@ -595,44 +597,6 @@
           beam.addColorStop(1,   'rgba(0,187,197,0.03)');
           ctx.fillStyle = beam;
           ctx.fillRect(0, scanY - beamH, W, beamH + 8);
-
-          /* ── leading edge line ── */
-          const line = ctx.createLinearGradient(0, 0, W, 0);
-          line.addColorStop(0,    'transparent');
-          line.addColorStop(0.08, 'rgba(0,187,197,0)');
-          line.addColorStop(0.30, 'rgba(0,187,197,0.85)');
-          line.addColorStop(0.52, 'rgba(234,108,177,0.7)');
-          line.addColorStop(0.72, 'rgba(0,187,197,0.85)');
-          line.addColorStop(0.92, 'rgba(0,187,197,0)');
-          line.addColorStop(1,    'transparent');
-          ctx.beginPath();
-          ctx.moveTo(0, scanY); ctx.lineTo(W, scanY);
-          ctx.strokeStyle = line;
-          ctx.lineWidth   = 1.2;
-          ctx.stroke();
-
-          /* ── secondary echo line (fading, 18px above) ── */
-          const echo = ctx.createLinearGradient(0, 0, W, 0);
-          echo.addColorStop(0,    'transparent');
-          echo.addColorStop(0.25, 'rgba(0,187,197,0.18)');
-          echo.addColorStop(0.5,  'rgba(234,108,177,0.12)');
-          echo.addColorStop(0.75, 'rgba(0,187,197,0.18)');
-          echo.addColorStop(1,    'transparent');
-          ctx.beginPath();
-          ctx.moveTo(0, scanY - 18); ctx.lineTo(W, scanY - 18);
-          ctx.strokeStyle = echo;
-          ctx.lineWidth   = 0.6;
-          ctx.stroke();
-
-          /* ── tiny scan tick marks on leading edge ── */
-          for (let tx = 40; tx < W - 40; tx += 48) {
-            const tickAlpha = 0.25 + 0.2 * Math.sin(tx * 0.08 + now * 0.003);
-            ctx.beginPath();
-            ctx.moveTo(tx, scanY - 5); ctx.lineTo(tx, scanY + 5);
-            ctx.strokeStyle = `rgba(0,187,197,${tickAlpha})`;
-            ctx.lineWidth   = 0.6;
-            ctx.stroke();
-          }
         }
 
         /* ── particle pulse: scan-beam + cursor proximity ── */
