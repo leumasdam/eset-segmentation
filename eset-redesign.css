@@ -479,8 +479,8 @@ nav {
 
 /* No horizontal translate — prevents any chance of horizontal overflow / shift */
 @keyframes heroRenderZoom {
-  0%, 100% { transform: translate(0, -40px) scale(1.55); }
-  50%      { transform: translate(0, -80px) scale(1.75); }
+  0%, 100% { transform: translate(0, -240px) scale(1.55); }
+  50%      { transform: translate(0, -280px) scale(1.75); }
 }
 
 
