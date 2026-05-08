@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESET – Ochrana pre domácnosti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260508-sub">
+</head>
+<body>
+
+  <div id="ambient"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="eset-logo2.png" alt="ESET" style="height:32px;width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="domacnosti.html" style="color:#00BBC5">Domácnosti</a></li>
+      <li><a href="firmy.html">Firmy</a></li>
+      <li><a href="podpora.html">Podpora</a></li>
+      <li><a href="o-nas.html">O nás</a></li>
+      <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Otvoriť menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <ul class="mobile-nav" id="mobileNav">
+    <li><a href="domacnosti.html">Domácnosti</a></li>
+    <li><a href="firmy.html">Firmy</a></li>
+    <li><a href="podpora.html">Podpora</a></li>
+    <li><a href="o-nas.html">O nás</a></li>
+    <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+  </ul>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <span class="section-label">Pre domácnosti</span>
+      <h1 class="page-hero-title">Ochrana pre vás<br>a <em>celú rodinu</em></h1>
+      <p class="page-hero-sub">Ľahká inštalácia, inteligentná ochrana. Chráňte všetky zariadenia v domácnosti jedným predplatným.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="vybrat-plan.html" class="btn-hero-primary">Vybrať plán</a>
+        <a href="vybrat-plan.html" class="btn-hero-secondary">Vyskúšať zadarmo</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-glow-divider"></div>
+
+  <!-- PRODUKTY -->
+  <section class="products-section" style="padding-top:80px;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span class="section-label reveal">Plány</span>
+      <h2 class="section-title reveal">Vyberte si úroveň ochrany</h2>
+      <p class="section-sub reveal">Všetky plány zahŕňajú 30-dňovú bezplatnú skúšobnú verziu.</p>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card reveal">
+        <img class="card-box" src="box-essential.png" alt="ESET HOME Security Essential" loading="lazy">
+        <div class="card-name">ESET HOME</div>
+        <div class="card-product">Essential</div>
+        <div class="card-tagline">Základná ochrana pre každodenné použitie</div>
+        <div class="card-price">
+          <div class="price-label">od</div>
+          <span class="price-amount">19<small style="font-size:20px;font-weight:600">.99€</small></span>
+          <span class="price-period">/rok</span>
+        </div>
+        <div class="card-divider"></div>
+        <ul class="feature-list">
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Antivírus a antispyware</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Bezpečné prehliadanie webu</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Ochrana pred phishingom</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Firewall</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Ochrana bankových transakcií</li>
+        </ul>
+        <a href="#" class="btn-primary">Kúpiť teraz</a>
+        <a href="vybrat-plan.html" class="btn-secondary">Vyskúšať zadarmo</a>
+        <div class="devices-info">1 zariadenie · Windows, Mac, Android</div>
+      </div>
+
+      <div class="card featured reveal">
+        <div class="card-badge">NAJOBĽÚBENEJŠÍ</div>
+        <img class="card-box" src="box-premium.png" alt="ESET HOME Security Premium" loading="lazy">
+        <div class="card-name">ESET HOME</div>
+        <div class="card-product">Premium</div>
+        <div class="card-tagline">Kompletná ochrana s VPN a šifrovaním</div>
+        <div class="card-price">
+          <div class="price-label">od</div>
+          <span class="price-amount">39<small style="font-size:20px;font-weight:600">.99€</small></span>
+          <span class="price-period">/rok</span>
+        </div>
+        <div class="card-divider"></div>
+        <ul class="feature-list">
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Všetko z Essential</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>VPN neobmedzená (3 zariadenia)</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Šifrovanie súborov a diskov</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Password Manager</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Rodičovská kontrola</li>
+        </ul>
+        <a href="#" class="btn-primary">Kúpiť teraz</a>
+        <a href="vybrat-plan.html" class="btn-secondary">Vyskúšať zadarmo</a>
+        <div class="devices-info">3 zariadenia · Windows, Mac, Android, iOS</div>
+      </div>
+
+      <div class="card reveal">
+        <img class="card-box" src="box-ultimate.png" alt="ESET HOME Security Ultimate" loading="lazy">
+        <div class="card-name">ESET HOME</div>
+        <div class="card-product">Ultimate</div>
+        <div class="card-tagline">Maximálna ochrana identity a zariadení</div>
+        <div class="card-price">
+          <div class="price-label">od</div>
+          <span class="price-amount">59<small style="font-size:20px;font-weight:600">.99€</small></span>
+          <span class="price-period">/rok</span>
+        </div>
+        <div class="card-divider"></div>
+        <ul class="feature-list">
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Všetko z Premium</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>VPN neobmedzená (10 zariadení)</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Ochrana identity &amp; dark web monitoring</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Obnova po ransomware útoku</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Prioritná technická podpora</li>
+        </ul>
+        <a href="#" class="btn-primary">Kúpiť teraz</a>
+        <a href="vybrat-plan.html" class="btn-secondary">Vyskúšať zadarmo</a>
+        <div class="devices-info">10 zariadení · Windows, Mac, Android, iOS</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-glow-divider"></div>
+
+  <!-- BANNER -->
+  <div class="trial-wrap">
+    <div class="trial-banner">
+      <h3>Vyskúšajte ESET zadarmo</h3>
+      <p>30 dní plnej ochrany bez kreditnej karty. Bez záväzkov.</p>
+      <a href="vybrat-plan.html" class="btn-primary">Začať bezplatnú skúšobnú verziu</a>
+      <div class="trial-note">Žiadna kreditná karta · Zrušenie kedykoľvek · Plná funkcionalita</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><img src="eset-logo2.png" alt="ESET" style="height:32px;width:auto;"></a>
+        <p>Európska bezpečnostná technológia, ktorej dôverujú milióny ľudí na celom svete od roku 1992.</p>
+      </div>
+      <div class="footer-col"><h4>Produkty</h4><ul>
+        <li><a href="domacnosti.html">Pre domácnosti</a></li>
+        <li><a href="firmy.html">Pre firmy</a></li>
+        <li><a href="vybrat-plan.html">Vyskúšať zadarmo</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Podpora</h4><ul>
+        <li><a href="podpora.html">Centrum podpory</a></li>
+        <li><a href="podpora.html#downloads">Stiahnutia</a></li>
+        <li><a href="podpora.html#contact">Kontakt</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Spoločnosť</h4><ul>
+        <li><a href="o-nas.html">O nás</a></li>
+        <li><a href="#">Kariéra</a></li>
+        <li><a href="#">Tlačové správy</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 ESET, spol. s r.o. Všetky práva vyhradené.</span>
+      <div style="display:flex;gap:24px;"><a href="#">Ochrana súkromia</a><a href="#">Podmienky použitia</a><a href="#">Cookies</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var burger = document.getElementById('navBurger');
+      var menu   = document.getElementById('mobileNav');
+      if (!burger || !menu) return;
+      burger.addEventListener('click', function () {
+        var open = menu.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!burger.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+
+    /* Scroll reveal */
+    (function () {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>

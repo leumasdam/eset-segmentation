@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESET – Bezpečnosť pre firmy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260508-sub">
+</head>
+<body>
+
+  <div id="ambient"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="eset-logo2.png" alt="ESET" style="height:32px;width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="domacnosti.html">Domácnosti</a></li>
+      <li><a href="firmy.html" style="color:#00BBC5">Firmy</a></li>
+      <li><a href="podpora.html">Podpora</a></li>
+      <li><a href="o-nas.html">O nás</a></li>
+      <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Otvoriť menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <ul class="mobile-nav" id="mobileNav">
+    <li><a href="domacnosti.html">Domácnosti</a></li>
+    <li><a href="firmy.html">Firmy</a></li>
+    <li><a href="podpora.html">Podpora</a></li>
+    <li><a href="o-nas.html">O nás</a></li>
+    <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+  </ul>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <span class="section-label">Pre firmy</span>
+      <h1 class="page-hero-title">Bezpečnosť, ktorá <em>škáluje s vami</em></h1>
+      <p class="page-hero-sub">Od malých kancelárií po enterprise organizácie. ESET PROTECT platforma rastie s vaším biznisom.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="vybrat-plan.html" class="btn-hero-primary">Získať riešenie</a>
+        <a href="podpora.html#contact" class="btn-hero-secondary">Kontaktovať konzultanta</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-glow-divider"></div>
+
+  <!-- SPRIEVODCA -->
+  <section class="switcher-section" style="padding-bottom:0;">
+    <span class="section-label">Ako to funguje</span>
+    <h2 class="section-title reveal">Nájdeme riešenie pre vaše potreby</h2>
+    <p class="section-sub reveal">Od malých firiem po enterprise organizácie — ESET PROTECT platforma škáluje podľa vás.</p>
+  </section>
+
+  <section class="products-section" style="padding-top:48px;">
+    <div class="business-guide">
+      <div class="guide-steps">
+        <div class="guide-step reveal">
+          <div class="step-num">KROK 01</div>
+          <div class="step-title">Aká veľká je vaša firma?</div>
+          <div class="step-desc">Máme riešenia pre 5 zariadení aj pre tisíce endpointov. Cena rastie len s tým, čo skutočne potrebujete.</div>
+        </div>
+        <div class="guide-step reveal">
+          <div class="step-num">KROK 02</div>
+          <div class="step-title">Čo chcete chrániť?</div>
+          <div class="step-desc">Endpointy, servery, emaily, cloudy? Alebo komplexná XDR/MDR ochrana s nepretržitým monitoringom?</div>
+        </div>
+        <div class="guide-step reveal">
+          <div class="step-num">KROK 03</div>
+          <div class="step-title">Ako riadite IT?</div>
+          <div class="step-desc">Máte vlastný IT tím, alebo potrebujete, aby ESET spravoval vašu bezpečnosť za vás? Ponúkame oboje.</div>
+        </div>
+        <div class="guide-step reveal">
+          <div class="step-num">KROK 04</div>
+          <div class="step-title">Dostanete konkrétny návrh</div>
+          <div class="step-desc">Váš ESET konzultant vám do 24 hodín pošle riešenie šité na mieru — bez záväzkov, bez predraženia.</div>
+        </div>
+      </div>
+      <div class="guide-ctas">
+        <a href="vybrat-plan.html" class="btn-primary">Vyskúšať 30 dní zadarmo</a>
+        <a href="podpora.html#contact" class="btn-secondary">Kontaktovať konzultanta</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-glow-divider"></div>
+
+  <!-- PRODUKTY -->
+  <section style="padding:80px 24px;max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span class="section-label reveal">ESET PROTECT</span>
+      <h2 class="section-title reveal">Platformy pre firemné prostredie</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+
+      <div class="card reveal">
+        <div class="card-name">ESET PROTECT</div>
+        <div class="card-product" style="color:#00BBC5">Entry</div>
+        <div class="card-tagline">Základná ochrana endpointov s centrálnou správou</div>
+        <div class="card-price">
+          <div class="price-label">od</div>
+          <span class="price-amount">29<small style="font-size:20px;font-weight:600">.99€</small></span>
+          <span class="price-period">/zar./rok</span>
+        </div>
+        <div class="card-divider"></div>
+        <ul class="feature-list">
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Endpoint Protection</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Centrálna cloud konzola</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Ransomware Shield</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Anti-Phishing</li>
+        </ul>
+        <a href="vybrat-plan.html" class="btn-primary">Vyskúšať zadarmo</a>
+        <a href="podpora.html#contact" class="btn-secondary">Kontaktovať</a>
+      </div>
+
+      <div class="card featured reveal">
+        <div class="card-badge">ODPORÚČANÉ</div>
+        <div class="card-name">ESET PROTECT</div>
+        <div class="card-product" style="color:#00BBC5">Advanced</div>
+        <div class="card-tagline">Pokročilá ochrana s cloud sandboxingom a XDR</div>
+        <div class="card-price">
+          <div class="price-label">od</div>
+          <span class="price-amount">45<small style="font-size:20px;font-weight:600">.99€</small></span>
+          <span class="price-period">/zar./rok</span>
+        </div>
+        <div class="card-divider"></div>
+        <ul class="feature-list">
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Všetko z Entry</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Cloud Sandboxing</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Full Disk Encryption</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Vulnerability Scanner</li>
+        </ul>
+        <a href="vybrat-plan.html" class="btn-primary">Vyskúšať zadarmo</a>
+        <a href="podpora.html#contact" class="btn-secondary">Kontaktovať</a>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-name">ESET PROTECT</div>
+        <div class="card-product" style="color:#00BBC5">Complete</div>
+        <div class="card-tagline">Kompletná ochrana vrátane emailov, cloudov a serverov</div>
+        <div class="card-price">
+          <div class="price-label">od</div>
+          <span class="price-amount">59<small style="font-size:20px;font-weight:600">.99€</small></span>
+          <span class="price-period">/zar./rok</span>
+        </div>
+        <div class="card-divider"></div>
+        <ul class="feature-list">
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Všetko z Advanced</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Mail Security</li>
+          <li class="highlight"><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>Cloud App Protection</li>
+          <li><span class="check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#00BBC5" stroke-width="1.5" stroke-linecap="round"/></svg></span>MDR &amp; 24/7 monitoring</li>
+        </ul>
+        <a href="vybrat-plan.html" class="btn-primary">Vyskúšať zadarmo</a>
+        <a href="podpora.html#contact" class="btn-secondary">Kontaktovať</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><img src="eset-logo2.png" alt="ESET" style="height:32px;width:auto;"></a>
+        <p>Európska bezpečnostná technológia, ktorej dôverujú milióny ľudí na celom svete od roku 1992.</p>
+      </div>
+      <div class="footer-col"><h4>Produkty</h4><ul>
+        <li><a href="domacnosti.html">Pre domácnosti</a></li>
+        <li><a href="firmy.html">Pre firmy</a></li>
+        <li><a href="vybrat-plan.html">Vyskúšať zadarmo</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Podpora</h4><ul>
+        <li><a href="podpora.html">Centrum podpory</a></li>
+        <li><a href="podpora.html#downloads">Stiahnutia</a></li>
+        <li><a href="podpora.html#contact">Kontakt</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Spoločnosť</h4><ul>
+        <li><a href="o-nas.html">O nás</a></li>
+        <li><a href="#">Kariéra</a></li>
+        <li><a href="#">Tlačové správy</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 ESET, spol. s r.o. Všetky práva vyhradené.</span>
+      <div style="display:flex;gap:24px;"><a href="#">Ochrana súkromia</a><a href="#">Podmienky použitia</a><a href="#">Cookies</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var burger = document.getElementById('navBurger');
+      var menu   = document.getElementById('mobileNav');
+      if (!burger || !menu) return;
+      burger.addEventListener('click', function () {
+        var open = menu.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!burger.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+    (function () {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>

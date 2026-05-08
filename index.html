@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESET – Kybernetická bezpečnosť</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="eset-redesign.css?v=20260507-perf">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260508-v3">
 </head>
 <body>
 
@@ -19,20 +19,27 @@
 
   <!-- NAVBAR -->
   <nav>
-    <a href="#" class="nav-logo">
+    <a href="index.html" class="nav-logo">
       <img src="eset-logo2.png" alt="ESET" style="height:32px; width:auto;">
     </a>
     <ul class="nav-links">
-      <li><a href="#">Produkty</a></li>
-      <li><a href="#">Podpora</a></li>
-      <li><a href="#">Partneri</a></li>
-      <li><a href="#">O nás</a></li>
+      <li><a href="domacnosti.html">Domácnosti</a></li>
+      <li><a href="firmy.html">Firmy</a></li>
+      <li><a href="podpora.html">Podpora</a></li>
+      <li><a href="o-nas.html">O nás</a></li>
       <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
     </ul>
-    <button class="nav-burger" aria-label="Otvoriť menu" aria-expanded="false">
+    <button class="nav-burger" id="navBurger" aria-label="Otvoriť menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
+  <ul class="mobile-nav" id="mobileNav">
+    <li><a href="domacnosti.html">Domácnosti</a></li>
+    <li><a href="firmy.html">Firmy</a></li>
+    <li><a href="podpora.html">Podpora</a></li>
+    <li><a href="o-nas.html">O nás</a></li>
+    <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+  </ul>
 
   <!-- HERO -->
   <section class="hero">
@@ -344,7 +351,7 @@
         </div>
 
         <div class="guide-ctas">
-          <a href="#" class="btn-primary">Vyskúšať 30 dní zadarmo</a>
+          <a href="vybrat-plan.html" class="btn-primary">Vyskúšať 30 dní zadarmo</a>
           <a href="#" class="btn-secondary">Kontaktovať konzultanta</a>
         </div>
 
@@ -471,20 +478,27 @@
       btn.classList.add('active');
     }
 
-    /* Burger toggle for mobile nav */
+    /* Burger toggle */
     (function () {
-      const burger = document.querySelector('.nav-burger');
-      const links  = document.querySelector('.nav-links');
-      if (!burger || !links) return;
-      burger.addEventListener('click', () => {
-        const open = links.classList.toggle('open');
+      var burger = document.getElementById('navBurger');
+      var menu   = document.getElementById('mobileNav');
+      if (!burger || !menu) return;
+      burger.addEventListener('click', function () {
+        var open = menu.classList.toggle('open');
         burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      // close menu when link clicked
-      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        links.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-      }));
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!burger.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        }
+      });
     })();
 
     /* ── HERO PARTICLE NETWORK + SCAN ── */
@@ -560,14 +574,33 @@
               removed; only the soft glow band is kept so particles still
               get a subtle hint of the scan moving through ── */
         if (scanProg < 1) {
-          const beamH = 100;
-          const beam  = ctx.createLinearGradient(0, scanY - beamH, 0, scanY + 6);
-          beam.addColorStop(0,   'transparent');
-          beam.addColorStop(0.5, 'rgba(0,187,197,0.025)');
-          beam.addColorStop(0.85,'rgba(0,187,197,0.07)');
-          beam.addColorStop(1,   'rgba(0,187,197,0.03)');
+          /* glow trail above the line */
+          const beamH = 120;
+          const beam  = ctx.createLinearGradient(0, scanY - beamH, 0, scanY + 4);
+          beam.addColorStop(0,    'transparent');
+          beam.addColorStop(0.5,  'rgba(0,187,197,0.06)');
+          beam.addColorStop(0.88, 'rgba(0,187,197,0.18)');
+          beam.addColorStop(1,    'rgba(0,187,197,0.08)');
           ctx.fillStyle = beam;
-          ctx.fillRect(0, scanY - beamH, W, beamH + 8);
+          ctx.fillRect(0, scanY - beamH, W, beamH + 4);
+
+          /* sharp scan line */
+          const lineGrad = ctx.createLinearGradient(0, 0, W, 0);
+          lineGrad.addColorStop(0,    'transparent');
+          lineGrad.addColorStop(0.08, 'rgba(0,187,197,0.55)');
+          lineGrad.addColorStop(0.5,  'rgba(0,221,229,0.90)');
+          lineGrad.addColorStop(0.92, 'rgba(0,187,197,0.55)');
+          lineGrad.addColorStop(1,    'transparent');
+          ctx.save();
+          ctx.shadowColor = '#00BBC5';
+          ctx.shadowBlur  = 8;
+          ctx.beginPath();
+          ctx.moveTo(0, scanY);
+          ctx.lineTo(W, scanY);
+          ctx.strokeStyle = lineGrad;
+          ctx.lineWidth   = 1.5;
+          ctx.stroke();
+          ctx.restore();
         }
 
         /* ── particle pulse: scan-beam + cursor proximity ── */
@@ -654,14 +687,39 @@
 
       window.addEventListener('resize', resize);
 
-      /* ── pointer tracking on hero (lights particles around cursor) ── */
+      /* ── pointer tracking on hero (lights particles around cursor / tap) ── */
       const heroEl = document.querySelector('.hero');
-      heroEl.addEventListener('pointermove', (e) => {
+      let clearTimer = null;
+
+      function setPointer(e) {
+        if (clearTimer) { clearTimeout(clearTimer); clearTimer = null; }
         const r = canvas.getBoundingClientRect();
         mx = e.clientX - r.left;
         my = e.clientY - r.top;
-      });
-      heroEl.addEventListener('pointerleave', () => { mx = -9999; my = -9999; });
+      }
+
+      function clearPointer() {
+        clearTimer = setTimeout(() => { mx = -9999; my = -9999; }, 600);
+      }
+
+      heroEl.addEventListener('pointermove',  setPointer);
+      heroEl.addEventListener('pointerdown',  setPointer);
+      heroEl.addEventListener('pointerup',    clearPointer);
+      heroEl.addEventListener('pointercancel',clearPointer);
+      heroEl.addEventListener('pointerleave', clearPointer);
+
+      /* iOS Safari fallback — touch events */
+      function setTouch(e) {
+        if (clearTimer) { clearTimeout(clearTimer); clearTimer = null; }
+        const t = e.touches[0];
+        if (!t) return;
+        const r = canvas.getBoundingClientRect();
+        mx = t.clientX - r.left;
+        my = t.clientY - r.top;
+      }
+      heroEl.addEventListener('touchstart', setTouch,  { passive: true });
+      heroEl.addEventListener('touchmove',  setTouch,  { passive: true });
+      heroEl.addEventListener('touchend',   clearPointer, { passive: true });
 
       init();
       requestAnimationFrame(loop);

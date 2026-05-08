@@ -464,6 +464,42 @@
     }
     .wrestart a:hover { color: var(--teal-bright); }
 
+    /* Back button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      margin-bottom: 32px;
+      transition: color 0.2s, gap 0.3s;
+    }
+    .back-btn:hover { color: var(--text); gap: 16px; }
+    .back-btn:hover .back-arrow-line { width: 36px; }
+    .back-arrow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+    .back-arrow-head {
+      width: 7px; height: 7px;
+      border-left: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      margin-right: -2px;
+      flex-shrink: 0;
+    }
+    .back-arrow-line {
+      width: 24px; height: 1.5px;
+      background: currentColor;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       .wizard-page { padding: 96px 16px 60px; }
@@ -492,30 +528,44 @@
   <!-- GLOBAL AMBIENT ORB LAYER -->
   <div id="ambient"></div>
 
-  <!-- NAVBAR (same as main page) -->
+  <!-- NAVBAR -->
   <nav>
     <a href="index.html" class="nav-logo">
       <img src="eset-logo2.png" alt="ESET" style="height:32px; width:auto;">
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#plans">Produkty</a></li>
-      <li><a href="#">Podpora</a></li>
-      <li><a href="#">Partneri</a></li>
-      <li><a href="#">O nás</a></li>
+      <li><a href="domacnosti.html">Domácnosti</a></li>
+      <li><a href="firmy.html">Firmy</a></li>
+      <li><a href="podpora.html">Podpora</a></li>
+      <li><a href="o-nas.html">O nás</a></li>
       <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
     </ul>
-    <button class="nav-burger" aria-label="Otvoriť menu" aria-expanded="false">
+    <button class="nav-burger" id="navBurger" aria-label="Otvoriť menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
+  <ul class="mobile-nav" id="mobileNav">
+    <li><a href="domacnosti.html">Domácnosti</a></li>
+    <li><a href="firmy.html">Firmy</a></li>
+    <li><a href="podpora.html">Podpora</a></li>
+    <li><a href="o-nas.html">O nás</a></li>
+    <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+  </ul>
 
   <main class="wizard-page">
     <div class="wizard-page-bg" aria-hidden="true"></div>
 
     <div class="wizard-container">
-      <span class="wizard-eyebrow">Pomôžeme vám vybrať</span>
+      <a href="index.html" class="back-btn">
+        <span class="back-arrow">
+          <span class="back-arrow-head"></span>
+          <span class="back-arrow-line"></span>
+        </span>
+        Späť na hlavnú stránku
+      </a>
 
       <div class="wpanel">
+        <span class="wizard-eyebrow">Pomôžeme vám vybrať</span>
         <!-- Progress -->
         <div class="wprogress" id="wprogress">
           <div class="wprogress-bars">
@@ -752,19 +802,27 @@
   </main>
 
   <script>
-    /* Burger toggle (same as main page) */
+    /* Burger toggle */
     (function () {
-      const burger = document.querySelector('.nav-burger');
-      const links  = document.querySelector('.nav-links');
-      if (!burger || !links) return;
-      burger.addEventListener('click', () => {
-        const open = links.classList.toggle('open');
+      var burger = document.getElementById('navBurger');
+      var menu   = document.getElementById('mobileNav');
+      if (!burger || !menu) return;
+      burger.addEventListener('click', function () {
+        var open = menu.classList.toggle('open');
         burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        links.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-      }));
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!burger.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        }
+      });
     })();
 
     /* WIZARD logic */
