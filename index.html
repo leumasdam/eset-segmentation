@@ -3,11 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESET – Kybernetická bezpečnosť</title>
+  <title>ESET — Kybernetická bezpečnosť pre domácnosti aj firmy</title>
+  <meta name="description" content="Pokročilá ochrana pred vírusmi, ransomwarom a phishingom. ESET HOME pre rodinu, ESET PROTECT pre firmy. 30 rokov skúseností, 99,9 % detekcia.">
+  <meta name="theme-color" content="#0A1823">
+  <link rel="canonical" href="https://leumasdam.github.io/eset-segmentation/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="sk_SK">
+  <meta property="og:site_name" content="ESET">
+  <meta property="og:title" content="ESET — Kybernetická bezpečnosť pre domácnosti aj firmy">
+  <meta property="og:description" content="Pokročilá ochrana pred vírusmi, ransomwarom a phishingom. 30 rokov skúseností, 99,9 % detekcia.">
+  <meta property="og:url" content="https://leumasdam.github.io/eset-segmentation/">
+  <meta property="og:image" content="https://leumasdam.github.io/eset-segmentation/eset-logo2.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ESET — Kybernetická bezpečnosť">
+  <meta name="twitter:description" content="Pokročilá ochrana pred vírusmi, ransomwarom a phishingom. 30 rokov skúseností.">
+  <meta name="twitter:image" content="https://leumasdam.github.io/eset-segmentation/eset-logo2.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="eset-redesign.css?v=20260508-v3">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260512-merge">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://leumasdam.github.io/eset-segmentation/#org",
+        "name": "ESET",
+        "url": "https://leumasdam.github.io/eset-segmentation/",
+        "logo": "https://leumasdam.github.io/eset-segmentation/eset-logo2.png",
+        "description": "30 rokov na čele kybernetickej bezpečnosti. Antivírus a ochrana pre domácnosti aj firmy."
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://leumasdam.github.io/eset-segmentation/",
+        "name": "ESET",
+        "publisher": { "@id": "https://leumasdam.github.io/eset-segmentation/#org" },
+        "inLanguage": "sk"
+      },
+      {
+        "@type": "Product",
+        "name": "ESET HOME Security",
+        "description": "Antivírus a komplexná ochrana pre domácich používateľov. Tri úrovne: Essential, Premium, Ultimate.",
+        "brand": { "@id": "https://leumasdam.github.io/eset-segmentation/#org" },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "EUR",
+          "lowPrice": "39.99",
+          "highPrice": "84.99",
+          "offerCount": 3
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "ESET PROTECT",
+        "description": "Endpoint security platforma pre firmy. Entry, Advanced, Complete a MDR varianty.",
+        "brand": { "@id": "https://leumasdam.github.io/eset-segmentation/#org" },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "EUR",
+          "lowPrice": "2.50",
+          "highPrice": "8.90",
+          "offerCount": 4
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+
+  <a href="#main" class="skip-link">Preskočiť na obsah</a>
 
   <!-- GLOBAL AMBIENT ORB LAYER -->
   <div id="ambient">
@@ -23,11 +96,12 @@
       <img src="eset-logo2.png" alt="ESET" style="height:32px; width:auto;">
     </a>
     <ul class="nav-links">
-      <li><a href="domacnosti.html">Domácnosti</a></li>
-      <li><a href="firmy.html">Firmy</a></li>
-      <li><a href="podpora.html">Podpora</a></li>
-      <li><a href="o-nas.html">O nás</a></li>
-      <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+      <li><a href="domacnosti.html" data-track="nav:domacnosti">Domácnosti</a></li>
+      <li><a href="firmy.html" data-track="nav:firmy">Firmy</a></li>
+      <li><a href="porovnat-baliky.html" data-track="nav:compare">Porovnať</a></li>
+      <li><a href="podpora.html" data-track="nav:podpora">Podpora</a></li>
+      <li><a href="o-nas.html" data-track="nav:o-nas">O nás</a></li>
+      <li><a href="vybrat-plan.html" class="nav-cta" data-track="nav:trial">Vyskúšať zadarmo</a></li>
     </ul>
     <button class="nav-burger" id="navBurger" aria-label="Otvoriť menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -36,17 +110,18 @@
   <ul class="mobile-nav" id="mobileNav">
     <li><a href="domacnosti.html">Domácnosti</a></li>
     <li><a href="firmy.html">Firmy</a></li>
+    <li><a href="porovnat-baliky.html">Porovnať</a></li>
     <li><a href="podpora.html">Podpora</a></li>
     <li><a href="o-nas.html">O nás</a></li>
     <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
   </ul>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="main" tabindex="-1">
     <div class="hero-bg"></div>
     <picture aria-hidden="true">
-      <source media="(max-width: 768px)" srcset="hero-render-mobile.png">
-      <img class="hero-render" src="hero-render.png" alt="">
+      <source media="(max-width: 768px)" srcset="hero-render-mobile.png" width="1400" height="990">
+      <img class="hero-render" src="hero-render.png" alt="" width="2400" height="1577" fetchpriority="high" decoding="async">
     </picture>
     <canvas id="hero-canvas"></canvas>
     <div class="hero-grid"></div>
@@ -92,8 +167,8 @@
     </p>
 
     <div class="hero-ctas">
-      <a href="#plans" class="btn-hero-primary">Vybrať plán</a>
-      <a href="vybrat-plan.html" class="btn-hero-secondary">Vyskúšať zadarmo</a>
+      <a href="#plans" class="btn-hero-primary" data-track="hero:choose-plan">Vybrať plán</a>
+      <a href="vybrat-plan.html" class="btn-hero-secondary" data-track="hero:trial">Vyskúšať zadarmo</a>
     </div>
 
     <!-- Ghost spacer — preserves the centered-group height that badges+stats used to fill -->
@@ -102,7 +177,7 @@
     <!-- Awards + stats — pinned lower in hero (absolute, doesn't stretch hero or move main) -->
     <div class="hero-bottom-bar">
       <div class="hero-badges">
-        <img src="eset-badges.png" alt="AV-TEST · SE Labs AAA · AV-Comparatives Advanced+ · Canalys Champion" class="hero-badges-img">
+        <img src="eset-badges.png" alt="AV-TEST · SE Labs AAA · AV-Comparatives Advanced+ · Canalys Champion" class="hero-badges-img" width="1298" height="192" loading="lazy" decoding="async">
       </div>
 
       <div class="hero-stats">
@@ -233,8 +308,8 @@
               Ochrana bankových transakcií
             </li>
           </ul>
-          <a href="#" class="btn-primary">Kúpiť teraz</a>
-          <a href="vybrat-plan.html" class="btn-secondary">Vyskúšať zadarmo</a>
+          <a href="#" class="btn-primary" data-track="pricing:essential:buy">Kúpiť teraz</a>
+          <a href="vybrat-plan.html" class="btn-secondary" data-track="pricing:essential:trial">Vyskúšať zadarmo</a>
           <div class="devices-info">1 zariadenie · Windows, Mac, Android</div>
         </div>
 
@@ -272,8 +347,8 @@
               Rodičovská kontrola
             </li>
           </ul>
-          <a href="#" class="btn-primary">Kúpiť teraz</a>
-          <a href="vybrat-plan.html" class="btn-secondary">Vyskúšať zadarmo</a>
+          <a href="#" class="btn-primary" data-track="pricing:premium:buy">Kúpiť teraz</a>
+          <a href="vybrat-plan.html" class="btn-secondary" data-track="pricing:premium:trial">Vyskúšať zadarmo</a>
           <div class="devices-info">3 zariadenia · Windows, Mac, Android, iOS</div>
         </div>
 
@@ -310,8 +385,8 @@
               Prioritná technická podpora
             </li>
           </ul>
-          <a href="#" class="btn-primary">Kúpiť teraz</a>
-          <a href="vybrat-plan.html" class="btn-secondary">Vyskúšať zadarmo</a>
+          <a href="#" class="btn-primary" data-track="pricing:ultimate:buy">Kúpiť teraz</a>
+          <a href="vybrat-plan.html" class="btn-secondary" data-track="pricing:ultimate:trial">Vyskúšať zadarmo</a>
           <div class="devices-info">10 zariadení · Windows, Mac, Android, iOS</div>
         </div>
 
@@ -327,32 +402,106 @@
           <p>Od malých firiem po enterprise organizácie — ESET PROTECT platformu škálujeme podľa vás.</p>
         </div>
 
-        <div class="guide-steps">
-          <div class="guide-step reveal">
-            <div class="step-num">KROK 01</div>
-            <div class="step-title">Aká veľká je vaša firma?</div>
-            <div class="step-desc">Máme riešenia pre 5 zariadení aj pre tisíce endpointov. Cena rastie len s tým, čo skutočne potrebujete.</div>
-          </div>
-          <div class="guide-step reveal">
-            <div class="step-num">KROK 02</div>
-            <div class="step-title">Čo chcete chrániť?</div>
-            <div class="step-desc">Endpointy, servery, emaily, cloudy? Alebo komplexná XDR/MDR ochrana s nepretržitým monitoringom?</div>
-          </div>
-          <div class="guide-step reveal">
-            <div class="step-num">KROK 03</div>
-            <div class="step-title">Ako riadite IT?</div>
-            <div class="step-desc">Máte vlastný IT tím, alebo potrebujete, aby ESET spravoval vašu bezpečnosť za vás? Ponúkame oboje.</div>
-          </div>
-          <div class="guide-step reveal">
-            <div class="step-num">KROK 04</div>
-            <div class="step-title">Dostanete konkrétny návrh</div>
-            <div class="step-desc">Váš ESET konzultant vám do 24 hodín pošle riešenie šité na mieru — bez záväzkov, bez predraženia.</div>
-          </div>
-        </div>
+        <div class="biz-selector reveal" id="bizSelector">
 
-        <div class="guide-ctas">
-          <a href="vybrat-plan.html" class="btn-primary">Vyskúšať 30 dní zadarmo</a>
-          <a href="#" class="btn-secondary">Kontaktovať konzultanta</a>
+          <div class="bs-progress" role="tablist" aria-label="Postup výberu">
+            <button type="button" class="bs-dot is-active" data-step="0" aria-label="Krok 1: Veľkosť firmy"><span>1</span></button>
+            <span class="bs-line"></span>
+            <button type="button" class="bs-dot" data-step="1" aria-label="Krok 2: Čo chrániť"><span>2</span></button>
+            <span class="bs-line"></span>
+            <button type="button" class="bs-dot" data-step="2" aria-label="Krok 3: Riadenie IT"><span>3</span></button>
+            <span class="bs-line"></span>
+            <button type="button" class="bs-dot bs-dot-result" data-step="3" aria-label="Vaše riešenie">★</button>
+          </div>
+          <div class="bs-progress-labels" aria-hidden="true">
+            <span>Veľkosť</span><span>Ochrana</span><span>IT</span><span>Riešenie</span>
+          </div>
+
+          <!-- Step 1: Size -->
+          <div class="bs-step is-active" data-step="0">
+            <div class="bs-eyebrow">Krok 1 / 3</div>
+            <h4 class="bs-title">Aká veľká je vaša firma?</h4>
+            <p class="bs-hint">Cena rastie len s počtom zariadení, ktoré skutočne chcete chrániť.</p>
+            <div class="bs-options bs-options-3">
+              <button type="button" class="bs-option" data-key="size" data-value="small">
+                <span class="bs-opt-head">1–25</span>
+                <span class="bs-opt-sub">zariadení</span>
+                <span class="bs-opt-desc">Malá firma, startup</span>
+              </button>
+              <button type="button" class="bs-option" data-key="size" data-value="mid">
+                <span class="bs-opt-head">26–250</span>
+                <span class="bs-opt-sub">zariadení</span>
+                <span class="bs-opt-desc">Stredná firma</span>
+              </button>
+              <button type="button" class="bs-option" data-key="size" data-value="enterprise">
+                <span class="bs-opt-head">250+</span>
+                <span class="bs-opt-sub">zariadení</span>
+                <span class="bs-opt-desc">Enterprise / korporát</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Scope (multi) -->
+          <div class="bs-step" data-step="1">
+            <div class="bs-eyebrow">Krok 2 / 3</div>
+            <h4 class="bs-title">Čo chcete chrániť?</h4>
+            <p class="bs-hint">Označte všetko, čo platí — môžete vybrať viacero.</p>
+            <div class="bs-chips">
+              <button type="button" class="bs-chip is-locked is-selected" data-key="scope" data-value="endpoint" aria-pressed="true" disabled>
+                Endpointy <span class="bs-chip-meta">vždy zahrnuté</span>
+              </button>
+              <button type="button" class="bs-chip" data-key="scope" data-value="server" aria-pressed="false">Servery</button>
+              <button type="button" class="bs-chip" data-key="scope" data-value="email" aria-pressed="false">Email</button>
+              <button type="button" class="bs-chip" data-key="scope" data-value="cloud" aria-pressed="false">Cloud (M365, GWS)</button>
+            </div>
+            <div class="bs-actions">
+              <button type="button" class="bs-back" data-back>← Späť</button>
+              <button type="button" class="bs-next" data-next>Pokračovať →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: IT capacity -->
+          <div class="bs-step" data-step="2">
+            <div class="bs-eyebrow">Krok 3 / 3</div>
+            <h4 class="bs-title">Ako riadite IT bezpečnosť?</h4>
+            <p class="bs-hint">Určí, či potrebujete len nástroje, alebo aj ľudí, ktorí ich obsluhujú.</p>
+            <div class="bs-options bs-options-3">
+              <button type="button" class="bs-option" data-key="it" data-value="self">
+                <span class="bs-opt-head">Vlastný IT tím</span>
+                <span class="bs-opt-desc">Spravíme si to sami</span>
+              </button>
+              <button type="button" class="bs-option" data-key="it" data-value="support">
+                <span class="bs-opt-head">IT + občasná pomoc</span>
+                <span class="bs-opt-desc">Niekedy potrebujeme expertízu</span>
+              </button>
+              <button type="button" class="bs-option" data-key="it" data-value="mdr">
+                <span class="bs-opt-head">Spravujte to za nás</span>
+                <span class="bs-opt-desc">24/7 SOC + monitoring</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div class="bs-step bs-step-result" data-step="3">
+            <div class="bs-result">
+              <div class="bs-result-eyebrow">★ Odporúčame pre vás</div>
+              <h4 class="bs-result-title" data-result="title">ESET PROTECT Advanced</h4>
+              <div class="bs-result-price"><strong data-result="price">od 4,20 €</strong> / zariadenie / mesiac</div>
+              <p class="bs-result-desc" data-result="desc"></p>
+              <ul class="bs-result-features" data-result="features"></ul>
+              <div class="bs-result-ctas">
+                <a href="vybrat-plan.html" class="btn-primary" data-track="biz-selector:trial">Vyskúšať 30 dní zadarmo</a>
+                <a href="#" data-open-contact data-track="biz-selector:contact" class="btn-secondary">Kontaktovať konzultanta</a>
+              </div>
+              <div class="bs-result-alts">
+                <span class="bs-alts-label">Alternatívy:</span>
+                <span data-result="alts"></span>
+                <a href="porovnat-baliky.html#firmy" class="bs-compare-link">Porovnať všetky balíky →</a>
+              </div>
+              <button type="button" class="bs-restart" data-restart>↺ Začať odznova</button>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -418,7 +567,7 @@
     <div class="trial-banner">
       <h3>Vyskúšajte ESET zadarmo</h3>
       <p>30 dní plnej ochrany bez kreditnej karty. Bez záväzkov.</p>
-      <a href="#" class="btn-primary">Začať bezplatnú skúšobnú verziu</a>
+      <a href="vybrat-plan.html" class="btn-primary" data-track="trial-banner:start">Začať bezplatnú skúšobnú verziu</a>
       <div class="trial-note">Žiadna kreditná karta · Zrušenie kedykoľvek · Plná funkcionalita</div>
     </div>
   </div>
@@ -447,7 +596,7 @@
           <li><a href="#">Centrum podpory</a></li>
           <li><a href="#">Stiahnutia</a></li>
           <li><a href="#">Aktivácia licencie</a></li>
-          <li><a href="#">Kontakt</a></li>
+          <li><a href="#" data-open-contact>Kontakt</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -471,11 +620,32 @@
   </footer>
 
   <script>
+    /* Analytics scaffolding — pripravené pre GA4 / Plausible / Segment.
+       Použitie: pridaj data-track="event:name" na akýkoľvek <a>/<button>.
+       Manuálne: window.track('event-name', { extra: 'props' }). */
+    window.track = function (name, props) {
+      const payload = props || {};
+      if (window.dataLayer) window.dataLayer.push({ event: name, ...payload });
+      if (typeof window.plausible === 'function') window.plausible(name, { props: payload });
+      if (location.hostname === 'localhost' || location.hostname.startsWith('127.') || location.protocol === 'file:') {
+        console.log('[track]', name, payload);
+      }
+    };
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-track]');
+      if (!el) return;
+      window.track(el.dataset.track, {
+        href: el.getAttribute('href') || null,
+        text: (el.textContent || '').trim().slice(0, 60)
+      });
+    });
+
     function switchTab(tab, btn) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.pill-btn').forEach(el => el.classList.remove('active'));
       document.getElementById('tab-' + tab).classList.add('active');
       btn.classList.add('active');
+      if (window.track) window.track('pill-switcher:select', { tab });
     }
 
     /* Burger toggle */
@@ -513,14 +683,17 @@
 
       let W, H, particles;
       const COLORS         = ['#00BBC5','#00BBC5','#00BBC5','#0095A1','#EA6CB1','#EA6CB1'];
-      const COUNT          = 68;
-      const LINK_DIST      = 128;
+      const reducedMotion  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile       = window.innerWidth < 768;
+      const COUNT          = reducedMotion ? 0 : (isMobile ? 36 : 68);
+      const LINK_DIST      = isMobile ? 110 : 128;
       const SPEED          = 0.26;
       const SCAN_DUR       = 6500;  // ms per sweep
       const HOLD_DUR       = 1800;  // ms to hold "BEZPEČNÉ" at bottom
       const POINTER_RADIUS = 150;   // px around cursor that lights particles
       let   scanStart = performance.now();
       let   mx = -9999, my = -9999;
+      let   visible = true;
 
       function resize() {
         W = canvas.width  = canvas.offsetWidth;
@@ -681,7 +854,7 @@
       }
 
       function loop(now) {
-        update(); draw(now);
+        if (visible) { update(); draw(now); }
         requestAnimationFrame(loop);
       }
 
@@ -721,8 +894,23 @@
       heroEl.addEventListener('touchmove',  setTouch,  { passive: true });
       heroEl.addEventListener('touchend',   clearPointer, { passive: true });
 
+      /* Pause RAF when hero scrolls out of view — saves battery & CPU on mobile */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; },
+          { threshold: 0.05 }).observe(heroEl);
+      }
+      /* Also pause when tab is backgrounded */
+      document.addEventListener('visibilitychange', () => {
+        visible = !document.hidden && visible;
+      });
+
       init();
-      requestAnimationFrame(loop);
+      /* Skip animation entirely if reduced motion: render once and stop */
+      if (reducedMotion) {
+        draw(performance.now());
+      } else {
+        requestAnimationFrame(loop);
+      }
     })();
 
     /* ── SCROLL REVEAL + STAT COUNT-UP ────────────────────── */
@@ -849,7 +1037,215 @@
         });
       });
     })();
+
+    /* Biz selector wizard — 3 steps → recommended ESET PROTECT package */
+    (function bizSelector(){
+      const root = document.getElementById('bizSelector');
+      if (!root) return;
+
+      const state = { size: null, scope: ['endpoint'], it: null, step: 0 };
+
+      const PACKAGES = {
+        entry: {
+          title: 'ESET PROTECT Entry',
+          price: 'od 2,50 €',
+          desc: 'Endpoint ochrana s cloudovou konzolou — všetko, čo malá firma potrebuje pre správu zariadení z jedného miesta.',
+          features: ['Endpoint Security (PC, Mac, mobil)', 'Cloud konzola', 'Reporty a notifikácie'],
+          alts: ['Advanced', 'Complete']
+        },
+        advanced: {
+          title: 'ESET PROTECT Advanced',
+          price: 'od 4,20 €',
+          desc: 'Endpoint + šifrovanie + Advanced Threat Defense. Vrstvená ochrana proti známym aj zero-day hrozbám.',
+          features: ['Všetko z Entry', 'Full Disk Encryption', 'Advanced Threat Defense (sandbox)', 'Server Security'],
+          alts: ['Entry', 'Complete']
+        },
+        complete: {
+          title: 'ESET PROTECT Complete',
+          price: 'od 6,50 €',
+          desc: 'Komplexná ochrana naprieč endpointmi, servermi, mailom a cloudom (M365, Google Workspace).',
+          features: ['Všetko z Advanced', 'Mail Security', 'Cloud Office Security (M365 / GWS)', 'Vulnerability & Patch Management'],
+          alts: ['Advanced', 'MDR']
+        },
+        mdr: {
+          title: 'ESET PROTECT MDR',
+          price: 'Custom cena',
+          desc: 'Spravovaná detekcia a odozva — ESET SOC tím monitoruje, vyšetruje a reaguje 24/7. Vy sa venujete biznisu.',
+          features: ['Všetko z Complete', '24/7 SOC monitoring', 'Threat hunting expertmi ESET', 'Incident response do 20 minút'],
+          alts: ['Complete', 'MDR Ultimate']
+        }
+      };
+
+      function recommend() {
+        if (state.it === 'mdr') return 'mdr';
+        let tier = 'entry';
+        if (state.size === 'mid' || state.size === 'enterprise') tier = 'advanced';
+        if (state.scope.includes('server')) tier = 'advanced';
+        if (state.scope.includes('email') || state.scope.includes('cloud')) tier = 'complete';
+        if (state.size === 'enterprise' && state.scope.length >= 3) tier = 'complete';
+        return tier;
+      }
+
+      function renderResult() {
+        const pkg = PACKAGES[recommend()];
+        root.querySelector('[data-result="title"]').textContent = pkg.title;
+        root.querySelector('[data-result="price"]').textContent = pkg.price;
+        root.querySelector('[data-result="desc"]').textContent  = pkg.desc;
+        root.querySelector('[data-result="features"]').innerHTML =
+          pkg.features.map(f => '<li>' + f + '</li>').join('');
+        root.querySelector('[data-result="alts"]').textContent = pkg.alts.join(' · ');
+      }
+
+      function showStep(n) {
+        state.step = n;
+        root.querySelectorAll('.bs-step').forEach(s => {
+          s.classList.toggle('is-active', +s.dataset.step === n);
+        });
+        root.querySelectorAll('.bs-dot').forEach((d, i) => {
+          d.classList.toggle('is-active', i === n);
+          d.classList.toggle('is-done',   i < n);
+        });
+        if (n === 3) {
+          renderResult();
+          if (window.track) window.track('biz-selector:result', {
+            tier: recommend(), size: state.size, scope: state.scope.join('+'), it: state.it
+          });
+        } else {
+          if (window.track) window.track('biz-selector:step', { step: n + 1 });
+        }
+      }
+
+      root.addEventListener('click', (e) => {
+        const opt = e.target.closest('.bs-option');
+        if (opt) {
+          const key = opt.dataset.key, val = opt.dataset.value;
+          state[key] = val;
+          opt.parentElement.querySelectorAll('.bs-option').forEach(o =>
+            o.classList.toggle('is-selected', o === opt));
+          setTimeout(() => showStep(state.step + 1), 220);
+          return;
+        }
+        const chip = e.target.closest('.bs-chip:not(.is-locked)');
+        if (chip) {
+          const val = chip.dataset.value;
+          const i = state.scope.indexOf(val);
+          if (i >= 0) {
+            state.scope.splice(i, 1);
+            chip.classList.remove('is-selected');
+            chip.setAttribute('aria-pressed', 'false');
+          } else {
+            state.scope.push(val);
+            chip.classList.add('is-selected');
+            chip.setAttribute('aria-pressed', 'true');
+          }
+          return;
+        }
+        if (e.target.closest('[data-next]'))    { showStep(state.step + 1); return; }
+        if (e.target.closest('[data-back]'))    { showStep(Math.max(0, state.step - 1)); return; }
+        if (e.target.closest('[data-restart]')) {
+          state.size = null; state.it = null; state.scope = ['endpoint'];
+          root.querySelectorAll('.bs-option').forEach(o => o.classList.remove('is-selected'));
+          root.querySelectorAll('.bs-chip').forEach(c => {
+            if (c.classList.contains('is-locked')) return;
+            c.classList.remove('is-selected');
+            c.setAttribute('aria-pressed', 'false');
+          });
+          showStep(0);
+          return;
+        }
+        const dot = e.target.closest('.bs-dot');
+        if (dot) {
+          const target = +dot.dataset.step;
+          if (target <= state.step) showStep(target);
+        }
+      });
+    })();
+
+    /* Contact modal — opens via [data-open-contact], closes via [data-close-modal] / ESC / backdrop */
+    (function contactModal(){
+      const modal = document.getElementById('contactModal');
+      if (!modal) return;
+      const form = modal.querySelector('#contactForm');
+      const success = modal.querySelector('.modal-success');
+      let lastFocus = null;
+
+      function open() {
+        lastFocus = document.activeElement;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => modal.querySelector('input[name="name"]')?.focus(), 60);
+      }
+      function close() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        form.hidden = false;
+        success.hidden = true;
+        form.classList.remove('is-validated');
+        form.reset();
+        lastFocus?.focus?.();
+      }
+
+      document.addEventListener('click', (e) => {
+        const opener = e.target.closest('[data-open-contact]');
+        if (opener) { e.preventDefault(); open(); return; }
+        if (e.target.closest('[data-close-modal]')) { close(); return; }
+        if (e.target === modal) { close(); }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.hidden) close();
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.classList.add('is-validated');
+          form.querySelector(':invalid')?.focus();
+          return;
+        }
+        form.hidden = true;
+        success.hidden = false;
+        if (window.track) window.track('contact-form:submit', Object.fromEntries(new FormData(form)));
+      });
+    })();
   </script>
+
+  <!-- CONTACT MODAL -->
+  <div class="modal-backdrop" id="contactModal" hidden>
+    <div class="modal" role="dialog" aria-labelledby="contactTitle" aria-modal="true">
+      <button class="modal-close" type="button" data-close-modal aria-label="Zavrieť">×</button>
+      <div class="modal-eyebrow">Kontakt</div>
+      <h3 id="contactTitle">Napíšte nám</h3>
+      <p class="modal-lead">Náš konzultant vás kontaktuje do 24 hodín. Zadarmo, bez záväzkov.</p>
+
+      <form class="modal-form" id="contactForm" novalidate>
+        <div class="mf-row">
+          <label class="mf-field"><span class="mf-label">Meno *</span><input type="text" name="name" required></label>
+          <label class="mf-field"><span class="mf-label">Firma *</span><input type="text" name="company" required></label>
+        </div>
+        <label class="mf-field"><span class="mf-label">Email *</span><input type="email" name="email" required></label>
+        <div class="mf-row">
+          <label class="mf-field"><span class="mf-label">Telefón</span><input type="tel" name="phone"></label>
+          <label class="mf-field"><span class="mf-label">Počet zariadení</span>
+            <select name="devices">
+              <option>1–25</option>
+              <option>26–250</option>
+              <option>250+</option>
+            </select>
+          </label>
+        </div>
+        <label class="mf-field"><span class="mf-label">Správa (voliteľné)</span><textarea name="message" rows="3"></textarea></label>
+        <button type="submit" class="mf-submit">Odoslať</button>
+        <p class="mf-disclaimer">Odoslaním súhlasíte so spracovaním údajov za účelom spätnej väzby.</p>
+      </form>
+
+      <div class="modal-success" hidden>
+        <div class="ms-icon">✓</div>
+        <h4>Ďakujeme!</h4>
+        <p>Vaša správa bola odoslaná. Náš konzultant vás kontaktuje do 24 hodín.</p>
+        <button type="button" class="mf-submit" data-close-modal>Zavrieť</button>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

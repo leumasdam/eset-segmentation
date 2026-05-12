@@ -3,9 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESET — Vybrať plán</title>
+  <title>ESET — Vybrať plán | 4 otázky → odporúčanie</title>
+  <meta name="description" content="Pomôžeme vám vybrať správny ESET balík v 30 sekundách. 4 otázky o vašich potrebách → personalizované odporúčanie.">
+  <meta name="theme-color" content="#0A1823">
+  <link rel="canonical" href="https://leumasdam.github.io/eset-segmentation/vybrat-plan.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="sk_SK">
+  <meta property="og:title" content="ESET — Vybrať plán">
+  <meta property="og:description" content="4 otázky → odporúčaný ESET balík. Bez registrácie, bez záväzkov.">
+  <meta property="og:url" content="https://leumasdam.github.io/eset-segmentation/vybrat-plan.html">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="eset-redesign.css?v=20260507-features">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260509-a11y">
 
   <style>
     /* ─── WIZARD-SPECIFIC STYLES (uses tokens from eset-redesign.css) ─── */
@@ -525,6 +538,8 @@
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Preskočiť na obsah</a>
+
   <!-- GLOBAL AMBIENT ORB LAYER -->
   <div id="ambient"></div>
 
@@ -552,7 +567,7 @@
     <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
   </ul>
 
-  <main class="wizard-page">
+  <main class="wizard-page" id="main" tabindex="-1">
     <div class="wizard-page-bg" aria-hidden="true"></div>
 
     <div class="wizard-container">
@@ -802,6 +817,18 @@
   </main>
 
   <script>
+    /* Analytics stub — pozri index.html pre dokumentáciu */
+    window.track = function (name, props) {
+      const p = props || {};
+      if (window.dataLayer) window.dataLayer.push({ event: name, ...p });
+      if (typeof window.plausible === 'function') window.plausible(name, { props: p });
+      if (location.hostname === 'localhost' || location.hostname.startsWith('127.') || location.protocol === 'file:') console.log('[track]', name, p);
+    };
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-track]');
+      if (el) window.track(el.dataset.track, { href: el.getAttribute('href') || null, text: (el.textContent || '').trim().slice(0, 60) });
+    });
+
     /* Burger toggle */
     (function () {
       var burger = document.getElementById('navBurger');
@@ -851,6 +878,7 @@
         state.step = n;
         updateProgress();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (window.track) window.track('wizard:step', { step: n });
       }
 
       // Step 1 (single-select)
@@ -992,6 +1020,13 @@
         document.getElementById('wprogress').style.display = 'none';
         document.getElementById('wresultScreen').classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (window.track) window.track('wizard:result', {
+          product: rec.name + ' ' + rec.em,
+          audience: state.audience,
+          devices: state.devices,
+          platforms: [...state.platforms].join('+'),
+          concerns: [...state.concerns].join('+')
+        });
       }
 
       document.getElementById('wrestartBtn').addEventListener('click', () => {

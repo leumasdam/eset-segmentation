@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESET — Porovnanie balíkov | Domácnosti aj firmy</title>
+  <meta name="description" content="Porovnajte všetky ESET balíky vedľa seba. HOME Security Essential / Premium / Ultimate, PROTECT Entry / Advanced / Complete / MDR — funkcie, ceny.">
+  <meta name="theme-color" content="#0A1823">
+  <link rel="canonical" href="https://leumasdam.github.io/eset-segmentation/porovnat-baliky.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="sk_SK">
+  <meta property="og:title" content="ESET — Porovnanie balíkov">
+  <meta property="og:description" content="Všetky ESET balíky vedľa seba. Funkcie, ceny, odporúčania.">
+  <meta property="og:url" content="https://leumasdam.github.io/eset-segmentation/porovnat-baliky.html">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="eset-redesign.css?v=20260509-compare">
+
+  <style>
+    .cmp-page { min-height: 100vh; padding: 120px 24px 80px; position: relative; overflow: hidden; }
+    .cmp-bg {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% -5%, rgba(0,187,197,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 88% 90%, rgba(216,11,85,0.10) 0%, transparent 60%);
+    }
+    .cmp-container { max-width: 1180px; margin: 0 auto; position: relative; z-index: 2; }
+    .cmp-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font: 600 12px/1 'Inter', sans-serif;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--teal-bright); margin-bottom: 16px;
+    }
+    .cmp-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--teal-bright); }
+    .cmp-h1 {
+      font-size: clamp(32px, 4.5vw, 48px);
+      font-weight: 800; letter-spacing: -1.4px; line-height: 1.05;
+      margin: 0 0 14px; max-width: 760px;
+    }
+    .cmp-h1 em { color: var(--teal-bright); font-style: normal; }
+    .cmp-lead {
+      font-size: 17px; color: var(--text-muted); max-width: 620px;
+      line-height: 1.6; margin: 0 0 36px;
+    }
+
+    /* Tab switcher (mirrors pill switcher) */
+    .cmp-tabs {
+      display: inline-flex; gap: 4px;
+      background: rgba(10,24,35,0.6);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px;
+      margin-bottom: 36px;
+    }
+    .cmp-tab {
+      padding: 10px 22px;
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 0;
+      font: 600 14px/1 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+    .cmp-tab.is-active { background: var(--teal-bright); color: var(--dark); }
+
+    /* Pane visibility */
+    .cmp-pane { display: none; }
+    .cmp-pane.is-active { display: block; animation: cmpFade 0.4s ease-out; }
+    @keyframes cmpFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    /* Comparison table */
+    .cmp-wrap {
+      overflow-x: auto;
+      background: rgba(10,24,35,0.55);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+    }
+    .cmp-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+    }
+    .cmp-table th, .cmp-table td {
+      padding: 16px 18px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: middle;
+    }
+    .cmp-table thead th {
+      background: rgba(0,187,197,0.06);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(0,187,197,0.18);
+      position: sticky; top: 0;
+    }
+    .cmp-table thead th.cmp-product {
+      color: var(--text);
+      text-transform: none;
+      letter-spacing: -0.3px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .cmp-table thead th.cmp-product.is-featured {
+      color: var(--teal-bright);
+      position: relative;
+    }
+    .cmp-table thead th.cmp-product.is-featured::after {
+      content: 'NAJOBĽÚBENEJŠÍ';
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--crimson-light);
+      margin-top: 4px;
+    }
+    .cmp-row-feature { font-weight: 500; font-size: 14px; color: rgba(255,255,255,0.9); }
+    .cmp-row-feature small { display: block; font-size: 12px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+    .cmp-table tbody tr:hover { background: rgba(0,187,197,0.04); }
+    .cmp-table td.cmp-cell { text-align: center; font-size: 14px; }
+    .cmp-yes {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(0,187,197,0.18); color: var(--teal-bright);
+      font-weight: 800; font-size: 13px;
+    }
+    .cmp-no { color: rgba(255,255,255,0.18); font-size: 18px; }
+    .cmp-partial { color: var(--orange); font-weight: 600; font-size: 13px; }
+    .cmp-row-section td {
+      background: rgba(255,255,255,0.025);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      font-weight: 700;
+      padding: 12px 18px;
+    }
+    .cmp-row-price td {
+      background: rgba(10,24,35,0.7);
+      font-weight: 700;
+      border-top: 1px solid rgba(0,187,197,0.18);
+      border-bottom: none;
+    }
+    .cmp-row-price td.cmp-cell { font-size: 18px; color: var(--teal-bright); letter-spacing: -0.3px; }
+    .cmp-row-price td.cmp-cell small { display: block; font-size: 11px; color: var(--text-muted); font-weight: 500; margin-top: 2px; }
+    .cmp-row-cta td { background: rgba(10,24,35,0.55); padding: 18px; border-bottom: none; }
+    .cmp-row-cta .cmp-cta-btn {
+      display: inline-block; padding: 10px 18px;
+      background: var(--teal-bright); color: var(--dark);
+      border-radius: 10px; font-weight: 700; font-size: 13px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cmp-row-cta .cmp-cta-btn:hover { background: var(--teal-light); transform: translateY(-1px); }
+    .cmp-row-cta .cmp-cta-btn.is-secondary {
+      background: transparent;
+      color: var(--teal-bright);
+      border: 1px solid rgba(0,187,197,0.4);
+    }
+
+    /* Bottom CTAs */
+    .cmp-footer {
+      margin-top: 48px;
+      text-align: center;
+      padding: 32px;
+      background: linear-gradient(180deg, rgba(0,187,197,0.06) 0%, transparent 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+    .cmp-footer h2 { font-size: 22px; font-weight: 700; margin: 0 0 10px; letter-spacing: -0.5px; }
+    .cmp-footer p { color: var(--text-muted); margin: 0 0 20px; font-size: 15px; }
+    .cmp-footer-ctas { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+    @media (max-width: 720px) {
+      .cmp-page { padding: 96px 16px 60px; }
+      .cmp-tabs { width: 100%; justify-content: center; }
+      .cmp-table { font-size: 13px; }
+      .cmp-table th, .cmp-table td { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Preskočiť na obsah</a>
+
+  <div id="ambient"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="eset-logo2.png" alt="ESET" style="height:32px; width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#plans">Produkty</a></li>
+      <li><a href="porovnat-baliky.html">Porovnať</a></li>
+      <li><a href="#">Podpora</a></li>
+      <li><a href="#">Partneri</a></li>
+      <li><a href="vybrat-plan.html" class="nav-cta">Vyskúšať zadarmo</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Otvoriť menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="cmp-page" id="main" tabindex="-1">
+    <div class="cmp-bg" aria-hidden="true"></div>
+
+    <div class="cmp-container">
+      <span class="cmp-eyebrow">Porovnanie balíkov</span>
+      <h1 class="cmp-h1">Vyberte si <em>ochranu</em>, ktorá presne sedí.</h1>
+      <p class="cmp-lead">Porovnajte všetky ESET balíky vedľa seba. Pre domácnosti aj pre firmy — od jedného zariadenia po enterprise nasadenia.</p>
+
+      <div class="cmp-tabs" role="tablist" aria-label="Segment">
+        <button class="cmp-tab is-active" data-pane="home" role="tab" aria-selected="true">Pre domácnosti</button>
+        <button class="cmp-tab" data-pane="biz" role="tab" aria-selected="false">Pre firmy</button>
+      </div>
+
+      <!-- HOME PANE -->
+      <div class="cmp-pane is-active" data-pane="home">
+        <div class="cmp-wrap">
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="cmp-product">Essential</th>
+                <th class="cmp-product is-featured">Premium</th>
+                <th class="cmp-product">Ultimate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="cmp-row-section"><td colspan="4">Základná ochrana</td></tr>
+              <tr><td class="cmp-row-feature">Antivírus a anti-malware <small>Real-time skenovanie všetkých súborov</small></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Anti-phishing <small>Ochrana pred podvodnými stránkami</small></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Ransomware Shield</td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Banking & Payment Protection</td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+
+              <tr class="cmp-row-section"><td colspan="4">Súkromie</td></tr>
+              <tr><td class="cmp-row-feature">VPN <small>Anonymné prehliadanie</small></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-partial">5 GB/mes.</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span> <small style="display:block;font-size:11px;color:var(--text-muted)">neobmedzená</small></td></tr>
+              <tr><td class="cmp-row-feature">Správca hesiel</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Ochrana identity <small>Monitoring úniku údajov</small></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Šifrovanie súborov</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+
+              <tr class="cmp-row-section"><td colspan="4">Rodina</td></tr>
+              <tr><td class="cmp-row-feature">Parental Control <small>Filter obsahu, čas pred obrazovkou</small></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Anti-Theft</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+
+              <tr class="cmp-row-section"><td colspan="4">Platformy a zariadenia</td></tr>
+              <tr><td class="cmp-row-feature">Windows, macOS, Android</td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Počet zariadení</td><td class="cmp-cell">1–5</td><td class="cmp-cell">3–10</td><td class="cmp-cell">5–10</td></tr>
+
+              <tr class="cmp-row-price">
+                <td class="cmp-row-feature">Cena</td>
+                <td class="cmp-cell">od 39,99 €<small>/rok</small></td>
+                <td class="cmp-cell">od 59,99 €<small>/rok</small></td>
+                <td class="cmp-cell">od 84,99 €<small>/rok</small></td>
+              </tr>
+              <tr class="cmp-row-cta">
+                <td></td>
+                <td class="cmp-cell"><a href="vybrat-plan.html" class="cmp-cta-btn">Vyskúšať</a></td>
+                <td class="cmp-cell"><a href="vybrat-plan.html" class="cmp-cta-btn">Vyskúšať</a></td>
+                <td class="cmp-cell"><a href="vybrat-plan.html" class="cmp-cta-btn">Vyskúšať</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BUSINESS PANE -->
+      <div class="cmp-pane" data-pane="biz">
+        <div class="cmp-wrap">
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="cmp-product">Entry</th>
+                <th class="cmp-product">Advanced</th>
+                <th class="cmp-product is-featured">Complete</th>
+                <th class="cmp-product">MDR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="cmp-row-section"><td colspan="5">Endpoint a server</td></tr>
+              <tr><td class="cmp-row-feature">Endpoint Security <small>PC, Mac, mobil</small></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Server Security</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Cloud konzola <small>Centrálna správa</small></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+
+              <tr class="cmp-row-section"><td colspan="5">Pokročilá ochrana</td></tr>
+              <tr><td class="cmp-row-feature">Full Disk Encryption</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Advanced Threat Defense <small>Cloud sandbox + ML</small></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Vulnerability & Patch Management</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+
+              <tr class="cmp-row-section"><td colspan="5">Email a cloud</td></tr>
+              <tr><td class="cmp-row-feature">Mail Security <small>Exchange, SMTP, anti-spam</small></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Cloud Office Security <small>M365, Google Workspace</small></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+
+              <tr class="cmp-row-section"><td colspan="5">Spravovaná detekcia (MDR)</td></tr>
+              <tr><td class="cmp-row-feature">24/7 SOC monitoring</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Threat hunting expertmi ESET</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Incident response <small>Reakcia do 20 minút</small></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+
+              <tr class="cmp-row-section"><td colspan="5">Podpora</td></tr>
+              <tr><td class="cmp-row-feature">Email a chat podpora</td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Telefonická podpora 24/7</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-partial">8/5</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+              <tr><td class="cmp-row-feature">Dedicated Account Manager</td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-no">—</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td><td class="cmp-cell"><span class="cmp-yes">✓</span></td></tr>
+
+              <tr class="cmp-row-price">
+                <td class="cmp-row-feature">Cena</td>
+                <td class="cmp-cell">od 2,50 €<small>/zariadenie/mes.</small></td>
+                <td class="cmp-cell">od 4,20 €<small>/zariadenie/mes.</small></td>
+                <td class="cmp-cell">od 6,50 €<small>/zariadenie/mes.</small></td>
+                <td class="cmp-cell">Custom<small>na vyžiadanie</small></td>
+              </tr>
+              <tr class="cmp-row-cta">
+                <td></td>
+                <td class="cmp-cell"><a href="vybrat-plan.html" class="cmp-cta-btn">Vyskúšať</a></td>
+                <td class="cmp-cell"><a href="vybrat-plan.html" class="cmp-cta-btn">Vyskúšať</a></td>
+                <td class="cmp-cell"><a href="vybrat-plan.html" class="cmp-cta-btn">Vyskúšať</a></td>
+                <td class="cmp-cell"><a href="#" data-open-contact class="cmp-cta-btn is-secondary">Kontakt</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cmp-footer">
+        <h2>Neviete sa rozhodnúť?</h2>
+        <p>Spustite náš výberový sprievodca — 4 otázky, 30 sekúnd, presné odporúčanie.</p>
+        <div class="cmp-footer-ctas">
+          <a href="vybrat-plan.html" class="cmp-cta-btn">Spustiť sprievodcu →</a>
+          <a href="#" data-open-contact class="cmp-cta-btn is-secondary">Kontaktovať konzultanta</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    /* Analytics stub — pozri index.html pre dokumentáciu */
+    window.track = function (name, props) {
+      const p = props || {};
+      if (window.dataLayer) window.dataLayer.push({ event: name, ...p });
+      if (typeof window.plausible === 'function') window.plausible(name, { props: p });
+      if (location.hostname === 'localhost' || location.hostname.startsWith('127.') || location.protocol === 'file:') console.log('[track]', name, p);
+    };
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-track]');
+      if (el) window.track(el.dataset.track, { href: el.getAttribute('href') || null, text: (el.textContent || '').trim().slice(0, 60) });
+    });
+
+    /* Burger toggle */
+    (function () {
+      const burger = document.querySelector('.nav-burger');
+      const links  = document.querySelector('.nav-links');
+      if (!burger || !links) return;
+      burger.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+
+    /* Tab switcher */
+    (function () {
+      const tabs = document.querySelectorAll('.cmp-tab');
+      tabs.forEach(t => t.addEventListener('click', () => {
+        tabs.forEach(x => { x.classList.remove('is-active'); x.setAttribute('aria-selected', 'false'); });
+        t.classList.add('is-active');
+        t.setAttribute('aria-selected', 'true');
+        const pane = t.dataset.pane;
+        document.querySelectorAll('.cmp-pane').forEach(p =>
+          p.classList.toggle('is-active', p.dataset.pane === pane));
+      }));
+
+      /* Open business pane if URL hash is #firmy */
+      if (location.hash === '#firmy') {
+        document.querySelector('.cmp-tab[data-pane="biz"]')?.click();
+      }
+    })();
+
+    /* Contact modal (mirrors index.html) */
+    (function contactModal(){
+      const modal = document.getElementById('contactModal');
+      if (!modal) return;
+      const form = modal.querySelector('#contactForm');
+      const success = modal.querySelector('.modal-success');
+      let lastFocus = null;
+
+      function open() {
+        lastFocus = document.activeElement;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => modal.querySelector('input[name="name"]')?.focus(), 60);
+      }
+      function close() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        form.hidden = false;
+        success.hidden = true;
+        form.classList.remove('is-validated');
+        form.reset();
+        lastFocus?.focus?.();
+      }
+
+      document.addEventListener('click', (e) => {
+        const opener = e.target.closest('[data-open-contact]');
+        if (opener) { e.preventDefault(); open(); return; }
+        if (e.target.closest('[data-close-modal]')) { close(); return; }
+        if (e.target === modal) { close(); }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.hidden) close();
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.classList.add('is-validated');
+          form.querySelector(':invalid')?.focus();
+          return;
+        }
+        form.hidden = true;
+        success.hidden = false;
+      });
+    })();
+  </script>
+
+  <!-- CONTACT MODAL -->
+  <div class="modal-backdrop" id="contactModal" hidden>
+    <div class="modal" role="dialog" aria-labelledby="contactTitle" aria-modal="true">
+      <button class="modal-close" type="button" data-close-modal aria-label="Zavrieť">×</button>
+      <div class="modal-eyebrow">Kontakt</div>
+      <h3 id="contactTitle">Napíšte nám</h3>
+      <p class="modal-lead">Náš konzultant vás kontaktuje do 24 hodín. Zadarmo, bez záväzkov.</p>
+
+      <form class="modal-form" id="contactForm" novalidate>
+        <div class="mf-row">
+          <label class="mf-field"><span class="mf-label">Meno *</span><input type="text" name="name" required></label>
+          <label class="mf-field"><span class="mf-label">Firma *</span><input type="text" name="company" required></label>
+        </div>
+        <label class="mf-field"><span class="mf-label">Email *</span><input type="email" name="email" required></label>
+        <div class="mf-row">
+          <label class="mf-field"><span class="mf-label">Telefón</span><input type="tel" name="phone"></label>
+          <label class="mf-field"><span class="mf-label">Počet zariadení</span>
+            <select name="devices">
+              <option>1–25</option>
+              <option>26–250</option>
+              <option>250+</option>
+            </select>
+          </label>
+        </div>
+        <label class="mf-field"><span class="mf-label">Správa (voliteľné)</span><textarea name="message" rows="3"></textarea></label>
+        <button type="submit" class="mf-submit">Odoslať</button>
+        <p class="mf-disclaimer">Odoslaním súhlasíte so spracovaním údajov za účelom spätnej väzby.</p>
+      </form>
+
+      <div class="modal-success" hidden>
+        <div class="ms-icon">✓</div>
+        <h4>Ďakujeme!</h4>
+        <p>Vaša správa bola odoslaná. Náš konzultant vás kontaktuje do 24 hodín.</p>
+        <button type="button" class="mf-submit" data-close-modal>Zavrieť</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
