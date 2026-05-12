@@ -2510,27 +2510,17 @@ nav, .hero, #plans, .products-section,
   outline-offset: 2px;
 }
 
-/* Globálny focus-visible ring — viditeľný len pri keyboard navigácii */
+/* Globálny focus-visible ring — viditeľný len pri keyboard navigácii.
+   Nikdy nepriraďujem border-radius (zmenil by tvar elementu) — outline
+   v moderných prehliadačoch automaticky kopíruje radius elementu. */
 *:focus { outline: none; }
-button:focus-visible,
-a:focus-visible,
-[role="button"]:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-.bs-option:focus-visible,
-.bs-chip:focus-visible,
-.bs-dot:focus-visible,
-.cmp-tab:focus-visible,
-.modal-close:focus-visible {
+:focus-visible {
   outline: 2px solid var(--teal-bright);
-  outline-offset: 3px;
-  border-radius: 8px;
+  outline-offset: 2px;
 }
-.bs-dot:focus-visible { border-radius: 50%; outline-offset: 3px; }
 input:focus-visible,
 select:focus-visible,
-textarea:focus-visible { outline-offset: 0; border-radius: 10px; }
+textarea:focus-visible { outline-offset: 0; }
 
 /* Hidden but readable for screen readers */
 .sr-only {
