@@ -422,14 +422,14 @@ nav {
    cyber-track shows behind the heading + 01/02/03 cards as a blurred
    backdrop. Cards' backdrop-filter:blur(12px) reads through naturally. */
 @media (min-width: 1800px) {
-  .hero { clip-path: inset(0 0 -110vh 0); }
+  .hero { clip-path: inset(0 0 -200vh 0); }
   .hero-render {
     inset: auto;
     top: 0;
     left: 0;
     right: 0;
-    height: 180vh;
-    transform-origin: 50% 30%;
+    height: 260vh;
+    transform-origin: 50% 20%;
   }
 }
 
