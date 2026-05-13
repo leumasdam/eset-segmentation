@@ -426,12 +426,12 @@ nav {
 @media (min-width: 1200px) {
   .hero { clip-path: inset(0); }
   .hero-render {
-    object-position: 50% 50%;
+    object-position: 50% 40%;
     animation: heroRenderZoomLarge 50s ease-in-out infinite;
   }
   @keyframes heroRenderZoomLarge {
-    0%, 100% { transform: scale(0.78); }
-    50%      { transform: translate(0, -20px) scale(0.90); }
+    0%, 100% { transform: translate(0, -60px) scale(0.62); }
+    50%      { transform: translate(0, -80px) scale(0.72); }
   }
 }
 
