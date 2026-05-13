@@ -413,11 +413,24 @@ nav {
   padding: 120px 24px 80px;
   position: relative;
   overflow: visible;
-  /* Generous bleed (-110vh) so the cyber-track render extends past
-     .how-section heading + 01/02/03 cards. Cards have backdrop-filter
-     so render shows through them as a blurred backdrop. */
-  clip-path: inset(0 0 -110vh 0);
+  /* clip top + sides hard, but allow bottom overflow ~30vh into next section */
+  clip-path: inset(0 0 -30vh 0);
   cursor: pointer;
+}
+
+/* Ultra-wide screens (≥1800px): extend render past .how-section so the
+   cyber-track shows behind the heading + 01/02/03 cards as a blurred
+   backdrop. Cards' backdrop-filter:blur(12px) reads through naturally. */
+@media (min-width: 1800px) {
+  .hero { clip-path: inset(0 0 -110vh 0); }
+  .hero-render {
+    inset: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 180vh;
+    transform-origin: 50% 30%;
+  }
 }
 
 
@@ -434,22 +447,19 @@ nav {
 }
 
 /* Transparent-bg cyber render — slow ken-burns zoom.
-   height: 180vh extends the paint box past hero bottom so the cyber-track
-   image continues behind .how-section heading + cards. Bottom anchored
-   via top: 0 (image starts at hero top, runs ~80vh below hero). */
+   Pozn: na ultra-wide (≥1800px) sa height + transform-origin
+   prepíše v @media bloku vyššie pri .hero. */
 .hero-render {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   width: 100%;
-  height: 180vh;
+  height: 100%;
   object-fit: cover;
   object-position: 50% 40%;
   opacity: 0.38;
   pointer-events: none;
   z-index: 0;
-  transform-origin: 50% 30%;
+  transform-origin: 50% 40%;
   animation: heroRenderZoom 50s ease-in-out infinite;
   filter:
     drop-shadow(0 0 60px rgba(0, 187, 197, 0.40))
