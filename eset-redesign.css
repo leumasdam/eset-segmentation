@@ -426,21 +426,22 @@ nav {
    na .how-step). Hard bottom edge je až 200vh pod hero — mimo viewport. */
 @media (min-width: 1800px) {
   .hero { clip-path: none; }
+  /* Iba clear bottom + override height — nepoužívam inset:auto ani
+     reset left/right (zostávajú z base inset:0 = 0). Toto zabráni
+     over-constraintu top+bottom+height ktorý browser inak vyrieši
+     ignorovaním height. */
   .hero-render {
-    inset: auto;
-    top: 0;
-    left: 0;
-    right: 0;
+    bottom: auto;
     height: 300vh;
     transform-origin: 50% 20%;
-    /* Posunúť svetlú časť cyber-tracku nižšie (= do oblasti kde sedia
-       karty 01/02/03). Anchor "50% 70%" = stred horizontálne, 70% od
-       vrchu obrázka — to je svetlý ohyb dráhy. */
     object-position: 50% 70%;
-    /* Vyššia opacity aby image cez karty (rgba 0.55) ešte presvital.
-       0.38 × (1 - 0.55) = ~17% viditeľnosti — málo. 0.70 × 0.45 = ~32%. */
     opacity: 0.70;
   }
+  /* TEMP DEBUG: viditeľná červená čiara na spodnej hrane image elementu.
+     Ak ju vidíš ~200vh pod hero stats — image extension funguje, problém
+     je inde (opacity/stacking). Ak nevidíš nič červené — @media nematchuje
+     tvoj viewport. Po odpovedi to odstránim. */
+  .hero-render { outline: 4px solid red; outline-offset: -4px; }
 }
 
 
