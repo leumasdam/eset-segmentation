@@ -413,26 +413,9 @@ nav {
   padding: 120px 24px 80px;
   position: relative;
   overflow: visible;
-  /* Soft bleed (-30vh) cez spodok hero do ďalšej sekcie — vyzerá ako
-     plynulý prechod. Na širokých obrazovkách kde 30vh = 350-450px je
-     to už únik, takže ho tam ostro clipneme (viď @media nižšie). */
-  clip-path: inset(0 0 -30vh 0);
+  /* Hard-clip pri spodku hero — image sa nezreteknie do .how-section. */
+  clip-path: inset(0);
   cursor: pointer;
-}
-
-/* Wide screens (≥1200px): hard-clip hero render at the bottom edge +
-   shrink the render ~40% so the whole cyber-track fits inside hero
-   bounds without bottom crop. */
-@media (min-width: 1200px) {
-  .hero { clip-path: inset(0); }
-  .hero-render {
-    object-position: 50% 40%;
-    animation: heroRenderZoomLarge 50s ease-in-out infinite;
-  }
-  @keyframes heroRenderZoomLarge {
-    0%, 100% { transform: translate(0, -60px) scale(0.62); }
-    50%      { transform: translate(0, -80px) scale(0.72); }
-  }
 }
 
 
