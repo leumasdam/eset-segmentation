@@ -427,40 +427,15 @@ nav {
 @media (min-width: 1800px) {
   .hero { clip-path: none !important; overflow: visible !important; }
 
-  /* <picture> wrapper sa stáva 300vh BOX-om (s red outline pre debug).
-     Jeho pozícia/výška definuje "extent" kde môže byť image — ale image
-     sám je separátne stylovaný a môžeš ho ovládať nezávisle. */
-  .hero > picture {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 300vh;
-    z-index: 0;
-    pointer-events: none;
-    display: block;
-    overflow: visible;
-    outline: 4px solid red;
-    outline-offset: -4px;
-  }
-
-  /* Image vnútri picture — môžeš meniť height/translate/scale bez
-     dotyku na red outline (ten je na pictureovi).
-     Defaults: 100vh výška = pôvodná hero veľkosť, anchored na top. */
+  /* Iba dva tweakovateľné knobs:
+     - height: výška image elementu (pôvodne 100%, zmenši pre menší image)
+     - top: posun image vertikálne (negatívne = hore, kladné = dole)
+     Box image-u je rovnaký ako image content (žiadny wrapper).
+     Žiadny outline — bez debug rušenia. */
   .hero-render {
-    position: absolute !important;
-    top: 0 !important;             /* posun hore/dole: zmena tejto hodnoty */
-    left: 0 !important;
-    right: 0 !important;
     bottom: auto !important;
-    width: 100% !important;
-    height: 100vh !important;      /* veľkosť: menšia = znížiť (napr. 80vh) */
-    object-fit: cover;
-    object-position: 50% 40%;
-    opacity: 0.38;
-    transform-origin: 50% 40%;
-    /* keyframe heroRenderZoom (scale 1.30→1.50) stále beží, akurát
-       teraz scaleuje len image, nie box. */
+    height: 80vh !important;       /* menší než pôvodných 100vh */
+    top: -40px !important;         /* posun trochu hore */
   }
 }
 
