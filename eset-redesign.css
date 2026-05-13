@@ -426,23 +426,41 @@ nav {
    na .how-step). Hard bottom edge je až 200vh pod hero — mimo viewport. */
 @media (min-width: 1800px) {
   .hero { clip-path: none !important; overflow: visible !important; }
-  /* Box ostáva 300vh (red outline kotví spodok), ale image content
-     zostáva v natural aspect-ratio iba v hornej časti boxu (object-fit
-     contain + object-position 50% 0% = anchor top). Zvyšok je prázdny
-     priestor pre samostatný backdrop layer (rieším ďalej). */
+
+  /* <picture> wrapper sa stáva 300vh BOX-om (s red outline pre debug).
+     Jeho pozícia/výška definuje "extent" kde môže byť image — ale image
+     sám je separátne stylovaný a môžeš ho ovládať nezávisle. */
+  .hero > picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300vh;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+    overflow: visible;
+    outline: 4px solid red;
+    outline-offset: -4px;
+  }
+
+  /* Image vnútri picture — môžeš meniť height/translate/scale bez
+     dotyku na red outline (ten je na pictureovi).
+     Defaults: 100vh výška = pôvodná hero veľkosť, anchored na top. */
   .hero-render {
-    top: 0 !important;
+    position: absolute !important;
+    top: 0 !important;             /* posun hore/dole: zmena tejto hodnoty */
     left: 0 !important;
     right: 0 !important;
     bottom: auto !important;
-    width: auto !important;
-    height: 300vh !important;
-    object-fit: contain;
-    object-position: 50% 0%;
-    transform-origin: 50% 20%;
+    width: 100% !important;
+    height: 100vh !important;      /* veľkosť: menšia = znížiť (napr. 80vh) */
+    object-fit: cover;
+    object-position: 50% 40%;
     opacity: 0.38;
-    outline: 4px solid red;
-    outline-offset: -4px;
+    transform-origin: 50% 40%;
+    /* keyframe heroRenderZoom (scale 1.30→1.50) stále beží, akurát
+       teraz scaleuje len image, nie box. */
   }
 }
 
