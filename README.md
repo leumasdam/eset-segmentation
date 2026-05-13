@@ -1,14 +1,17 @@
 # ESET – Kybernetická bezpečnosť | Redesign Prototype
 
-Live: https://leumasdam.github.io/eset-prototype/
-Repo: https://github.com/leumasdam/eset-prototype
+Live: https://leumasdam.github.io/eset-segmentation/
+Repo: https://github.com/leumasdam/eset-segmentation
+
+**→ [Case Study](CASE_STUDY.md)** — design decisions, tech rationale, lessons learned
 
 ---
 
 ## Čo je toto
 
-High-fidelity interaktívny prototyp redesignu ESET.com/sk homepage.
-Postavený ako HTML + externý CSS súbor. Žiadne závislosti okrem Google Fonts (Inter).
+High-fidelity interaktívny prototyp redesignu ESET.com/sk — 7 stránok,
+3 interaktívne flows (business selector, trial wizard, compare matrix),
+vanilla HTML + CSS + JavaScript. Žiadne závislosti okrem Google Fonts (Inter).
 Funguje offline aj online.
 
 ---
