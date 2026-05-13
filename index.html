@@ -652,6 +652,18 @@
       if (window.track) window.track('pill-switcher:select', { tab });
     }
 
+    /* Deep-link triggers: #tab=firmy → otvor biz tab, #open-contact → modal */
+    window.addEventListener('DOMContentLoaded', () => {
+      if (location.hash === '#tab=firmy' || location.hash === '#firmy') {
+        const btn = document.querySelector('.pill-btn[onclick*="firmy"]');
+        if (btn) switchTab('firmy', btn);
+        document.getElementById('plans')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+      if (location.hash === '#open-contact') {
+        setTimeout(() => document.querySelector('[data-open-contact]')?.click(), 100);
+      }
+    });
+
     /* Burger toggle */
     (function () {
       var burger = document.getElementById('navBurger');
