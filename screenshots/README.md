@@ -33,3 +33,24 @@ Drop PNG files here matching these names (case-sensitive):
 ## Po pridaní
 
 Daj vedieť keď máš PNG-čka tu — commitnem ich a updatnem `CASE_STUDY.md` s embedded image referenciami.
+
+---
+
+## Auto-regeneration via Puppeteer
+
+Skript v `scripts/capture-screenshots.mjs` regeneruje všetkých 7 screenshotov automaticky cez headless Chrome. Používa deep-link triggery (`#firmy`, `#open-contact`) ktoré sú zabudované v `index.html`.
+
+Spustenie (z koreňa repa):
+```sh
+# Jednorazovo doinštaluj puppeteer (~50 MB, sťahuje Chromium)
+cd .. && npm install puppeteer --no-save
+
+# Spusti capture
+node eset-segmentation/scripts/capture-screenshots.mjs
+```
+
+Skript pre každý screenshot:
+- Otvorí relevantnú URL (file:// — local capture, žiadny GH Pages deploy lag)
+- Nastaví viewport (1440×900 default, 375×800 pre mobile)
+- Capturuje konkrétny element (`.business-guide`, `.modal`, `.cards-grid`, ...) namiesto fullpage — čistejší framing
+- Uloží PNG do `screenshots/`

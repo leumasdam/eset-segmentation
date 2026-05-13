@@ -94,6 +94,13 @@
     .hash-firmy .pill-btn[onclick*="firmy"] { background: var(--teal-bright) !important; color: var(--dark) !important; }
     .hash-contact #contactModal { display: flex !important; }
     .hash-contact body { overflow: hidden !important; }
+    /* Force reveal elements visible on deep-link (IntersectionObserver
+       nemusí stihnúť firnúť pred screenshotom v headless mode). */
+    .hash-firmy .reveal, .hash-contact .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
   </style>
 </head>
 <body>
@@ -670,13 +677,9 @@
       if (window.track) window.track('pill-switcher:select', { tab });
     }
 
-    /* Deep-link triggers: visual state už nastavený inline scriptom v <head>,
-       tu len doplníme behaviorálne veci (scroll, focus). */
-    window.addEventListener('DOMContentLoaded', () => {
-      if (location.hash === '#tab=firmy' || location.hash === '#firmy') {
-        document.getElementById('plans')?.scrollIntoView({ behavior: 'instant', block: 'start' });
-      }
-    });
+    /* Deep-link triggers: visual state už nastavený inline scriptom v <head>.
+       (scroll bol odstránený lebo robil problémy v headless screenshot capture
+        a deep-link návštevník vidí stránku od hero čo je tiež OK.) */
 
     /* Burger toggle */
     (function () {
