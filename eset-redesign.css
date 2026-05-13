@@ -457,14 +457,30 @@ nav {
   50%      { transform: translate(0, -40px) scale(1.50); }
 }
 
-/* Ultra-wide (≥1800px): mierne väčší scale aby image presakoval pod hero.
-   Hodnoty sú zoom-out verzia (1.50→1.70) namiesto pôvodnej 2.80→3.10. */
+/* Ultra-wide (≥1800px): image je position:fixed — drží sa v viewport
+   ako kontinuálny backdrop. Vďaka tomu môže byť MENŠÍ (scale 0.95→1.10)
+   v hero a SÚČASNE viditeľný za .how-section / kartami (extension rieši
+   fixed position, nie scale).
+
+   Trade-off: image je viditeľný aj v ďalších sekciách (trust, products...)
+   keď naň user scrollne. Subtílne (opacity 0.38). Ak je to rušivé, dá sa
+   pridať scroll-driven fade-out. */
 @media (min-width: 1800px) {
-  .hero { clip-path: inset(0 0 -110vh 0); }
-  .hero-render { animation: heroRenderZoomLarge 50s ease-in-out infinite; }
+  .hero { clip-path: none; }
+  .hero-render {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: auto !important;
+    right: auto !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 0;
+    animation: heroRenderZoomLarge 50s ease-in-out infinite;
+  }
   @keyframes heroRenderZoomLarge {
-    0%, 100% { transform: scale(2.10); }
-    50%      { transform: translate(0, -60px) scale(2.30); }
+    0%, 100% { transform: scale(0.95); }
+    50%      { transform: translate(0, -30px) scale(1.10); }
   }
 }
 
