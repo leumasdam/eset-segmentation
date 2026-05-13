@@ -426,8 +426,10 @@ nav {
    na .how-step). Hard bottom edge je až 200vh pod hero — mimo viewport. */
 @media (min-width: 1800px) {
   .hero { clip-path: none !important; overflow: visible !important; }
-  /* Všetko explicitne s !important aby premoholo prípadnú cascade
-     kolíziu z base inset:0 + height:100% (over-constrained set). */
+  /* Box ostáva 300vh (red outline kotví spodok), ale image content
+     zostáva v natural aspect-ratio iba v hornej časti boxu (object-fit
+     contain + object-position 50% 0% = anchor top). Zvyšok je prázdny
+     priestor pre samostatný backdrop layer (rieším ďalej). */
   .hero-render {
     top: 0 !important;
     left: 0 !important;
@@ -435,9 +437,10 @@ nav {
     bottom: auto !important;
     width: auto !important;
     height: 300vh !important;
+    object-fit: contain;
+    object-position: 50% 0%;
     transform-origin: 50% 20%;
-    object-position: 50% 70%;
-    opacity: 0.70;
+    opacity: 0.38;
     outline: 4px solid red;
     outline-offset: -4px;
   }
