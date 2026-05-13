@@ -1879,6 +1879,27 @@ nav, .hero, #plans, .products-section,
   text-align: center;
 }
 
+/* Ultra-wide (≥1800px): cyber-track image ako backdrop za heading + kartami.
+   Pseudo ::before drží image, .how-section deti idú cez ::before vďaka
+   z-index: 1. Karty (.how-step) majú backdrop-filter:blur(12px), takže
+   cyber-track sa cez ne zobrazí ako blurnutý backdrop. */
+@media (min-width: 1800px) {
+  .how-section { overflow: hidden; }
+  .how-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('hero-render.png');
+    background-size: cover;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    opacity: 0.32;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .how-section > * { position: relative; z-index: 1; }
+}
+
 .how-steps {
   display: flex;
   align-items: stretch;
