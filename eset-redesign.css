@@ -433,6 +433,13 @@ nav {
     right: 0;
     height: 300vh;
     transform-origin: 50% 20%;
+    /* Posunúť svetlú časť cyber-tracku nižšie (= do oblasti kde sedia
+       karty 01/02/03). Anchor "50% 70%" = stred horizontálne, 70% od
+       vrchu obrázka — to je svetlý ohyb dráhy. */
+    object-position: 50% 70%;
+    /* Vyššia opacity aby image cez karty (rgba 0.55) ešte presvital.
+       0.38 × (1 - 0.55) = ~17% viditeľnosti — málo. 0.70 × 0.45 = ~32%. */
+    opacity: 0.70;
   }
 }
 
