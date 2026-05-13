@@ -457,15 +457,14 @@ nav {
   50%      { transform: translate(0, -40px) scale(1.50); }
 }
 
-/* Ultra-wide (≥1800px): väčší clip-path bleed + väčší scale, aby ten
-   istý hero image opticky siahal cez celu .how-section (vrátane kariet
-   01/02/03). Žiadne stretch, len uniform zoom (zachová aspect ratio). */
+/* Ultra-wide (≥1800px): mierne väčší scale aby image presakoval pod hero.
+   Hodnoty sú zoom-out verzia (1.50→1.70) namiesto pôvodnej 2.80→3.10. */
 @media (min-width: 1800px) {
-  .hero { clip-path: inset(0 0 -130vh 0); }
+  .hero { clip-path: inset(0 0 -60vh 0); }
   .hero-render { animation: heroRenderZoomLarge 50s ease-in-out infinite; }
   @keyframes heroRenderZoomLarge {
-    0%, 100% { transform: scale(2.80); }
-    50%      { transform: translate(0, -60px) scale(3.10); }
+    0%, 100% { transform: scale(1.50); }
+    50%      { transform: translate(0, -40px) scale(1.70); }
   }
 }
 
