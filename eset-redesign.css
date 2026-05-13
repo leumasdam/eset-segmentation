@@ -413,9 +413,18 @@ nav {
   padding: 120px 24px 80px;
   position: relative;
   overflow: visible;
-  /* clip top + sides hard, but allow bottom overflow ~30vh into next section */
+  /* Soft bleed (-30vh) cez spodok hero do ďalšej sekcie — vyzerá ako
+     plynulý prechod. Na širokých obrazovkách kde 30vh = 350-450px je
+     to už únik, takže ho tam ostro clipneme (viď @media nižšie). */
   clip-path: inset(0 0 -30vh 0);
   cursor: pointer;
+}
+
+/* Wide screens (≥1200px): hard-clip hero render at the bottom edge —
+   keeps the next section visually clean instead of letting the cyber-track
+   render bleed into it. */
+@media (min-width: 1200px) {
+  .hero { clip-path: inset(0); }
 }
 
 
