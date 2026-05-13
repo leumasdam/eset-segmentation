@@ -479,8 +479,8 @@ nav {
     animation: heroRenderZoomLarge 50s ease-in-out infinite;
   }
   @keyframes heroRenderZoomLarge {
-    0%, 100% { transform: scale(0.95); }
-    50%      { transform: translate(0, -30px) scale(1.10); }
+    0%, 100% { transform: scale(1.14); }
+    50%      { transform: translate(0, -30px) scale(1.32); }
   }
 }
 
