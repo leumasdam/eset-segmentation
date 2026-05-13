@@ -284,14 +284,13 @@ nav {
     font-size: 14px;
   }
 
-  /* Awards image — tighter spacing on mobile */
+  /* Awards image */
   .hero-badges {
     margin-top: 24px;
     margin-bottom: 22px;
   }
   .hero-badges-img {
-    max-width: 82vw;
-    max-height: 60px;
+    max-width: 78vw;
   }
 
   /* Stats: drop divider, tighter layout */
@@ -413,8 +412,8 @@ nav {
   padding: 120px 24px 80px;
   position: relative;
   overflow: visible;
-  /* Hard-clip pri spodku hero — image sa nezreteknie do .how-section. */
-  clip-path: inset(0);
+  /* clip top + sides hard, but allow bottom overflow ~30vh into next section */
+  clip-path: inset(0 0 -30vh 0);
   cursor: pointer;
 }
 
@@ -663,10 +662,9 @@ nav {
    pozadím — odtiene šedej sa na tmavom pozadí javia ako biele/svetlosivé.
 
    ČO MÔŽEŠ MENIŤ:
-   - .hero-badges-img max-width (560px): max šírka pásu odznakov
-   - .hero-badges-img max-height (90px): cap výšky, aby sa pás nikdy
-     nezväčšil ak by parent zúril
-   - aspect-ratio (1298/192): tvrdá ochrana pred deformáciou
+   - .hero-badges-img max-width (560px): šírka pásu odznakov
+   - opacity (0.55): viditeľnosť — zvýš pre výraznejšie odznaky
+   - margin-bottom (40px): medzera pod odznakami pred štatistikami
 
    PREPOJENÉ PRVKY: <div class="hero-badges"> a <img class="hero-badges-img">
    ============================================================================= */
@@ -695,21 +693,14 @@ nav {
 .hero-bottom-bar > * { pointer-events: auto; }
 
 .hero-badges {
-  display: flex;
-  justify-content: center;
   margin-bottom: 0;
-  width: 100%;
-  max-width: 100%;
 }
 
 .hero-badges-img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: min(560px, 90vw);
-  max-height: 90px;
-  object-fit: contain;
-  aspect-ratio: 1298 / 192;
+  max-width: 560px;
+  width: 100%;
+  opacity: 0.55;
+  filter: brightness(1.1);
 }
 
 
