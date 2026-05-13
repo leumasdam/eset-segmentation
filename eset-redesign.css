@@ -460,11 +460,11 @@ nav {
 /* Ultra-wide (≥1800px): mierne väčší scale aby image presakoval pod hero.
    Hodnoty sú zoom-out verzia (1.50→1.70) namiesto pôvodnej 2.80→3.10. */
 @media (min-width: 1800px) {
-  .hero { clip-path: inset(0 0 -85vh 0); }
+  .hero { clip-path: inset(0 0 -110vh 0); }
   .hero-render { animation: heroRenderZoomLarge 50s ease-in-out infinite; }
   @keyframes heroRenderZoomLarge {
-    0%, 100% { transform: scale(1.80); }
-    50%      { transform: translate(0, -50px) scale(2.00); }
+    0%, 100% { transform: scale(2.10); }
+    50%      { transform: translate(0, -60px) scale(2.30); }
   }
 }
 
