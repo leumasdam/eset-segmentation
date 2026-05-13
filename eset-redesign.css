@@ -419,10 +419,11 @@ nav {
 }
 
 /* Ultra-wide screens (≥1800px): extend render past .how-section.
-   Bez clip-path (negatívne hodnoty inset() sa v niektorých prehliadačoch
-   clampnú na 0 — preto -200vh nefungovalo). Spoliehame sa na overflow:
-   visible (parent .hero) + body overflow-x: hidden (zachytí bočný overflow).
-   Nav je z-index 101 fixed — image ho nikdy neprekryje. */
+   Bez clip-path — spoliehame sa na overflow: visible (parent .hero) +
+   body overflow-x: hidden. Nav je z-index 101 fixed, image ho neprekryje.
+   Žiaden mask — image má plnú opacitu naprieč celým paint boxom, takže
+   karty 01/02/03 cez neho presvitajú ako blurnutý backdrop (backdrop-filter
+   na .how-step). Hard bottom edge je až 200vh pod hero — mimo viewport. */
 @media (min-width: 1800px) {
   .hero { clip-path: none; }
   .hero-render {
@@ -430,12 +431,8 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    height: 260vh;
+    height: 300vh;
     transform-origin: 50% 20%;
-    /* Soft fade-out na spodku aby image plynulo zhasol miesto tvrdej hrany.
-       Image plne nepriehľadný do 70%, potom plynulý prechod do 100% (mask = 0). */
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   }
 }
 
