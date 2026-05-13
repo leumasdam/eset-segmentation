@@ -418,26 +418,6 @@ nav {
   cursor: pointer;
 }
 
-/* Ultra-wide screens (≥1800px): extend render past .how-section.
-   Bez clip-path — spoliehame sa na overflow: visible (parent .hero) +
-   body overflow-x: hidden. Nav je z-index 101 fixed, image ho neprekryje.
-   Žiaden mask — image má plnú opacitu naprieč celým paint boxom, takže
-   karty 01/02/03 cez neho presvitajú ako blurnutý backdrop (backdrop-filter
-   na .how-step). Hard bottom edge je až 200vh pod hero — mimo viewport. */
-@media (min-width: 1800px) {
-  .hero { clip-path: none !important; overflow: visible !important; }
-
-  /* Iba dva tweakovateľné knobs:
-     - height: výška image elementu (pôvodne 100%, zmenši pre menší image)
-     - top: posun image vertikálne (negatívne = hore, kladné = dole)
-     Box image-u je rovnaký ako image content (žiadny wrapper).
-     Žiadny outline — bez debug rušenia. */
-  .hero-render {
-    bottom: auto !important;
-    height: 80vh !important;       /* menší než pôvodných 100vh */
-    top: -40px !important;         /* posun trochu hore */
-  }
-}
 
 
 /* Gradientové pozadie hero — vrstvené radiálne gradienty */
